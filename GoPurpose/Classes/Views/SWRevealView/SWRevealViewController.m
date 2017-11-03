@@ -650,12 +650,11 @@ const int FrontViewPositionNone = 0xff;
 
 - (void)_initDefaultProperties
 {
-   // CGRect frame = [[UIScreen mainScreen] bounds];
+    CGRect frame = [[UIScreen mainScreen] bounds];
     _frontViewPosition = FrontViewPositionLeft;
     _rearViewPosition = FrontViewPositionLeft;
     _rightViewPosition = FrontViewPositionLeft;
-    _rearViewRevealWidth = 220.0f;
-//     _rearViewRevealWidth = frame.size.width-100;//change side bar width
+    _rearViewRevealWidth = frame.size.width-60;//change side bar width
     _rearViewRevealOverdraw =0.0f;//change side bar push style when 0.0= view pura close ho k open nahi hota
     _rearViewRevealDisplacement = 40.0f;
     _rightViewRevealWidth = 260.0f;
