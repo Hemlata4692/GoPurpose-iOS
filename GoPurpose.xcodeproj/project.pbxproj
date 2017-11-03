@@ -31,10 +31,6 @@
 		187D4ADF1FA9963600FA96DC /* FontUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtility.swift; sourceTree = "<group>"; };
 		187D4AE41FA996B700FA96DC /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		187D4AE61FA996F000FA96DC /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		187D4AE91FA9981F00FA96DC /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskProviderSDK.framework; sourceTree = "<group>"; };
-		187D4AEA1FA9982300FA96DC /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskSDK.framework; sourceTree = "<group>"; };
-		187D4AEC1FA9984200FA96DC /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDKStrings.bundle; sourceTree = "<group>"; };
-		187D4AED1FA9984300FA96DC /* ZendeskSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDK.bundle; sourceTree = "<group>"; };
 		18956FF21FA8A736009DC63A /* GoPurpose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoPurpose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18956FF51FA8A736009DC63A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18956FFA1FA8A736009DC63A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,13 +96,6 @@
 			path = SideBarViewController;
 			sourceTree = "<group>";
 		};
-		187D4AE21FA9968500FA96DC /* DashboardViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DashboardViewController;
-			sourceTree = "<group>";
-		};
 		187D4AE31FA9969400FA96DC /* ForgotPasswordViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +114,6 @@
 		187D4AE81FA997FE00FA96DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				187D4AE91FA9981F00FA96DC /* ZendeskProviderSDK.framework */,
-				187D4AEA1FA9982300FA96DC /* ZendeskSDK.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -134,8 +121,6 @@
 		187D4AEB1FA9982F00FA96DC /* ZendeskBundleFiles */ = {
 			isa = PBXGroup;
 			children = (
-				187D4AEC1FA9984200FA96DC /* ZendeskSDKStrings.bundle */,
-				187D4AED1FA9984300FA96DC /* ZendeskSDK.bundle */,
 			);
 			path = ZendeskBundleFiles;
 			sourceTree = "<group>";
@@ -197,7 +182,6 @@
 			children = (
 				187D4AE01FA9966400FA96DC /* LoginViewController */,
 				187D4AE31FA9969400FA96DC /* ForgotPasswordViewController */,
-				187D4AE21FA9968500FA96DC /* DashboardViewController */,
 				187D4AE11FA9967700FA96DC /* SideBarViewController */,
 			);
 			path = Controllers;
