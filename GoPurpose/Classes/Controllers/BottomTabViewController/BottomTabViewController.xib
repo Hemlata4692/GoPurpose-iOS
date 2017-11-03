@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomTabViewController" customModule="SideBarBottomBarSwift" customModuleProvider="target">
+            <connections>
+                <outlet property="dashboardButton" destination="dP9-jA-IaA" id="7Yb-jd-joN"/>
+                <outlet property="homeImageIcon" destination="Cxx-qW-i85" id="wMQ-9D-LVI"/>
+                <outlet property="messageButton" destination="lPB-cU-Lbn" id="RLb-UO-g8w"/>
+                <outlet property="messageImageIcon" destination="k2S-1D-glk" id="HDX-93-gnd"/>
+                <outlet property="productButton" destination="vEk-vV-E4Y" id="KTF-yx-EVG"/>
+                <outlet property="productImageIcon" destination="Op0-6M-maZ" id="gab-Po-xiZ"/>
+                <outlet property="settingsButton" destination="j2p-gu-5HK" id="NBJ-Is-BpD"/>
+                <outlet property="settingsImageIcon" destination="nlQ-JL-W8S" id="5Ua-uR-Htv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="ukz-Zr-nDY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dP9-jA-IaA">
+                    <rect key="frame" x="16" y="0.0" width="60" height="65"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                    <state key="normal" title="Home">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.89411764705882346" green="0.65490196078431373" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="dashboardButtonAction:" destination="-1" eventType="touchUpInside" id="kbY-RK-aoF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPB-cU-Lbn">
+                    <rect key="frame" x="92" y="0.0" width="60" height="65"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                    <state key="normal" title="Messages">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.89411764705882346" green="0.65490196078431373" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="messageButtonAction:" destination="-1" eventType="touchUpInside" id="JcX-5T-JBb"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" translatesAutoresizingMaskIntoConstraints="NO" id="k2S-1D-glk">
+                    <rect key="frame" x="108" y="10" width="28" height="28"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="28" id="NVX-5H-vRG"/>
+                        <constraint firstAttribute="height" constant="28" id="phW-KR-vBF"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEk-vV-E4Y">
+                    <rect key="frame" x="168" y="0.0" width="60" height="65"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                    <state key="normal" title="Product">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.89411764705882346" green="0.65490196078431373" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="productButtonAction:" destination="-1" eventType="touchUpInside" id="8nA-m0-gJG"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product" translatesAutoresizingMaskIntoConstraints="NO" id="Op0-6M-maZ">
+                    <rect key="frame" x="183" y="10" width="30" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="TJr-qF-eJC"/>
+                        <constraint firstAttribute="height" constant="30" id="h4u-C8-940"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2p-gu-5HK">
+                    <rect key="frame" x="244" y="0.0" width="60" height="65"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                    <state key="normal" title="Settings">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.89411764705882346" green="0.65490196078431373" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="settingsButtonAction:" destination="-1" eventType="touchUpInside" id="wjQ-PN-nSL"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting" translatesAutoresizingMaskIntoConstraints="NO" id="nlQ-JL-W8S">
+                    <rect key="frame" x="260" y="10" width="28" height="28"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="KB6-u5-1mv"/>
+                        <constraint firstAttribute="width" constant="28" id="uWj-pW-8Iq"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="Cxx-qW-i85">
+                    <rect key="frame" x="32" y="10" width="28" height="28"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="28" id="aFb-CZ-HUP"/>
+                        <constraint firstAttribute="height" constant="28" id="vgj-Dq-1ht"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lPB-cU-Lbn" secondAttribute="bottom" id="2SS-M4-ZbX"/>
+                <constraint firstItem="nlQ-JL-W8S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="5ym-Tp-o4O"/>
+                <constraint firstItem="dP9-jA-IaA" firstAttribute="width" secondItem="lPB-cU-Lbn" secondAttribute="width" id="7WT-rD-XAO"/>
+                <constraint firstItem="Cxx-qW-i85" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="8XR-Yb-tXh"/>
+                <constraint firstAttribute="bottom" secondItem="vEk-vV-E4Y" secondAttribute="bottom" id="9Ma-SY-Asu"/>
+                <constraint firstItem="vEk-vV-E4Y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Akh-AX-8Se"/>
+                <constraint firstItem="Cxx-qW-i85" firstAttribute="centerX" secondItem="dP9-jA-IaA" secondAttribute="centerX" id="Eb3-mg-frr"/>
+                <constraint firstItem="Op0-6M-maZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="Hf9-3c-gke"/>
+                <constraint firstItem="dP9-jA-IaA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LYi-Wi-q4P"/>
+                <constraint firstAttribute="bottom" secondItem="j2p-gu-5HK" secondAttribute="bottom" id="Mle-qa-D12"/>
+                <constraint firstItem="dP9-jA-IaA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="PS8-Qn-ct2"/>
+                <constraint firstAttribute="trailing" secondItem="j2p-gu-5HK" secondAttribute="trailing" constant="16" id="PbW-A2-04E"/>
+                <constraint firstItem="lPB-cU-Lbn" firstAttribute="width" secondItem="vEk-vV-E4Y" secondAttribute="width" id="Py1-xz-3kB"/>
+                <constraint firstItem="j2p-gu-5HK" firstAttribute="width" secondItem="vEk-vV-E4Y" secondAttribute="width" id="TaT-eb-BSE"/>
+                <constraint firstItem="j2p-gu-5HK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YuE-gO-hNd"/>
+                <constraint firstItem="k2S-1D-glk" firstAttribute="centerX" secondItem="lPB-cU-Lbn" secondAttribute="centerX" id="brw-Lc-ldj"/>
+                <constraint firstItem="lPB-cU-Lbn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="f42-Es-XLQ"/>
+                <constraint firstItem="lPB-cU-Lbn" firstAttribute="leading" secondItem="dP9-jA-IaA" secondAttribute="trailing" constant="16" id="jLj-n0-vQw"/>
+                <constraint firstItem="nlQ-JL-W8S" firstAttribute="centerX" secondItem="j2p-gu-5HK" secondAttribute="centerX" id="lfB-BA-eHj"/>
+                <constraint firstItem="vEk-vV-E4Y" firstAttribute="leading" secondItem="lPB-cU-Lbn" secondAttribute="trailing" constant="16" id="oJI-dk-UtX"/>
+                <constraint firstAttribute="bottom" secondItem="dP9-jA-IaA" secondAttribute="bottom" id="p9D-3f-L6c"/>
+                <constraint firstItem="j2p-gu-5HK" firstAttribute="leading" secondItem="vEk-vV-E4Y" secondAttribute="trailing" constant="16" id="q2e-OO-fIT"/>
+                <constraint firstItem="k2S-1D-glk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="to9-d3-pGv"/>
+                <constraint firstItem="Op0-6M-maZ" firstAttribute="centerX" secondItem="vEk-vV-E4Y" secondAttribute="centerX" id="yWp-Uo-ASo"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Ew4-A0-C8b"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="home" width="46" height="46"/>
+        <image name="message" width="46" height="46"/>
+        <image name="product" width="46" height="46"/>
+        <image name="setting" width="46" height="46"/>
+    </resources>
+</document>

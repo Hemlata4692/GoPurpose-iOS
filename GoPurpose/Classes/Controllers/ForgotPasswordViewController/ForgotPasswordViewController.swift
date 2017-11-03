@@ -10,6 +10,7 @@ import UIKit
 
 class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeyboardControlsDelegate {
     
+    // MARK: - IBOutlets and declarations
     @IBOutlet weak var forgotPasswordScrollView: UIScrollView!
     @IBOutlet weak var forgotPasswordView: UIView!
     @IBOutlet weak var resetPasswordView: UIView!
@@ -24,6 +25,8 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
     @IBOutlet weak var resendOTPButton: UIButton!
     
     var keyBoardControl:BSKeyboardControls?
+    
+    // MARK: - end
     
     // MARK: - View life cycle
     override func viewDidLoad() {

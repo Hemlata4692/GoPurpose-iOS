@@ -14,8 +14,8 @@ class FontUtility: UIFont {
         return UIFont(name: "Roboto-Regular", size: size)!
     }
     
-    class func mediumFontWithSize(size: CGFloat) -> UIFont {
-        return UIFont(name: "Roboto-Medium", size: size)!
+    class func montserratMedium(size: CGFloat) -> UIFont {
+        return UIFont(name: "Montserrat-Medium", size: size)!
     }
 
     class func lightFontWithSize(size: CGFloat) -> UIFont {

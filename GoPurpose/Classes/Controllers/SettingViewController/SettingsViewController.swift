@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,10 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.showSelectedTab(item: 4)
+    }
 
     /*
     // MARK: - Navigation

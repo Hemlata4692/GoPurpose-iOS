@@ -8,11 +8,12 @@
 
 import UIKit
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: GlobalViewController {
 
+    // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title="GoPurpose";
         // Do any additional setup after loading the view.
     }
 
@@ -21,15 +22,12 @@ class DashboardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isHidden=false;
+         self.showSelectedTab(item: 1)
     }
-    */
+    // MARK: - end
+    
 
 }
