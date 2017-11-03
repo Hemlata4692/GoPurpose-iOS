@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
+//Storyboard initialisation
+let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+// Constants for screen sizes
+let kScreenSize = UIScreen.main.bounds.size
+let kScreenWidth = UIScreen.main.bounds.size.width
+let kScreenHeight = UIScreen.main.bounds.size.height
