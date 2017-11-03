@@ -33,6 +33,10 @@
 		18B20DC81FAC2D25005A6147 /* BottomTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DC61FAC2C91005A6147 /* BottomTabViewController.swift */; };
 		18B20DC91FAC2D31005A6147 /* BottomTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B20DC51FAC2C91005A6147 /* BottomTabViewController.xib */; };
 		18B20DCA1FAC35A8005A6147 /* FontUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4ADF1FA9963600FA96DC /* FontUtility.swift */; };
+		18B20DD01FAC5772005A6147 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DCF1FAC5771005A6147 /* NotificationViewController.swift */; };
+		18B20DD21FAC57A3005A6147 /* OrderListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD11FAC57A3005A6147 /* OrderListingViewController.swift */; };
+		18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD31FAC57B4005A6147 /* SalesViewController.swift */; };
+		18B20DD61FAC57C2005A6147 /* SDGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD51FAC57C2005A6147 /* SDGViewController.swift */; };
 		18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */; };
 		18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */; };
 		A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */; };
@@ -70,6 +74,10 @@
 		18B20DC31FAC2C68005A6147 /* GlobalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewController.swift; sourceTree = "<group>"; };
 		18B20DC51FAC2C91005A6147 /* BottomTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomTabViewController.xib; sourceTree = "<group>"; };
 		18B20DC61FAC2C91005A6147 /* BottomTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabViewController.swift; sourceTree = "<group>"; };
+		18B20DCF1FAC5771005A6147 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		18B20DD11FAC57A3005A6147 /* OrderListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListingViewController.swift; sourceTree = "<group>"; };
+		18B20DD31FAC57B4005A6147 /* SalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesViewController.swift; sourceTree = "<group>"; };
+		18B20DD51FAC57C2005A6147 /* SDGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDGViewController.swift; sourceTree = "<group>"; };
 		18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
@@ -238,13 +246,17 @@
 			children = (
 				18B20DC41FAC2C7F005A6147 /* BottomTabViewController */,
 				18B20DC21FAC2C54005A6147 /* GlobalViewController */,
+				187D4AE11FA9967700FA96DC /* SideBarViewController */,
 				187D4AE01FA9966400FA96DC /* LoginViewController */,
 				187D4AE31FA9969400FA96DC /* ForgotPasswordViewController */,
 				187D4AE21FA9968500FA96DC /* DashboardViewController */,
 				186FD4FE1FAB0DF100081D8A /* ProductListViewController */,
 				186FD4FF1FAB0DFB00081D8A /* MessageViewController */,
 				186FD5001FAB0E0600081D8A /* SettingViewController */,
-				187D4AE11FA9967700FA96DC /* SideBarViewController */,
+				18B20DCC1FAC5735005A6147 /* OrderListingViewController */,
+				18B20DCB1FAC5724005A6147 /* NotificationViewController */,
+				18B20DCD1FAC5746005A6147 /* SalesViewController */,
+				18B20DCE1FAC5751005A6147 /* SDGViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -308,6 +320,38 @@
 				18B20DC51FAC2C91005A6147 /* BottomTabViewController.xib */,
 			);
 			path = BottomTabViewController;
+			sourceTree = "<group>";
+		};
+		18B20DCB1FAC5724005A6147 /* NotificationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18B20DCF1FAC5771005A6147 /* NotificationViewController.swift */,
+			);
+			path = NotificationViewController;
+			sourceTree = "<group>";
+		};
+		18B20DCC1FAC5735005A6147 /* OrderListingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18B20DD11FAC57A3005A6147 /* OrderListingViewController.swift */,
+			);
+			path = OrderListingViewController;
+			sourceTree = "<group>";
+		};
+		18B20DCD1FAC5746005A6147 /* SalesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18B20DD31FAC57B4005A6147 /* SalesViewController.swift */,
+			);
+			path = SalesViewController;
+			sourceTree = "<group>";
+		};
+		18B20DCE1FAC5751005A6147 /* SDGViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18B20DD51FAC57C2005A6147 /* SDGViewController.swift */,
+			);
+			path = SDGViewController;
 			sourceTree = "<group>";
 		};
 		18C24B2E1FA9CDF70095F260 /* Fonts */ = {
@@ -483,15 +527,19 @@
 				187D4AD81FA9952A00FA96DC /* LoginViewController.swift in Sources */,
 				18B20DC81FAC2D25005A6147 /* BottomTabViewController.swift in Sources */,
 				186FD4FD1FAB0DEA00081D8A /* DashboardViewController.swift in Sources */,
+				18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */,
 				186FD5041FAB0E7B00081D8A /* SettingsViewController.swift in Sources */,
 				18B20DC71FAC2D23005A6147 /* GlobalViewController.swift in Sources */,
 				186FD5021FAB0E4700081D8A /* ProductListViewController.swift in Sources */,
 				187D4AE51FA996B700FA96DC /* ForgotPasswordViewController.swift in Sources */,
 				18B20DCA1FAC35A8005A6147 /* FontUtility.swift in Sources */,
+				18B20DD21FAC57A3005A6147 /* OrderListingViewController.swift in Sources */,
 				18956FF61FA8A736009DC63A /* AppDelegate.swift in Sources */,
+				18B20DD61FAC57C2005A6147 /* SDGViewController.swift in Sources */,
 				1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */,
 				18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */,
 				186FD4F81FAAD67200081D8A /* CornerRadius+UIVIew.swift in Sources */,
+				18B20DD01FAC5772005A6147 /* NotificationViewController.swift in Sources */,
 				186FD4FB1FAAE7E500081D8A /* BSKeyboardControls.swift in Sources */,
 				187D4ADC1FA9960000FA96DC /* Constant.swift in Sources */,
 				186FD5061FAB0E8F00081D8A /* MessageViewController.swift in Sources */,

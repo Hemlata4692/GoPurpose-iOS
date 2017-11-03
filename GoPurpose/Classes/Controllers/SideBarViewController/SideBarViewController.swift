@@ -25,6 +25,9 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
        UIApplication.shared.statusBarStyle = .lightContent
+        userProfileImageView.layer.cornerRadius=65
+        userProfileImageView.layer.masksToBounds = true
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,7 +66,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.row == 2 {
             //open instruction pop up InstructionViewController
         }
-        else if indexPath.row == 3 {
+        else if indexPath.row == 5 {
             //logout
             //            UserDefaults.standard.setValue(nil, forKey: "userId")
             let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginView") as! UINavigationController
