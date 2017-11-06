@@ -12,7 +12,7 @@ class SDGViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ self.title="SDG"
         // Do any additional setup after loading the view.
     }
 

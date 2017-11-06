@@ -12,7 +12,7 @@ class OrderListingViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title="Order List"
         // Do any additional setup after loading the view.
     }
 
