@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFieldDelegate {
     
+     // MARK: - IBOutlets
     @IBOutlet weak var loginScrollView: UIScrollView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -17,6 +18,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var keyBoardControl:BSKeyboardControls?
+     // MARK: - end
     
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -45,12 +47,15 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        UIApplication.shared.statusBarStyle = .lightContent
         self.navigationController?.navigationBar.isHidden=true;
     }
     // MARK: - end
     
     // MARK: - IBActions
     @IBAction func loginbuttonAction(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+        UIApplication.shared.keyWindow?.rootViewController = nextViewController
     }
     
     @IBAction func forgotPasswordButtonAction(_ sender: Any) {
@@ -61,7 +66,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     }
     // MARK: - end
     
-    // MARK:BSKeboard delegate methods
+    // MARK: - BSKeboard delegate methods
     func keyboardControls(keyboardControls: BSKeyboardControls, selectedField field: UIView, inDirection direction: BSKeyboardControlsDirection) {
         view=(field.superview?.superview?.superview)!
     }
@@ -70,7 +75,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         keyboardControls.activeField?.resignFirstResponder()
         loginScrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
     }
-    // MARK: end
+    // MARK: - end
     
     // MARK: - Textfield delegates
     func textFieldDidBeginEditing(_ textField: UITextField) {    //delegate method
@@ -87,5 +92,5 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         textField .resignFirstResponder()
         return true
     }
-    // MARK: end
+    // MARK: - end
 }

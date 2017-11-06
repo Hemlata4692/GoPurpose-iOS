@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MessageViewController: UIViewController {
+class MessageViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title="Message"
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +21,10 @@ class MessageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.showSelectedTab(item: 2)
+    }
 
     /*
     // MARK: - Navigation

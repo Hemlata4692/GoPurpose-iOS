@@ -1,18 +1,18 @@
 //
-//  SettingsViewController.swift
+//  SalesViewController.swift
 //  GoPurpose
 //
-//  Created by Ranosys-Mac on 02/11/17.
+//  Created by Ranosys-Mac on 03/11/17.
 //  Copyright © 2017 Ranosys-Mac. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: GlobalViewController {
+class SalesViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title="Profile"
+ self.title="Sales"
         // Do any additional setup after loading the view.
     }
 
@@ -21,10 +21,6 @@ class SettingsViewController: GlobalViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.showSelectedTab(item: 4)
-    }
 
     /*
     // MARK: - Navigation

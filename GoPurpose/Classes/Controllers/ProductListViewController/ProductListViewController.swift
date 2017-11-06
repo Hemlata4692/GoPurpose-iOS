@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ProductListViewController: UIViewController {
+class ProductListViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ self.title="Product List"
         // Do any additional setup after loading the view.
     }
 
@@ -21,7 +21,10 @@ class ProductListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.showSelectedTab(item: 3)
+    }
     /*
     // MARK: - Navigation
 

@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //navigation bar color
+        UINavigationBar.appearance().barTintColor = UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black, NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): FontUtility.montserratMedium(size: 20)]
+        // Sets Bar's Shadow Image (Color) //
+      // UINavigationBar.appearance().shadowImage = UIImage(named:"color-strip")
+     
  return true
     }
 
