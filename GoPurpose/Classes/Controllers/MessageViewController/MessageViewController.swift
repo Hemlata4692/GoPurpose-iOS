@@ -12,7 +12,7 @@ class MessageViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title="Message"
         // Do any additional setup after loading the view.
     }
 

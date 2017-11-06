@@ -38,6 +38,7 @@
 		18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD31FAC57B4005A6147 /* SalesViewController.swift */; };
 		18B20DD61FAC57C2005A6147 /* SDGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD51FAC57C2005A6147 /* SDGViewController.swift */; };
 		18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */; };
+		18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */; };
 		18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */; };
 		A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightWidth.swift; sourceTree = "<group>"; };
 		18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4A3F82356D05E80B9AED8C77 /* Pods-GoPurpose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPurpose.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoPurpose/Pods-GoPurpose.debug.xcconfig"; sourceTree = "<group>"; };
 		BABAA438305808A98519197A /* Pods-GoPurpose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPurpose.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoPurpose/Pods-GoPurpose.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		186FD4F41FAAD46200081D8A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */,
 				186FD4F71FAAD67200081D8A /* CornerRadius+UIVIew.swift */,
 				186FD4F91FAAD89900081D8A /* Padding+UITextField.swift */,
 			);
@@ -530,6 +533,7 @@
 				18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */,
 				186FD5041FAB0E7B00081D8A /* SettingsViewController.swift in Sources */,
 				18B20DC71FAC2D23005A6147 /* GlobalViewController.swift in Sources */,
+				18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */,
 				186FD5021FAB0E4700081D8A /* ProductListViewController.swift in Sources */,
 				187D4AE51FA996B700FA96DC /* ForgotPasswordViewController.swift in Sources */,
 				18B20DCA1FAC35A8005A6147 /* FontUtility.swift in Sources */,

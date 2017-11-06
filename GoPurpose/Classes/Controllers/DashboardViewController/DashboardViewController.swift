@@ -13,7 +13,7 @@ class DashboardViewController: GlobalViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title="GoPurpose";
+        self.title="GoPurpose"
         // Do any additional setup after loading the view.
     }
 

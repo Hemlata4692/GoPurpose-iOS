@@ -12,7 +12,7 @@ class SalesViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ self.title="Sales"
         // Do any additional setup after loading the view.
     }
 
