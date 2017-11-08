@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFieldDelegate {
-    
+  
      // MARK: - IBOutlets
     @IBOutlet weak var loginScrollView: UIScrollView!
     @IBOutlet weak var emailField: UITextField!
@@ -54,8 +54,11 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     
     // MARK: - IBActions
     @IBAction func loginbuttonAction(_ sender: Any) {
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-        UIApplication.shared.keyWindow?.rootViewController = nextViewController
+        keyBoardControl?.activeField?.resignFirstResponder()
+        if performLoginValidations() {
+            AppDelegate().showIndicator()
+            self.perform(#selector(userLogin), with: nil, afterDelay: 0.1)
+        }
     }
     
     @IBAction func forgotPasswordButtonAction(_ sender: Any) {
@@ -63,6 +66,45 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         loginScrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ForgotPasswordViewController") as! ForgotPasswordViewController
         self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    // MARK: - end
+    
+    // MARK: - Email validation
+    func performLoginValidations() -> Bool {
+        if emailField.isEmpty() ||  passwordField.isEmpty() {
+           SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        } else if emailField.isValidEmail() == false {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validEmailMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        else if (passwordField.isValidPassword() == false) {
+          SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        return true
+    }
+    // MARK: - end
+    
+    // MARK: - Web services
+    @objc func userLogin() {
+        let userData = LoginDataModel()
+        userData.email=emailField.text
+        userData.password=passwordField.text
+        userData.isSocialLogin="0"
+        LoginDataModel().requestForLogin(userData, success: { (response) in
+          AppDelegate().stopIndicator()
+            print(userData as AnyObject)
+            // Successfully logged in, move to next screen
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            UIApplication.shared.keyWindow?.rootViewController = nextViewController
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+            }
+        }
+    }
     }
     // MARK: - end
     

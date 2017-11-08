@@ -12,7 +12,21 @@ import UIKit
 //Storyboard initialisation
 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
+// Base URL
+let BASE_URL: String = "https://dev.gopurpose.com/"
+
 // Constants for screen sizes
 let kScreenSize = UIScreen.main.bounds.size
 let kScreenWidth = UIScreen.main.bounds.size.width
 let kScreenHeight = UIScreen.main.bounds.size.height
+
+//Define to use multi language
+func NSLocalizedText(key: String) -> String {
+    return LocalizedString.changeLocalizedString(key)
+}
+
+//Get country code
+func localeCountryCode() -> String {
+    return ((Locale.current as NSLocale).object(forKey: .countryCode) as? String)!
+}
+

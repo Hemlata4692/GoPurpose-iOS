@@ -32,6 +32,10 @@ class BottomTabViewController: UIViewController {
         productButton.isSelected=false
         messageButton.isSelected=false
         settingsButton.isSelected=false
+        dashboardButton.titleLabel?.text=NSLocalizedText(key: "homeTab")
+        messageButton.titleLabel?.text=NSLocalizedText(key: "messageTab")
+        productButton.titleLabel?.text=NSLocalizedText(key: "productTab")
+        settingsButton.titleLabel?.text=NSLocalizedText(key: "settingTab")
         // Do any additional setup after loading the view.
     }
     

@@ -15,11 +15,12 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var CompanyNameLabel: UILabel!
     @IBOutlet weak var userTypeLabel: UILabel!
     
-    var tableCellArray: [String] = ["dashboardCell", "orderCell", "salesCell", "notificationCell", "SDGCell", "logoutCell"]
+    var tableCellKeyArray: [String] = ["dashboardCell", "orderCell", "salesCell", "notificationCell", "SDGCell", "logoutCell"]
+    
+     var tableCellDataArray: [String] = [NSLocalizedText(key: "sideBarDashboard"), NSLocalizedText(key: "sideBarOrder"), NSLocalizedText(key: "sideBarSales"), NSLocalizedText(key: "sideBarNotification"), NSLocalizedText(key: "sideBarSDG"), NSLocalizedText(key: "sideBarLogout")]
    
     override func viewDidLoad() {
         super.viewDidLoad()
-     
         // Do any additional setup after loading the view.
     }
     
@@ -27,7 +28,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
        UIApplication.shared.statusBarStyle = .lightContent
         userProfileImageView.layer.cornerRadius=65
         userProfileImageView.layer.masksToBounds = true
-
+        userTypeLabel.text=UserDefaults().string(forKey: "groupName")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,7 +49,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return tableCellDataArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -56,9 +57,18 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableCellArray[indexPath.row], for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableCellKeyArray[indexPath.row], for: indexPath)
+        let nameLabel = cell.contentView.viewWithTag(1) as? UILabel
+        nameLabel?.text=tableCellDataArray[indexPath.row]
+        
         let notificationCountLabel = cell.contentView.viewWithTag(3) as? UILabel
-        notificationCountLabel?.isHidden=true
+        if ((nil == UserDefaults().string(forKey: "notificationCount")) || (UserDefaults().string(forKey: "notificationCount")?.isEmpty)!) {
+           notificationCountLabel?.isHidden=true
+        }
+        else {
+            notificationCountLabel?.isHidden=false
+            notificationCountLabel?.text=UserDefaults().string(forKey: "notificationCount")
+        }
         return cell
     }
     
@@ -68,11 +78,14 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         else if indexPath.row == 5 {
             //logout
-            //            UserDefaults.standard.setValue(nil, forKey: "userId")
-            let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginView") as! UINavigationController
-            UIApplication.shared.keyWindow?.rootViewController = loginView
+            let alert = SCLAlertView()
+            _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
+                UserDefaults().removeObject(forKey: "quoteId")
+                let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginView") as! UINavigationController
+                UIApplication.shared.keyWindow?.rootViewController = loginView
+            }
+            _ = alert.showWarning(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "logoutUser"), closeButtonTitle: NSLocalizedText(key: "alertCancel"))
         }
-        tableView .reloadData()
     }
     // MARK: - end
 

@@ -1,0 +1,55 @@
+/* 
+  zh.strings
+  GoPurpose
+
+  Created by Ranosys-Mac on 08/11/17.
+  Copyright © 2017 Ranosys-Mac. All rights reserved.
+*/
+"alertTitle"="Alert";
+"alertCancel"="Cancel";
+"alertOk"="Ok";
+"alertRetry"="Retry";
+"alertSettings"="Settings";
+"validPassword" = "Password minimum 8 characters, including one uppercase letter, one lowercase letter, one number and one special character.";
+"emptyFieldMessage" = "Please fill in all the required fields.";
+"invalidOTP"="Invalid OTP.";
+"validEmailMessage" = "Please enter valid Email Address.";
+"passwordMatchMessage" = "Password and Confirm Password does not match.";
+"somethingWrongMessage" = "Something went wrong, please try again later.";
+"noInternet" = "Internet connection error. Please try again later.";
+"specialCharacter" = "!~`@#$%^&*-+();:={}[],.<>?\\/\"\'";
+"upperCaseCharacter" = "ABCDEFGHIJKLKMNOPQRSTUVWXYZ";
+"lowerCaseCharacter" = "abcdefghijklmnopqrstuvwxyz";
+"numberCharacter" = "0123456789";
+"resetPasswordSuccess" = "Password updated successfully.";
+"logoutUser"="Are you sure you want to logout?";
+"password"="Password";
+"confirmPassword"="Confirm Password";
+"email"="Business Email";
+"forgotPassword"="Forgot Password?";
+"sendOTP"="SEND MY OTP";
+"backToLogin"="Back to Login";
+"otp"="OTP";
+"resetPassword"="Reset Password";
+"resendOTP"="Resend OTP";
+"norecord"="No record(s) found.";
+"submitButton"="Submit";
+"loginButton"="Log In";
+"homeTab"="Home";
+"messageTab"="Messages";
+"productTab"="Product";
+"settingTab"="Settings";
+"sideBarDashboard"="DASHBOARD";
+"sideBarOrder"="ORDER LISTING";
+"sideBarSales"="SALES REPORT";
+"sideBarNotification"="NOTIFICATIONS";
+"sideBarSDG"="SDG";
+"sideBarLogout"="SIGNOUT";
+"goPurpose"="GoPurpose";
+"messages"="Messages";
+"product"="Product List";
+"profile"="Profile";
+"orderList"="Order List";
+"notifications"="Notifications";
+"sales"="Sales";
+"sdg"="SDG";

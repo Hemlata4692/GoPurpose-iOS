@@ -12,7 +12,7 @@ class SDGViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
- self.title="SDG"
+        self.title=NSLocalizedText(key: "sdg")
         // Do any additional setup after loading the view.
     }
 

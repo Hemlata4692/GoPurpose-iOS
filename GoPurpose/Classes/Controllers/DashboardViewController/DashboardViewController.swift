@@ -10,10 +10,12 @@ import UIKit
 
 class DashboardViewController: GlobalViewController {
 
+    @IBOutlet weak var testingLabel: UILabel!
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title="GoPurpose"
+        self.title=NSLocalizedText(key: "goPurpose")
+        testingLabel.text=NSLocalizedText(key: "hello")
         // Do any additional setup after loading the view.
     }
 

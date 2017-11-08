@@ -21,7 +21,7 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title="Notifications"
+        self.title=NSLocalizedText(key: "notifications")
         // Do any additional setup after loading the view.
     }
     
