@@ -44,13 +44,13 @@ class ConnectionManager: NSObject {
             }
             else {
                 if (customerDict["default_language"] as? String == "4") {
-                    UserDefaults.standard.setValue("en", forKey: "Language")
+                    UserDefaults.standard.setValue("gp_en", forKey: "Language")
                 }
                 else if (customerDict["default_language"] as? String == "5") {
-                    UserDefaults.standard.setValue("zh", forKey: "Language")
+                    UserDefaults.standard.setValue("gp_zh", forKey: "Language")
                 }
                 else if (customerDict["default_language"] as? String == "6") {
-                    UserDefaults.standard.setValue("cn", forKey: "Language")
+                    UserDefaults.standard.setValue("gp_cn", forKey: "Language")
                 }
             }
             success(userData)

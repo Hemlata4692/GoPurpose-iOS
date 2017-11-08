@@ -36,6 +36,7 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
     }
     
     func viewCustomisation() {
+        self.setLocalisedText()
         let forgotPasswordTextField=[resetPasswordEmailField,currentPasswordField,confirmPasswordFiled,otpNumberField]
         keyBoardControl = BSKeyboardControls(fields: forgotPasswordTextField as! [UITextField])
         keyBoardControl?.delegate=self
@@ -43,7 +44,8 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
             forgotPasswordScrollView.isScrollEnabled=true }
         else {
             forgotPasswordScrollView.isScrollEnabled=false }
-        forgotPasswordView.isHidden=true
+        forgotPasswordView.isHidden=false
+        resetPasswordView.isHidden=true
         forgotPasswordEmailField.addCornerRadius(radius: 25)
         resetPasswordEmailField.addCornerRadius(radius: 25)
         confirmPasswordFiled.addCornerRadius(radius: 25)
@@ -53,6 +55,18 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
         resetPasswordButton.addButtonCornerRadius(radius: 25)
         resendOTPButton.addBottomBorderWithColor(color: UIColor.white)
         backToLoginButton.addBottomBorderWithColor(color: UIColor.white)
+    }
+    
+    func setLocalisedText() {
+        forgotPasswordEmailField.placeholder=NSLocalizedText(key: "email")
+        resetPasswordEmailField.placeholder=NSLocalizedText(key: "email")
+        confirmPasswordFiled.placeholder=NSLocalizedText(key: "confirmPassword")
+        currentPasswordField.placeholder=NSLocalizedText(key: "password")
+        otpNumberField.placeholder=NSLocalizedText(key: "otp")
+        forgotPasswordButton.titleLabel?.text=NSLocalizedText(key: "submitButton")
+        resetPasswordButton.titleLabel?.text=NSLocalizedText(key: "resetPassword")
+        resendOTPButton.titleLabel?.text=NSLocalizedText(key: "resendOTP")
+        backToLoginButton.titleLabel?.text=NSLocalizedText(key: "backToLogin")
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,6 +82,8 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
     
     // MARK: - IBActions
     @IBAction func forgotPasswordButtonAction(_ sender: Any) {
+        forgotPasswordView.isHidden=true
+        resetPasswordView.isHidden=false
     }
     
     @IBAction func backToLoginbuttonAction(_ sender: Any) {

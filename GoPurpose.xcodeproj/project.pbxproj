@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		182265E81FB332B200C27783 /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E71FB332B200C27783 /* en.strings */; };
-		182265EA1FB332CA00C27783 /* cn.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E91FB332CA00C27783 /* cn.strings */; };
-		182265EC1FB332D700C27783 /* zh.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265EB1FB332D700C27783 /* zh.strings */; };
+		182265E81FB332B200C27783 /* gp_en.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E71FB332B200C27783 /* gp_en.strings */; };
+		182265EA1FB332CA00C27783 /* gp_cn.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E91FB332CA00C27783 /* gp_cn.strings */; };
+		182265EC1FB332D700C27783 /* gp_zh.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265EB1FB332D700C27783 /* gp_zh.strings */; };
 		1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */; };
 		185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185FCBC11FA9D75400D11A4D /* Main.storyboard */; };
 		185FCBC41FA9D8A500D11A4D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */; };
@@ -58,9 +58,9 @@
 
 /* Begin PBXFileReference section */
 		154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoPurpose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		182265E71FB332B200C27783 /* en.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = en.strings; sourceTree = "<group>"; };
-		182265E91FB332CA00C27783 /* cn.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = cn.strings; sourceTree = "<group>"; };
-		182265EB1FB332D700C27783 /* zh.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = zh.strings; sourceTree = "<group>"; };
+		182265E71FB332B200C27783 /* gp_en.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_en.strings; sourceTree = "<group>"; };
+		182265E91FB332CA00C27783 /* gp_cn.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_cn.strings; sourceTree = "<group>"; };
+		182265EB1FB332D700C27783 /* gp_zh.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_zh.strings; sourceTree = "<group>"; };
 		1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoPurpose-Bridging-Header.h"; sourceTree = "<group>"; };
 		1842AE931FA97F6E0075BEF2 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -129,9 +129,9 @@
 		182265E61FB3327D00C27783 /* LocalisedFiles */ = {
 			isa = PBXGroup;
 			children = (
-				182265E71FB332B200C27783 /* en.strings */,
-				182265E91FB332CA00C27783 /* cn.strings */,
-				182265EB1FB332D700C27783 /* zh.strings */,
+				182265E71FB332B200C27783 /* gp_en.strings */,
+				182265E91FB332CA00C27783 /* gp_cn.strings */,
+				182265EB1FB332D700C27783 /* gp_zh.strings */,
 			);
 			path = LocalisedFiles;
 			sourceTree = "<group>";
@@ -563,16 +563,16 @@
 			files = (
 				186FD50C1FAB176A00081D8A /* Montserrat-Bold.otf in Resources */,
 				186FD50D1FAB176A00081D8A /* Montserrat-Light.otf in Resources */,
-				182265EC1FB332D700C27783 /* zh.strings in Resources */,
+				182265EC1FB332D700C27783 /* gp_zh.strings in Resources */,
 				186FD50E1FAB176A00081D8A /* Montserrat-Medium.otf in Resources */,
 				186FD50F1FAB176A00081D8A /* Montserrat-Regular.ttf in Resources */,
 				18B20DC91FAC2D31005A6147 /* BottomTabViewController.xib in Resources */,
-				182265EA1FB332CA00C27783 /* cn.strings in Resources */,
+				182265EA1FB332CA00C27783 /* gp_cn.strings in Resources */,
 				186FD5101FAB176A00081D8A /* Montserrat-SemiBold.otf in Resources */,
 				185FCBC41FA9D8A500D11A4D /* Roboto-Bold.ttf in Resources */,
 				185FCBC51FA9D8A500D11A4D /* Roboto-Italic.ttf in Resources */,
 				185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */,
-				182265E81FB332B200C27783 /* en.strings in Resources */,
+				182265E81FB332B200C27783 /* gp_en.strings in Resources */,
 				189570001FA8A736009DC63A /* LaunchScreen.storyboard in Resources */,
 				18956FFD1FA8A736009DC63A /* Assets.xcassets in Resources */,
 			);

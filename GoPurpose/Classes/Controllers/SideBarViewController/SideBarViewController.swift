@@ -73,6 +73,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async( execute: {
         if indexPath.row == 2 {
             //open instruction pop up InstructionViewController
         }
@@ -86,6 +87,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             _ = alert.showWarning(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "logoutUser"), closeButtonTitle: NSLocalizedText(key: "alertCancel"))
         }
+   })
     }
     // MARK: - end
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-private var kLogin = "gp_en/rest/gp_en/V1/ranosys/customer/customerLogin"
+private var kLogin = "/V1/ranosys/customer/customerLogin"
 
 class LoginService: BaseService {
     
@@ -18,7 +18,7 @@ class LoginService: BaseService {
     request.method = .post
     request.parameters = ["email": loginData.email as AnyObject, "password": loginData.password  as AnyObject, "isSocialLogin": loginData.isSocialLogin as AnyObject, "countryCode": localeCountryCode() as AnyObject] as [String : AnyObject]
     print("login request %@", request.parameters as Any)
-    request.path = BASE_URL + kLogin
+    request.path = basePath + kLogin
     self.callPostService(request, success: success, failure: failure)
     }
     // MARK: - end

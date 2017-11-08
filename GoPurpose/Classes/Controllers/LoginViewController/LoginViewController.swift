@@ -28,6 +28,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     }
     
     func viewCustomisation() {
+        self.setLocalisedText()
         //set keyboard controller text field array
         let textField=[emailField,passwordField]
         keyBoardControl = BSKeyboardControls(fields: textField as! [UITextField])
@@ -38,6 +39,13 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         // forgotPasswordButton.translatesAutoresizingMaskIntoConstraints=true;
         //        CGRect(x:(UIScreen.main.bounds.origin.x+(UIScreen.main.bounds.size.width/2)-(forgotPasswordButton.frame.size.width/2)), y:forgotPasswordButton.frame.size.height - 1, width: forgotPasswordButton.frame.size.width, height: 1)
         forgotPasswordButton.addBottomBorderWithColor(color: UIColor.white)
+    }
+    
+    func setLocalisedText() {
+        emailField.placeholder=NSLocalizedText(key: "email")
+        passwordField.placeholder=NSLocalizedText(key: "password")
+        loginButton.titleLabel?.text=NSLocalizedText(key: "loginButton")
+        forgotPasswordButton.titleLabel?.text=NSLocalizedText(key: "forgotPassword")
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,10 +86,10 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validEmailMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
             return false
         }
-        else if (passwordField.isValidPassword() == false) {
-          SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
-            return false
-        }
+//        else if (passwordField.isValidPassword() == false) {
+//          SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
+//            return false
+//        }
         return true
     }
     // MARK: - end

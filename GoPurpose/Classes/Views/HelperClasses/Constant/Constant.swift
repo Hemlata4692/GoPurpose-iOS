@@ -14,6 +14,8 @@ let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 // Base URL
 let BASE_URL: String = "https://dev.gopurpose.com/"
+let pathString: String = "/rest/"
+let basePath = BASE_URL + UserDefaults().string(forKey: "Language")! + pathString + UserDefaults().string(forKey: "Language")!
 
 // Constants for screen sizes
 let kScreenSize = UIScreen.main.bounds.size
