@@ -61,6 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //navigation bar color
         UINavigationBar.appearance().barTintColor = UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1.0)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black, NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): FontUtility.montserratMedium(size: 20)]
+        
+        if (nil==UserDefaults().string(forKey: "Language")) {
+            UserDefaults().set("gp_en", forKey: "Language")
+        }
         // check if user is already logged in
         if (nil==UserDefaults().string(forKey: "quoteId")) {
             let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginView") as! UINavigationController
