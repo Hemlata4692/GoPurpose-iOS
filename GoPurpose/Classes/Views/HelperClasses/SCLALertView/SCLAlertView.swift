@@ -36,21 +36,21 @@ public enum SCLAlertViewStyle {
     public var defaultColorInt: UInt {
         switch self {
         case .success:
-            return 0x22B573
+            return 0x000000
         case .error:
-            return 0xC1272D
+            return 0x000000
         case .notice:
-            return 0x727375
+            return 0x000000
         case .warning:
-            return 0xFFD110
+            return 0x000000
         case .info:
-            return 0x2866BF
+            return 0x000000
         case .edit:
-            return 0xA429FF
+            return 0x000000
         case .wait:
-            return 0xD62DA5
+            return 0x000000
         case .question:
-            return 0x727375
+            return 0x000000
         }
         
     }
@@ -674,7 +674,7 @@ open class SCLAlertView: UIViewController {
     
     // showWarning(view, title, subTitle)
     @discardableResult
-    open func showWarning(_ title: String, subTitle: String, closeButtonTitle:String?=nil, timeout:SCLTimeoutConfiguration?=nil, colorStyle: UInt=SCLAlertViewStyle.warning.defaultColorInt, colorTextButton: UInt=0x000000, circleIconImage: UIImage? = nil, animationStyle: SCLAnimationStyle = .topToBottom) -> SCLAlertViewResponder {
+    open func showWarning(_ title: String, subTitle: String, closeButtonTitle:String?=nil, timeout:SCLTimeoutConfiguration?=nil, colorStyle: UInt=SCLAlertViewStyle.warning.defaultColorInt, colorTextButton: UInt=0xFFFFFF, circleIconImage: UIImage? = nil, animationStyle: SCLAnimationStyle = .topToBottom) -> SCLAlertViewResponder {
         return showTitle(title, subTitle: subTitle, timeout: timeout, completeText:closeButtonTitle, style: .warning, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage, animationStyle: animationStyle)
     }
     
@@ -777,7 +777,7 @@ open class SCLAlertView: UIViewController {
         
         // Done button
         if appearance.showCloseButton {
-            _ = addButton(completeText ?? "Done", target:self, selector:#selector(SCLAlertView.hideView))
+            _ = addButton(completeText ?? "Ok", target:self, selector:#selector(SCLAlertView.hideView))
         }
         
         //hidden/show circular view based on the ui option
@@ -1107,7 +1107,7 @@ class SCLAlertViewStyleKit : NSObject {
     
     class func drawWarning() {
         // Color Declarations
-        let greyColor = UIColor(red: 0.236, green: 0.236, blue: 0.236, alpha: 1.000)
+        let greyColor = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
         
         // Warning Group
         // Warning Circle Drawing

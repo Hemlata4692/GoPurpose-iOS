@@ -12,7 +12,7 @@ class ProductListViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
- self.title="Product List"
+        self.title=NSLocalizedText(key: "product")
         // Do any additional setup after loading the view.
     }
 

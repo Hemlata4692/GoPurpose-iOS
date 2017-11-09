@@ -12,8 +12,8 @@ class MessageViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title="Message"
         // Do any additional setup after loading the view.
+        self.title=NSLocalizedText(key: "messages")
     }
 
     override func didReceiveMemoryWarning() {

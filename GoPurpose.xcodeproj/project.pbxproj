@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182265E81FB332B200C27783 /* gp_en.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E71FB332B200C27783 /* gp_en.strings */; };
+		182265EA1FB332CA00C27783 /* gp_cn.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E91FB332CA00C27783 /* gp_cn.strings */; };
+		182265EC1FB332D700C27783 /* gp_zh.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265EB1FB332D700C27783 /* gp_zh.strings */; };
 		1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */; };
+		185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185773911FB4370B00CE693E /* UserNotifications.framework */; };
 		185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185FCBC11FA9D75400D11A4D /* Main.storyboard */; };
 		185FCBC41FA9D8A500D11A4D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */; };
 		185FCBC51FA9D8A500D11A4D /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */; };
@@ -26,6 +30,8 @@
 		187D4AD81FA9952A00FA96DC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD71FA9952A00FA96DC /* LoginViewController.swift */; };
 		187D4ADC1FA9960000FA96DC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4ADB1FA9960000FA96DC /* Constant.swift */; };
 		187D4AE51FA996B700FA96DC /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AE41FA996B700FA96DC /* ForgotPasswordViewController.swift */; };
+		189263121FB1720900BE00A2 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 189263101FB171F000BE00A2 /* MMMaterialDesignSpinner.m */; };
+		189263181FB1AA9000BE00A2 /* UITextField+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189263171FB1AA8F00BE00A2 /* UITextField+Validations.swift */; };
 		18956FF61FA8A736009DC63A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18956FF51FA8A736009DC63A /* AppDelegate.swift */; };
 		18956FFD1FA8A736009DC63A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18956FFC1FA8A736009DC63A /* Assets.xcassets */; };
 		189570001FA8A736009DC63A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18956FFE1FA8A736009DC63A /* LaunchScreen.storyboard */; };
@@ -39,15 +45,28 @@
 		18B20DD61FAC57C2005A6147 /* SDGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD51FAC57C2005A6147 /* SDGViewController.swift */; };
 		18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */; };
 		18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */; };
+		18C9EA751FB041F2007E8C92 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA741FB041F2007E8C92 /* LocalizedString.swift */; };
+		18C9EA7B1FB05A75007E8C92 /* LoginDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA7A1FB05A75007E8C92 /* LoginDataModel.swift */; };
+		18C9EA851FB05D98007E8C92 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA841FB05D98007E8C92 /* ConnectionManager.swift */; };
+		18C9EA891FB06648007E8C92 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA881FB06648007E8C92 /* LoginService.swift */; };
+		18C9EA8C1FB06B30007E8C92 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA8B1FB06B30007E8C92 /* BaseService.swift */; };
+		18C9EA8E1FB06B38007E8C92 /* iReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA8D1FB06B38007E8C92 /* iReachability.swift */; };
+		18C9EA921FB06F93007E8C92 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD61FA9943500FA96DC /* SCLAlertView.swift */; };
+		18C9EA931FB06F97007E8C92 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD51FA9943500FA96DC /* SCLExtensions.swift */; };
 		18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */; };
 		A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoPurpose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		182265E71FB332B200C27783 /* gp_en.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_en.strings; sourceTree = "<group>"; };
+		182265E91FB332CA00C27783 /* gp_cn.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_cn.strings; sourceTree = "<group>"; };
+		182265EB1FB332D700C27783 /* gp_zh.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_zh.strings; sourceTree = "<group>"; };
 		1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoPurpose-Bridging-Header.h"; sourceTree = "<group>"; };
 		1842AE931FA97F6E0075BEF2 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		185773911FB4370B00CE693E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		185773931FB44CB000CE693E /* GoPurpose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoPurpose.entitlements; sourceTree = "<group>"; };
 		185FCBC11FA9D75400D11A4D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		186FD4F71FAAD67200081D8A /* CornerRadius+UIVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadius+UIVIew.swift"; sourceTree = "<group>"; };
 		186FD4F91FAAD89900081D8A /* Padding+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Padding+UITextField.swift"; sourceTree = "<group>"; };
@@ -67,6 +86,9 @@
 		187D4ADD1FA9961D00FA96DC /* BSKeyboardControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSKeyboardControls.swift; sourceTree = "<group>"; };
 		187D4ADF1FA9963600FA96DC /* FontUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtility.swift; sourceTree = "<group>"; };
 		187D4AE41FA996B700FA96DC /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		189263101FB171F000BE00A2 /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
+		189263111FB171F000BE00A2 /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
+		189263171FB1AA8F00BE00A2 /* UITextField+Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Validations.swift"; sourceTree = "<group>"; };
 		18956FF21FA8A736009DC63A /* GoPurpose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoPurpose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18956FF51FA8A736009DC63A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18956FFC1FA8A736009DC63A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,6 +105,12 @@
 		18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightWidth.swift; sourceTree = "<group>"; };
+		18C9EA741FB041F2007E8C92 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		18C9EA7A1FB05A75007E8C92 /* LoginDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataModel.swift; sourceTree = "<group>"; };
+		18C9EA841FB05D98007E8C92 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
+		18C9EA881FB06648007E8C92 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		18C9EA8B1FB06B30007E8C92 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		18C9EA8D1FB06B38007E8C92 /* iReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iReachability.swift; sourceTree = "<group>"; };
 		18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4A3F82356D05E80B9AED8C77 /* Pods-GoPurpose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPurpose.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoPurpose/Pods-GoPurpose.debug.xcconfig"; sourceTree = "<group>"; };
 		BABAA438305808A98519197A /* Pods-GoPurpose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPurpose.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoPurpose/Pods-GoPurpose.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */,
 				18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */,
 				A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */,
 			);
@@ -101,9 +130,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		182265E61FB3327D00C27783 /* LocalisedFiles */ = {
+			isa = PBXGroup;
+			children = (
+				182265E71FB332B200C27783 /* gp_en.strings */,
+				182265E91FB332CA00C27783 /* gp_cn.strings */,
+				182265EB1FB332D700C27783 /* gp_zh.strings */,
+			);
+			path = LocalisedFiles;
+			sourceTree = "<group>";
+		};
 		1842AE961FA97F7F0075BEF2 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				182265E61FB3327D00C27783 /* LocalisedFiles */,
 				18C24B2E1FA9CDF70095F260 /* Fonts */,
 				1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */,
 			);
@@ -113,6 +153,7 @@
 		186FD4F41FAAD46200081D8A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				189263171FB1AA8F00BE00A2 /* UITextField+Validations.swift */,
 				18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */,
 				186FD4F71FAAD67200081D8A /* CornerRadius+UIVIew.swift */,
 				186FD4F91FAAD89900081D8A /* Padding+UITextField.swift */,
@@ -193,6 +234,15 @@
 			path = ForgotPasswordViewController;
 			sourceTree = "<group>";
 		};
+		1892630F1FB1715100BE00A2 /* ActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				189263111FB171F000BE00A2 /* MMMaterialDesignSpinner.h */,
+				189263101FB171F000BE00A2 /* MMMaterialDesignSpinner.m */,
+			);
+			path = ActivityIndicator;
+			sourceTree = "<group>";
+		};
 		18956FE91FA8A736009DC63A = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +264,7 @@
 		18956FF41FA8A736009DC63A /* GoPurpose */ = {
 			isa = PBXGroup;
 			children = (
+				185773931FB44CB000CE693E /* GoPurpose.entitlements */,
 				189570071FA8A78E009DC63A /* AppDelegate */,
 				189570081FA8A797009DC63A /* Classes */,
 				1842AE961FA97F7F0075BEF2 /* SupportingFiles */,
@@ -236,9 +287,10 @@
 		189570081FA8A797009DC63A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18C9EA7D1FB05A95007E8C92 /* ServerCommuication */,
+				18C9EA791FB0592F007E8C92 /* Models */,
 				187D4ADE1FA9962900FA96DC /* Utils */,
 				1895700C1FA8A7CA009DC63A /* Views */,
-				1895700B1FA8A7BA009DC63A /* HelperClasses */,
 				189570091FA8A7AC009DC63A /* Controllers */,
 			);
 			path = Classes;
@@ -267,6 +319,9 @@
 		1895700B1FA8A7BA009DC63A /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				1892630F1FB1715100BE00A2 /* ActivityIndicator */,
+				18C9EA731FB041CC007E8C92 /* Localisation */,
+				1895700D1FA8A7EE009DC63A /* SWRevealView */,
 				186FD4F41FAAD46200081D8A /* Extensions */,
 				187D4AD41FA9930F00FA96DC /* SCLALertView */,
 				1895700F1FA8A82D009DC63A /* BSKeyboardControl */,
@@ -278,7 +333,7 @@
 		1895700C1FA8A7CA009DC63A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1895700D1FA8A7EE009DC63A /* SWRevealView */,
+				1895700B1FA8A7BA009DC63A /* HelperClasses */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -371,9 +426,69 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		18C9EA731FB041CC007E8C92 /* Localisation */ = {
+			isa = PBXGroup;
+			children = (
+				18C9EA741FB041F2007E8C92 /* LocalizedString.swift */,
+			);
+			path = Localisation;
+			sourceTree = "<group>";
+		};
+		18C9EA791FB0592F007E8C92 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18C9EA7C1FB05A7D007E8C92 /* LoginModel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		18C9EA7C1FB05A7D007E8C92 /* LoginModel */ = {
+			isa = PBXGroup;
+			children = (
+				18C9EA7A1FB05A75007E8C92 /* LoginDataModel.swift */,
+			);
+			path = LoginModel;
+			sourceTree = "<group>";
+		};
+		18C9EA7D1FB05A95007E8C92 /* ServerCommuication */ = {
+			isa = PBXGroup;
+			children = (
+				18C9EA861FB0662C007E8C92 /* LoginService */,
+				18C9EA7F1FB05AA9007E8C92 /* ConnectionManager */,
+				18C9EA7E1FB05A9F007E8C92 /* BaseService */,
+			);
+			path = ServerCommuication;
+			sourceTree = "<group>";
+		};
+		18C9EA7E1FB05A9F007E8C92 /* BaseService */ = {
+			isa = PBXGroup;
+			children = (
+				18C9EA8D1FB06B38007E8C92 /* iReachability.swift */,
+				18C9EA8B1FB06B30007E8C92 /* BaseService.swift */,
+			);
+			path = BaseService;
+			sourceTree = "<group>";
+		};
+		18C9EA7F1FB05AA9007E8C92 /* ConnectionManager */ = {
+			isa = PBXGroup;
+			children = (
+				18C9EA841FB05D98007E8C92 /* ConnectionManager.swift */,
+			);
+			path = ConnectionManager;
+			sourceTree = "<group>";
+		};
+		18C9EA861FB0662C007E8C92 /* LoginService */ = {
+			isa = PBXGroup;
+			children = (
+				18C9EA881FB06648007E8C92 /* LoginService.swift */,
+			);
+			path = LoginService;
+			sourceTree = "<group>";
+		};
 		4346BE6BE6968F803DD44874 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				185773911FB4370B00CE693E /* UserNotifications.framework */,
 				18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */,
 				154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */,
 			);
@@ -425,7 +540,15 @@
 					18956FF11FA8A736009DC63A = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -454,13 +577,16 @@
 			files = (
 				186FD50C1FAB176A00081D8A /* Montserrat-Bold.otf in Resources */,
 				186FD50D1FAB176A00081D8A /* Montserrat-Light.otf in Resources */,
+				182265EC1FB332D700C27783 /* gp_zh.strings in Resources */,
 				186FD50E1FAB176A00081D8A /* Montserrat-Medium.otf in Resources */,
 				186FD50F1FAB176A00081D8A /* Montserrat-Regular.ttf in Resources */,
 				18B20DC91FAC2D31005A6147 /* BottomTabViewController.xib in Resources */,
+				182265EA1FB332CA00C27783 /* gp_cn.strings in Resources */,
 				186FD5101FAB176A00081D8A /* Montserrat-SemiBold.otf in Resources */,
 				185FCBC41FA9D8A500D11A4D /* Roboto-Bold.ttf in Resources */,
 				185FCBC51FA9D8A500D11A4D /* Roboto-Italic.ttf in Resources */,
 				185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */,
+				182265E81FB332B200C27783 /* gp_en.strings in Resources */,
 				189570001FA8A736009DC63A /* LaunchScreen.storyboard in Resources */,
 				18956FFD1FA8A736009DC63A /* Assets.xcassets in Resources */,
 			);
@@ -528,26 +654,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				187D4AD81FA9952A00FA96DC /* LoginViewController.swift in Sources */,
+				18C9EA931FB06F97007E8C92 /* SCLExtensions.swift in Sources */,
 				18B20DC81FAC2D25005A6147 /* BottomTabViewController.swift in Sources */,
+				18C9EA751FB041F2007E8C92 /* LocalizedString.swift in Sources */,
 				186FD4FD1FAB0DEA00081D8A /* DashboardViewController.swift in Sources */,
 				18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */,
 				186FD5041FAB0E7B00081D8A /* SettingsViewController.swift in Sources */,
 				18B20DC71FAC2D23005A6147 /* GlobalViewController.swift in Sources */,
+				18C9EA7B1FB05A75007E8C92 /* LoginDataModel.swift in Sources */,
 				18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */,
+				189263121FB1720900BE00A2 /* MMMaterialDesignSpinner.m in Sources */,
 				186FD5021FAB0E4700081D8A /* ProductListViewController.swift in Sources */,
 				187D4AE51FA996B700FA96DC /* ForgotPasswordViewController.swift in Sources */,
 				18B20DCA1FAC35A8005A6147 /* FontUtility.swift in Sources */,
 				18B20DD21FAC57A3005A6147 /* OrderListingViewController.swift in Sources */,
+				18C9EA851FB05D98007E8C92 /* ConnectionManager.swift in Sources */,
 				18956FF61FA8A736009DC63A /* AppDelegate.swift in Sources */,
 				18B20DD61FAC57C2005A6147 /* SDGViewController.swift in Sources */,
 				1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */,
 				18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */,
+				189263181FB1AA9000BE00A2 /* UITextField+Validations.swift in Sources */,
 				186FD4F81FAAD67200081D8A /* CornerRadius+UIVIew.swift in Sources */,
 				18B20DD01FAC5772005A6147 /* NotificationViewController.swift in Sources */,
+				18C9EA8C1FB06B30007E8C92 /* BaseService.swift in Sources */,
 				186FD4FB1FAAE7E500081D8A /* BSKeyboardControls.swift in Sources */,
 				187D4ADC1FA9960000FA96DC /* Constant.swift in Sources */,
+				18C9EA891FB06648007E8C92 /* LoginService.swift in Sources */,
 				186FD5061FAB0E8F00081D8A /* MessageViewController.swift in Sources */,
 				186FD4FA1FAAD89900081D8A /* Padding+UITextField.swift in Sources */,
+				18C9EA921FB06F93007E8C92 /* SCLAlertView.swift in Sources */,
+				18C9EA8E1FB06B38007E8C92 /* iReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +739,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -659,6 +796,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -680,17 +818,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GoPurpose/GoPurpose.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = M8A7BYS443;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Frameworks",
 				);
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = GoPurpose/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Ranosys.GoPurpose;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.GoPurpose;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1ed5249b-52f7-4b01-a98c-20720ecee120";
+				PROVISIONING_PROFILE_SPECIFIER = GoPurpose_inhouse_9Nov_2017;
 				SWIFT_OBJC_BRIDGING_HEADER = "GoPurpose/SupportingFiles/GoPurpose-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -704,17 +847,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GoPurpose/GoPurpose.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = M8A7BYS443;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Frameworks",
 				);
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = GoPurpose/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Ranosys.GoPurpose;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.GoPurpose;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1ed5249b-52f7-4b01-a98c-20720ecee120";
+				PROVISIONING_PROFILE_SPECIFIER = GoPurpose_inhouse_9Nov_2017;
 				SWIFT_OBJC_BRIDGING_HEADER = "GoPurpose/SupportingFiles/GoPurpose-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
