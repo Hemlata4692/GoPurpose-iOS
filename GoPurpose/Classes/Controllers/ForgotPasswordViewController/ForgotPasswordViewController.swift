@@ -37,9 +37,6 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
     
     func viewCustomisation() {
         self.setLocalisedText()
-        let forgotPasswordTextField=[resetPasswordEmailField,currentPasswordField,confirmPasswordFiled,otpNumberField]
-        keyBoardControl = BSKeyboardControls(fields: forgotPasswordTextField as! [UITextField])
-        keyBoardControl?.delegate=self
         if (kScreenHeight<=568){
             forgotPasswordScrollView.isScrollEnabled=true }
         else {
@@ -80,10 +77,53 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
     }
     // MARK: - end
     
+    // MARK: - Email validation
+    func performForgotPasswordValidations() -> Bool {
+        if forgotPasswordEmailField.isEmpty() {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        } else if forgotPasswordEmailField.isValidEmail() == false {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validEmailMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        return true
+    }
+    
+    func performResetPasswordValidations() -> Bool {
+        if resetPasswordEmailField.isEmpty() || currentPasswordField.isEmpty() || confirmPasswordFiled.isEmpty() || otpNumberField.isEmpty() {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        } else if resetPasswordEmailField.isValidEmail() == false {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validEmailMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        else if ((otpNumberField.text?.count)!<6) {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "invalidOTP"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        else if (currentPasswordField.text?.count)!<8 {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        else if (currentPasswordField.isValidPassword() == false) {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        else if !(currentPasswordField.text==confirmPasswordFiled.text) {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "passwordMatchMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        return true
+    }
+    // MARK: - end
+    
     // MARK: - IBActions
     @IBAction func forgotPasswordButtonAction(_ sender: Any) {
-        forgotPasswordView.isHidden=true
-        resetPasswordView.isHidden=false
+        keyBoardControl?.activeField?.resignFirstResponder()
+        if performForgotPasswordValidations() {
+            AppDelegate().showIndicator()
+            self.perform(#selector(forgotPassword), with: nil, afterDelay: 0.1)
+        }
     }
     
     @IBAction func backToLoginbuttonAction(_ sender: Any) {
@@ -91,12 +131,67 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
     }
     
     @IBAction func resetPasswordButtonAction(_ sender: Any) {
+        keyBoardControl?.activeField?.resignFirstResponder()
+        if performResetPasswordValidations() {
+            AppDelegate().showIndicator()
+            self.perform(#selector(resetPassword), with: nil, afterDelay: 0.1)
+        }
     }
     
     @IBAction func resendOtpButtonAction(_ sender: Any) {
         forgotPasswordScrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+        let moveForgotView: UIView? = self.resetPasswordView
+        self.addRightAnimationPresent(moveForgotView!)
         forgotPasswordView.isHidden=false
         resetPasswordView.isHidden=true
+    }
+    // MARK: - end
+    
+    // MARK: - Webservices
+    //Forgot password webservice called
+    @objc func forgotPassword() {
+        let userLogin = LoginDataModel()
+        userLogin.email = forgotPasswordEmailField.text
+        LoginDataModel().forgotPasswordService(userLogin, success: { (response) in
+            AppDelegate().stopIndicator()
+            self.resetPasswordEmailField.text = self.forgotPasswordEmailField.text
+            let moveForgotView: UIView? = self.resetPasswordView
+            self.addLeftAnimationPresent(moveForgotView!)
+            self.resetPasswordView.isHidden = false
+            self.forgotPasswordView.isHidden = true
+            self.keyBoardControl = BSKeyboardControls(fields: [self.resetPasswordEmailField,self.currentPasswordField,self.confirmPasswordFiled,self.otpNumberField] as! [UITextField])
+            self.keyBoardControl?.delegate=self
+            //currentView = resetPasswordView
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
+    }
+    
+    //Reset password webservice called
+    @objc func resetPassword() {
+        let userLogin = LoginDataModel()
+        userLogin.email = resetPasswordEmailField.text
+        userLogin.otpNumber = otpNumberField.text
+        userLogin.password = currentPasswordField.text
+        LoginDataModel().resetPasswordService(userLogin, success: { (response) in
+            AppDelegate().stopIndicator()
+            let alert = SCLAlertView()
+            _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
+                self.navigationController?.popViewController(animated:true)
+            }
+            _ = alert.showSuccess(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "resetPasswordSuccess"), closeButtonTitle: NSLocalizedText(key: "alertCancel"))
+            
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
     }
     // MARK: - end
     
@@ -131,6 +226,33 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
         forgotPasswordScrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
         textField .resignFirstResponder()
         return true
+    }
+    // MARK: end
+    
+    // MARK: - Swipe view
+    //Adding left animation to view
+    func addLeftAnimationPresent(_ viewTobeAnimatedLeft: UIView) {
+        let transition = CATransition()
+        transition.duration = 0.2
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        transition.setValue("IntroSwipeIn", forKey: "IntroAnimation")
+        transition.fillMode = kCAFillModeForwards
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        viewTobeAnimatedLeft.layer.add(transition, forKey: nil)
+        //parentView.addSubview(myVC.view)
+    }
+    
+    //Adding right animation to view
+    func addRightAnimationPresent(_ viewTobeAnimatedRight: UIView) {
+        let transition = CATransition()
+        transition.duration = 0.2
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        transition.setValue("IntroSwipeIn", forKey: "IntroAnimation")
+        transition.fillMode = kCAFillModeForwards
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        viewTobeAnimatedRight.layer.add(transition, forKey: nil)
     }
     // MARK: end
 }

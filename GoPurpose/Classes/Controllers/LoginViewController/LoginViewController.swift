@@ -86,10 +86,14 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validEmailMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
             return false
         }
-//        else if (passwordField.isValidPassword() == false) {
-//          SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
-//            return false
-//        }
+        else if (passwordField.text?.count)!<8 {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        else if (passwordField.isValidPassword() == false) {
+          SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
         return true
     }
     // MARK: - end
@@ -101,7 +105,10 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         userData.password=passwordField.text
         userData.isSocialLogin="0"
         LoginDataModel().requestForLogin(userData, success: { (response) in
-          AppDelegate().stopIndicator()
+            AppDelegate().stopIndicator()
+            if (UserDefaults().string(forKey: "deviceToken") != nil) {
+                self.saveDeviceToken()
+            }
             print(userData as AnyObject)
             // Successfully logged in, move to next screen
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
@@ -113,6 +120,21 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             }
         }
     }
+    }
+    
+    @objc func saveDeviceToken() {
+        let userData = LoginDataModel()
+        LoginDataModel().saveDeviceToken(userData, success: { (response) in
+            AppDelegate().stopIndicator()
+            print(userData as AnyObject)
+            // Successfully logged in, move to next screen
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
     }
     // MARK: - end
     

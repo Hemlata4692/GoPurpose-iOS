@@ -33,7 +33,7 @@ class BaseService: NSObject {
         SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "noInternet"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
     }
     
-    func callPostService(_ alamoReq: alamofireRequestModal, success:@escaping ((_ responseObject: AnyObject?) -> Void), failure:@escaping ((_ error : NSError?) -> Void)) {
+    func callPostService(_ alamoReq: alamofireRequestModal, success:@escaping ((_ responseObject: Any?) -> Void), failure:@escaping ((_ error : NSError?) -> Void)) {
         // Log path and parameters
         print("AlamoRequest:\n path: \(alamoReq.path)")
         print("\n param: \(String(describing: alamoReq.parameters))")
@@ -45,7 +45,7 @@ class BaseService: NSObject {
             .responseJSON { response in
                 if response.response?.statusCode == 200 {
                     print("Success with JSON: \(String(describing: response.result.value))")
-                    success(response.result.value as! [String:AnyObject] as AnyObject)
+                    success(response.result.value as Any)
                 }
                 else {
                     AppDelegate().stopIndicator()

@@ -33,11 +33,20 @@ extension UITextField {
     }
     
     func isValidPassword() -> Bool {
-        //At least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character:
-        let passwordRegex: NSString = "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])"
-//         let passwordRegex: NSString = "^(?=.*[A-Z])(?=.*[$@$#!%*?&])(?=.*[0-9])(?=.*[a-z])$"
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
-        return passwordTest.evaluate(with: text)
+        //At least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character:                
+        if ((text?.rangeOfCharacter(from: CharacterSet(charactersIn: NSLocalizedText(key:"specialCharacter")))) == nil) {
+            return false
+        }
+        if ((text?.rangeOfCharacter(from: CharacterSet(charactersIn: NSLocalizedText(key:"upperCaseCharacter")))) == nil) {
+            return false
+        }
+        if ((text?.rangeOfCharacter(from: CharacterSet(charactersIn: NSLocalizedText(key:"lowerCaseCharacter")))) == nil) {
+            return false
+        }
+        if ((text?.rangeOfCharacter(from: CharacterSet(charactersIn: NSLocalizedText(key:"numberCharacter"))))==nil) {
+            return false
+        }
+        return true
     }
     
     func isValidURL() -> Bool {

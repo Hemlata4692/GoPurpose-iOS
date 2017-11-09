@@ -14,13 +14,13 @@ class ConnectionManager: NSObject {
     static let sharedInstance = ConnectionManager()
     // MARK: - end
     
-    // MARK: - Login user
-    func loginUserWebservice(_ userData: LoginDataModel, success:@escaping ((_ response: AnyObject?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+    // MARK: - Login user service
+    func loginUserWebservice(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
         LoginService().loginUserRequest(userData, success: {(response) in
             print("login response %@", response as AnyObject)
             //Parse data from server response and store in datamodel
             let dataDict = response as! NSDictionary
-            let customerDict = response!["customer"] as! NSDictionary
+            let customerDict = dataDict["customer"] as! NSDictionary
             userData.userId = customerDict["id"] as? String
             userData.profileImage = customerDict["profile_pic"] as? String
             userData.apiKey = dataDict["api_key"] as? String
@@ -58,4 +58,35 @@ class ConnectionManager: NSObject {
     }
     // MARK: - end
     
+    // MARK: - Reset password service
+    func resetPasswordService(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        LoginService().resetPasswordService(userData, success: {(response) in
+            print("reset password response %@", response as AnyObject)
+            //Parse data from server response and store in data model
+           // userData.successMessage = response["message"]
+            success(userData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Forgot password service
+    func forgotPasswordService(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        LoginService().forgotPasswordService(userData, success: {(response) in
+            print("forgot password response %@", response as AnyObject)
+            //Parse data from server response and store in data model
+           // userData.otpNumber = response[0]["resetOTP"]
+            success(userData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Send device token
+    func sendDevcieToken(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        LoginService().saveDeviceTokenService(userData, success: {(response) in
+            print("saev device token response %@", response as AnyObject)
+            //Parse data from server response and store in data model
+            success(userData)
+        },failure:failure)
+    }
+    // MARK: - end
 }

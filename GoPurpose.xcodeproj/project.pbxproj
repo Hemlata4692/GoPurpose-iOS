@@ -11,6 +11,7 @@
 		182265EA1FB332CA00C27783 /* gp_cn.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E91FB332CA00C27783 /* gp_cn.strings */; };
 		182265EC1FB332D700C27783 /* gp_zh.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265EB1FB332D700C27783 /* gp_zh.strings */; };
 		1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */; };
+		185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185773911FB4370B00CE693E /* UserNotifications.framework */; };
 		185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185FCBC11FA9D75400D11A4D /* Main.storyboard */; };
 		185FCBC41FA9D8A500D11A4D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */; };
 		185FCBC51FA9D8A500D11A4D /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */; };
@@ -64,6 +65,8 @@
 		1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoPurpose-Bridging-Header.h"; sourceTree = "<group>"; };
 		1842AE931FA97F6E0075BEF2 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		185773911FB4370B00CE693E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		185773931FB44CB000CE693E /* GoPurpose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoPurpose.entitlements; sourceTree = "<group>"; };
 		185FCBC11FA9D75400D11A4D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		186FD4F71FAAD67200081D8A /* CornerRadius+UIVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadius+UIVIew.swift"; sourceTree = "<group>"; };
 		186FD4F91FAAD89900081D8A /* Padding+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Padding+UITextField.swift"; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */,
 				18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */,
 				A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */,
 			);
@@ -260,6 +264,7 @@
 		18956FF41FA8A736009DC63A /* GoPurpose */ = {
 			isa = PBXGroup;
 			children = (
+				185773931FB44CB000CE693E /* GoPurpose.entitlements */,
 				189570071FA8A78E009DC63A /* AppDelegate */,
 				189570081FA8A797009DC63A /* Classes */,
 				1842AE961FA97F7F0075BEF2 /* SupportingFiles */,
@@ -483,6 +488,7 @@
 		4346BE6BE6968F803DD44874 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				185773911FB4370B00CE693E /* UserNotifications.framework */,
 				18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */,
 				154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */,
 			);
@@ -534,7 +540,15 @@
 					18956FF11FA8A736009DC63A = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -804,7 +818,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GoPurpose/GoPurpose.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = M8A7BYS443;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -814,8 +830,10 @@
 				INFOPLIST_FILE = GoPurpose/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Ranosys.GoPurpose;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.GoPurpose;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1ed5249b-52f7-4b01-a98c-20720ecee120";
+				PROVISIONING_PROFILE_SPECIFIER = GoPurpose_inhouse_9Nov_2017;
 				SWIFT_OBJC_BRIDGING_HEADER = "GoPurpose/SupportingFiles/GoPurpose-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -829,7 +847,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GoPurpose/GoPurpose.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = M8A7BYS443;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -839,8 +859,10 @@
 				INFOPLIST_FILE = GoPurpose/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Ranosys.GoPurpose;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.GoPurpose;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1ed5249b-52f7-4b01-a98c-20720ecee120";
+				PROVISIONING_PROFILE_SPECIFIER = GoPurpose_inhouse_9Nov_2017;
 				SWIFT_OBJC_BRIDGING_HEADER = "GoPurpose/SupportingFiles/GoPurpose-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
