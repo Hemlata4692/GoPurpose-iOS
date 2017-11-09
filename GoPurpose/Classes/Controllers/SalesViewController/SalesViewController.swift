@@ -12,8 +12,9 @@ class SalesViewController: GlobalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
- self.title="Sales"
+        self.title=NSLocalizedText(key: "sales")
         // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {

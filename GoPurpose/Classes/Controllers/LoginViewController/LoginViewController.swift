@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFieldDelegate {
-    
+  
      // MARK: - IBOutlets
     @IBOutlet weak var loginScrollView: UIScrollView!
     @IBOutlet weak var emailField: UITextField!
@@ -28,6 +28,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     }
     
     func viewCustomisation() {
+        self.setLocalisedText()
         //set keyboard controller text field array
         let textField=[emailField,passwordField]
         keyBoardControl = BSKeyboardControls(fields: textField as! [UITextField])
@@ -38,6 +39,13 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         // forgotPasswordButton.translatesAutoresizingMaskIntoConstraints=true;
         //        CGRect(x:(UIScreen.main.bounds.origin.x+(UIScreen.main.bounds.size.width/2)-(forgotPasswordButton.frame.size.width/2)), y:forgotPasswordButton.frame.size.height - 1, width: forgotPasswordButton.frame.size.width, height: 1)
         forgotPasswordButton.addBottomBorderWithColor(color: UIColor.white)
+    }
+    
+    func setLocalisedText() {
+        emailField.placeholder=NSLocalizedText(key: "email")
+        passwordField.placeholder=NSLocalizedText(key: "password")
+        loginButton.titleLabel?.text=NSLocalizedText(key: "loginButton")
+        forgotPasswordButton.titleLabel?.text=NSLocalizedText(key: "forgotPassword")
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,8 +62,11 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     
     // MARK: - IBActions
     @IBAction func loginbuttonAction(_ sender: Any) {
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-        UIApplication.shared.keyWindow?.rootViewController = nextViewController
+        keyBoardControl?.activeField?.resignFirstResponder()
+        if performLoginValidations() {
+            AppDelegate().showIndicator()
+            self.perform(#selector(userLogin), with: nil, afterDelay: 0.1)
+        }
     }
     
     @IBAction func forgotPasswordButtonAction(_ sender: Any) {
@@ -63,6 +74,67 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         loginScrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ForgotPasswordViewController") as! ForgotPasswordViewController
         self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    // MARK: - end
+    
+    // MARK: - Email validation
+    func performLoginValidations() -> Bool {
+        if emailField.isEmpty() ||  passwordField.isEmpty() {
+           SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        } else if emailField.isValidEmail() == false {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validEmailMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        else if (passwordField.text?.count)!<8 {
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        else if (passwordField.isValidPassword() == false) {
+          SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            return false
+        }
+        return true
+    }
+    // MARK: - end
+    
+    // MARK: - Web services
+    @objc func userLogin() {
+        let userData = LoginDataModel()
+        userData.email=emailField.text
+        userData.password=passwordField.text
+        userData.isSocialLogin="0"
+        LoginDataModel().requestForLogin(userData, success: { (response) in
+            AppDelegate().stopIndicator()
+            if (UserDefaults().string(forKey: "deviceToken") != nil) {
+                self.saveDeviceToken()
+            }
+            print(userData as AnyObject)
+            // Successfully logged in, move to next screen
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            UIApplication.shared.keyWindow?.rootViewController = nextViewController
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+            }
+        }
+    }
+    }
+    
+    @objc func saveDeviceToken() {
+        let userData = LoginDataModel()
+        LoginDataModel().saveDeviceToken(userData, success: { (response) in
+            AppDelegate().stopIndicator()
+            print(userData as AnyObject)
+            // Successfully logged in, move to next screen
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
     }
     // MARK: - end
     
