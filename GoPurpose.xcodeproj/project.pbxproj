@@ -45,6 +45,10 @@
 		18B20DD21FAC57A3005A6147 /* OrderListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD11FAC57A3005A6147 /* OrderListingViewController.swift */; };
 		18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD31FAC57B4005A6147 /* SalesViewController.swift */; };
 		18B20DD61FAC57C2005A6147 /* SDGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD51FAC57C2005A6147 /* SDGViewController.swift */; };
+		18B5F8F11FB5BE51004A341E /* ZendeskProviderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5F8EF1FB5BE41004A341E /* ZendeskProviderSDK.framework */; };
+		18B5F8F21FB5BE53004A341E /* ZendeskSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5F8F01FB5BE46004A341E /* ZendeskSDK.framework */; };
+		18B5F8F31FB5BE55004A341E /* ZendeskSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B5F8EE1FB5BE37004A341E /* ZendeskSDK.bundle */; };
+		18B5F8F41FB5BE57004A341E /* ZendeskSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B5F8ED1FB5BE36004A341E /* ZendeskSDKStrings.bundle */; };
 		18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */; };
 		18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */; };
 		18C9EA751FB041F2007E8C92 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA741FB041F2007E8C92 /* LocalizedString.swift */; };
@@ -108,6 +112,10 @@
 		18B20DD11FAC57A3005A6147 /* OrderListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListingViewController.swift; sourceTree = "<group>"; };
 		18B20DD31FAC57B4005A6147 /* SalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesViewController.swift; sourceTree = "<group>"; };
 		18B20DD51FAC57C2005A6147 /* SDGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDGViewController.swift; sourceTree = "<group>"; };
+		18B5F8ED1FB5BE36004A341E /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDKStrings.bundle; sourceTree = "<group>"; };
+		18B5F8EE1FB5BE37004A341E /* ZendeskSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDK.bundle; sourceTree = "<group>"; };
+		18B5F8EF1FB5BE41004A341E /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskProviderSDK.framework; sourceTree = "<group>"; };
+		18B5F8F01FB5BE46004A341E /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskSDK.framework; sourceTree = "<group>"; };
 		18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
@@ -131,7 +139,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B5F8F21FB5BE53004A341E /* ZendeskSDK.framework in Frameworks */,
 				185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */,
+				18B5F8F11FB5BE51004A341E /* ZendeskProviderSDK.framework in Frameworks */,
 				18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */,
 				A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */,
 			);
@@ -153,6 +163,7 @@
 		1842AE961FA97F7F0075BEF2 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				18B5F8EA1FB5BE13004A341E /* Zopim */,
 				182265E61FB3327D00C27783 /* LocalisedFiles */,
 				18C24B2E1FA9CDF70095F260 /* Fonts */,
 				1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */,
@@ -473,6 +484,33 @@
 			path = SDGViewController;
 			sourceTree = "<group>";
 		};
+		18B5F8EA1FB5BE13004A341E /* Zopim */ = {
+			isa = PBXGroup;
+			children = (
+				18B5F8EC1FB5BE25004A341E /* Framework */,
+				18B5F8EB1FB5BE1F004A341E /* Bundles */,
+			);
+			path = Zopim;
+			sourceTree = "<group>";
+		};
+		18B5F8EB1FB5BE1F004A341E /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				18B5F8EE1FB5BE37004A341E /* ZendeskSDK.bundle */,
+				18B5F8ED1FB5BE36004A341E /* ZendeskSDKStrings.bundle */,
+			);
+			path = Bundles;
+			sourceTree = "<group>";
+		};
+		18B5F8EC1FB5BE25004A341E /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				18B5F8EF1FB5BE41004A341E /* ZendeskProviderSDK.framework */,
+				18B5F8F01FB5BE46004A341E /* ZendeskSDK.framework */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
 		18C24B2E1FA9CDF70095F260 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B5F8F41FB5BE57004A341E /* ZendeskSDKStrings.bundle in Resources */,
 				186FD50C1FAB176A00081D8A /* Montserrat-Bold.otf in Resources */,
 				186FD50D1FAB176A00081D8A /* Montserrat-Light.otf in Resources */,
 				182265EC1FB332D700C27783 /* gp_zh.strings in Resources */,
@@ -667,6 +706,7 @@
 				185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */,
 				182265E81FB332B200C27783 /* gp_en.strings in Resources */,
 				189570001FA8A736009DC63A /* LaunchScreen.storyboard in Resources */,
+				18B5F8F31FB5BE55004A341E /* ZendeskSDK.bundle in Resources */,
 				18956FFD1FA8A736009DC63A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -909,6 +949,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Frameworks",
+					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Zopim/Framework",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = GoPurpose/Info.plist;
@@ -938,6 +979,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Frameworks",
+					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Zopim/Framework",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = GoPurpose/Info.plist;

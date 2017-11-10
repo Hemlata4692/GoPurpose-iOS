@@ -89,9 +89,10 @@ class BottomTabViewController: UIViewController {
             messageButton.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
             productButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
             settingsButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let loginView = storyBoard.instantiateViewController(withIdentifier: "MessageViewController") as? MessageViewController
-            self.navigationController?.setViewControllers([loginView!], animated: false)
+           //open zopim ticket
+            let jwtUserIdentity = ZDKJwtIdentity(jwtUserIdentifier:UserDefaults().string(forKey: "userEmail"))
+            ZDKConfig.instance().userIdentity = jwtUserIdentity
+            ZDKRequests.presentRequestList(with: self)
         }
     }
     
