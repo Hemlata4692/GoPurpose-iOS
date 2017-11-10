@@ -38,6 +38,7 @@ class LoginDataModel: NSObject {
             UserDefaults().set(userData.apiKey, forKey: "apiKey")
             UserDefaults().set(userData.groupName, forKey: "groupName")
             UserDefaults().set(userData.notificationCount, forKey: "notificationCount")
+            UserDefaults().set(userData.email, forKey: "userEmail")
             success(responseObj)
         }, failure: failure)
     }

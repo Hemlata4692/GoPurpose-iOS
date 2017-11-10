@@ -179,12 +179,12 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
         userLogin.password = currentPasswordField.text
         LoginDataModel().resetPasswordService(userLogin, success: { (response) in
             AppDelegate().stopIndicator()
-            let alert = SCLAlertView()
+            let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+            let alert = SCLAlertView(appearance: appearance)
             _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
                 self.navigationController?.popViewController(animated:true)
             }
-            _ = alert.showSuccess(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "resetPasswordSuccess"), closeButtonTitle: NSLocalizedText(key: "alertCancel"))
-            
+            _ = alert.showSuccess(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "resetPasswordSuccess"), closeButtonTitle: nil)
         }) { (error) in
             if error != nil {
                 if error?.code == 200 {

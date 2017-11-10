@@ -77,7 +77,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     }
     // MARK: - end
     
-    // MARK: - Email validation
+    // MARK: - Login validation
     func performLoginValidations() -> Bool {
         if emailField.isEmpty() ||  passwordField.isEmpty() {
            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
@@ -159,6 +159,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             loginScrollView.setContentOffset(CGPoint(x:0, y:((textField.frame.origin.y + textField.frame.size.height + 15) - (kScreenHeight - 256))), animated: false)
         }
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         loginScrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
         textField .resignFirstResponder()

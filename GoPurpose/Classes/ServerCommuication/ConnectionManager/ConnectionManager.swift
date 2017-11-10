@@ -33,6 +33,7 @@ class ConnectionManager: NSObject {
             userData.lastName = customerDict["lastname"] as? String
             userData.groupName = customerDict["group_name"] as? String
             userData.groupId = customerDict["group_id"] as? String
+            userData.email = customerDict["email"] as? String
             if ((customerDict["default_currency"] as? String == "") || customerDict["default_currency"] as? String == nil) {
                 UserDefaults().set(dataDict["local_currency_code"] as? String, forKey: "DefaultCurrencyCode")
             }
@@ -83,9 +84,48 @@ class ConnectionManager: NSObject {
     // MARK: - Send device token
     func sendDevcieToken(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
         LoginService().saveDeviceTokenService(userData, success: {(response) in
-            print("saev device token response %@", response as AnyObject)
+            print("save device token response %@", response as AnyObject)
             //Parse data from server response and store in data model
             success(userData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Change password service
+    func changePasswordService(_ profileData: ProfileDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProfileService().changePasswordService(profileData, success: {(response) in
+            print("change Password Service response %@", response as AnyObject)
+            //Parse data from server response and store in data model
+            success(profileData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - User profile service
+    func getUserProfileData(_ profileData: ProfileDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProfileService().getUserProfileServiceData(profileData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("user profile response %@", response as Any)
+//            profileData.firstName = response["firstname"] as? String
+//            profileData.lastName = response["lastname"] as? String
+//            profileData.email = response["email"]
+//            profileData.groupId = response["group_id"]
+//            profileData.storeId = response["store_id"]
+//            profileData.websiteId = response["website_id"]
+//            profileData.customAttributeArray = response["custom_attributes"]
+//            profileData.addressArray = response["addresses"]
+            success(profileData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - User profile image
+    func updateUserProfileImage(_ profileData: ProfileDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProfileService().updateUserprofileImageService(profileData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("user profile image %@", response as Any)
+           // profileData.userImageURL = response["profile_pic"]
+            success(profileData)
         },failure:failure)
     }
     // MARK: - end
