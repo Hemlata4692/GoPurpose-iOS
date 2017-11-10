@@ -1,18 +1,18 @@
 //
-//  SettingsViewController.swift
+//  EditProfileViewController.swift
 //  GoPurpose
 //
-//  Created by Ranosys-Mac on 02/11/17.
+//  Created by Ranosys-Mac on 10/11/17.
 //  Copyright © 2017 Ranosys-Mac. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: GlobalViewController {
+class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title=NSLocalizedText(key: "profile")
+
         // Do any additional setup after loading the view.
     }
 
@@ -21,10 +21,6 @@ class SettingsViewController: GlobalViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.showSelectedTab(item: 4)
-    }
 
     /*
     // MARK: - Navigation

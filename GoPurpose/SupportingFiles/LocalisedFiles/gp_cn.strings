@@ -16,6 +16,7 @@
 "validEmailMessage" = "Please enter valid Email Address.";
 "passwordMatchMessage" = "Password and Confirm Password does not match.";
 "somethingWrongMessage" = "Something went wrong, please try again later.";
+"oldPasswordMatchMessage" = "Please type new password in order to change old password.";
 "noInternet" = "Internet connection error. Please try again later.";
 "specialCharacter" = "!~`@#$%^&*-+();:={}[],.<>?\\/\"\'";
 "upperCaseCharacter" = "ABCDEFGHIJKLKMNOPQRSTUVWXYZ";
@@ -25,6 +26,9 @@
 "logoutUser"="Are you sure you want to logout?";
 "password"="Password";
 "confirmPassword"="Confirm Password";
+"changePasswordProfile"="Change Password";
+"currentPasswordPlaceholder"="Current Password";
+"newPasswordPlaceholder"="New Password";
 "email"="Business Email";
 "forgotPassword"="Forgot Password?";
 "sendOTP"="SEND MY OTP";

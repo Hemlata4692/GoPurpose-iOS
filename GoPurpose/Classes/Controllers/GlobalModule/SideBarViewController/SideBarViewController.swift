@@ -81,6 +81,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
             //logout
             let alert = SCLAlertView()
             _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
+                AppDelegate().unRegisterDeviceForNotification()
                 UserDefaults().removeObject(forKey: "quoteId")
                 let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginView") as! UINavigationController
                 UIApplication.shared.keyWindow?.rootViewController = loginView

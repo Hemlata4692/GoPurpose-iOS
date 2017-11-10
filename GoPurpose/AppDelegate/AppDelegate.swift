@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var logoImage:UIImageView = UIImageView()
     var loaderView:UIView = UIView()
     var spinnerView:MMMaterialDesignSpinner=MMMaterialDesignSpinner()
+    var notificationEnabled:String!
     // MARK: - end
     
     // MARK: - Show indicator
@@ -115,6 +116,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
             UIApplication.shared.registerForRemoteNotifications()
         }
+        notificationEnabled="1"
+    }
+    
+    func unRegisterDeviceForNotification() {
+        UIApplication.shared.unregisterForRemoteNotifications()
+        notificationEnabled="0"
     }
     
     // Called when APNs has assigned the device a unique token

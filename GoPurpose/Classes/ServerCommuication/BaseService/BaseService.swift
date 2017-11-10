@@ -40,7 +40,7 @@ class BaseService: NSObject {
         // Create alamofire request
       if reach.isReachable {
         // "alamoReq" is overridden in services, which will create a request here
-        Alamofire.request(alamoReq.path, method: alamoReq.method, parameters: alamoReq.parameters, encoding: alamoReq.encoding)
+        Alamofire.request(alamoReq.path, method: alamoReq.method, parameters: alamoReq.parameters, encoding: alamoReq.encoding, headers: alamoReq.headers)
             .validate(contentType: ["application/json"])
             .responseJSON { response in
                 if response.response?.statusCode == 200 {
