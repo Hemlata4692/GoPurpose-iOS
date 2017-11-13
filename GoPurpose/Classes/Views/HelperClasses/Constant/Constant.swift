@@ -21,6 +21,9 @@ let kScreenSize = UIScreen.main.bounds.size
 let kScreenWidth = UIScreen.main.bounds.size.width
 let kScreenHeight = UIScreen.main.bounds.size.height
 
+//appdelegate object
+let myDelegate = UIApplication.shared.delegate as? AppDelegate
+
 //Define to use multi language
 func NSLocalizedText(key: String) -> String {
     return LocalizedString.changeLocalizedString(key)

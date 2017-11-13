@@ -15,6 +15,8 @@
 		185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185FCBC11FA9D75400D11A4D /* Main.storyboard */; };
 		185FCBC41FA9D8A500D11A4D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */; };
 		185FCBC51FA9D8A500D11A4D /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */; };
+		186E90AA1FB558BB00EF863A /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E90A91FB558BB00EF863A /* ChangePasswordViewController.swift */; };
+		186E90AC1FB558D000EF863A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E90AB1FB558D000EF863A /* EditProfileViewController.swift */; };
 		186FD4F81FAAD67200081D8A /* CornerRadius+UIVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FD4F71FAAD67200081D8A /* CornerRadius+UIVIew.swift */; };
 		186FD4FA1FAAD89900081D8A /* Padding+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FD4F91FAAD89900081D8A /* Padding+UITextField.swift */; };
 		186FD4FB1FAAE7E500081D8A /* BSKeyboardControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4ADD1FA9961D00FA96DC /* BSKeyboardControls.swift */; };
@@ -43,6 +45,10 @@
 		18B20DD21FAC57A3005A6147 /* OrderListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD11FAC57A3005A6147 /* OrderListingViewController.swift */; };
 		18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD31FAC57B4005A6147 /* SalesViewController.swift */; };
 		18B20DD61FAC57C2005A6147 /* SDGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B20DD51FAC57C2005A6147 /* SDGViewController.swift */; };
+		18B5F8F11FB5BE51004A341E /* ZendeskProviderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5F8EF1FB5BE41004A341E /* ZendeskProviderSDK.framework */; };
+		18B5F8F21FB5BE53004A341E /* ZendeskSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B5F8F01FB5BE46004A341E /* ZendeskSDK.framework */; };
+		18B5F8F31FB5BE55004A341E /* ZendeskSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B5F8EE1FB5BE37004A341E /* ZendeskSDK.bundle */; };
+		18B5F8F41FB5BE57004A341E /* ZendeskSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B5F8ED1FB5BE36004A341E /* ZendeskSDKStrings.bundle */; };
 		18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */; };
 		18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */; };
 		18C9EA751FB041F2007E8C92 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA741FB041F2007E8C92 /* LocalizedString.swift */; };
@@ -54,6 +60,9 @@
 		18C9EA921FB06F93007E8C92 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD61FA9943500FA96DC /* SCLAlertView.swift */; };
 		18C9EA931FB06F97007E8C92 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD51FA9943500FA96DC /* SCLExtensions.swift */; };
 		18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */; };
+		18F4E47D1FB5805A005C786E /* GlobalBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */; };
+		18F4E4801FB588B6005C786E /* ProfileDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E47F1FB588B6005C786E /* ProfileDataModel.swift */; };
+		18F4E4831FB588EF005C786E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E4821FB588EF005C786E /* ProfileService.swift */; };
 		A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +77,8 @@
 		185773911FB4370B00CE693E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		185773931FB44CB000CE693E /* GoPurpose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoPurpose.entitlements; sourceTree = "<group>"; };
 		185FCBC11FA9D75400D11A4D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		186E90A91FB558BB00EF863A /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		186E90AB1FB558D000EF863A /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		186FD4F71FAAD67200081D8A /* CornerRadius+UIVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadius+UIVIew.swift"; sourceTree = "<group>"; };
 		186FD4F91FAAD89900081D8A /* Padding+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Padding+UITextField.swift"; sourceTree = "<group>"; };
 		186FD4FC1FAB0DEA00081D8A /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +112,10 @@
 		18B20DD11FAC57A3005A6147 /* OrderListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListingViewController.swift; sourceTree = "<group>"; };
 		18B20DD31FAC57B4005A6147 /* SalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesViewController.swift; sourceTree = "<group>"; };
 		18B20DD51FAC57C2005A6147 /* SDGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDGViewController.swift; sourceTree = "<group>"; };
+		18B5F8ED1FB5BE36004A341E /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDKStrings.bundle; sourceTree = "<group>"; };
+		18B5F8EE1FB5BE37004A341E /* ZendeskSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZendeskSDK.bundle; sourceTree = "<group>"; };
+		18B5F8EF1FB5BE41004A341E /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskProviderSDK.framework; sourceTree = "<group>"; };
+		18B5F8F01FB5BE46004A341E /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskSDK.framework; sourceTree = "<group>"; };
 		18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
@@ -112,6 +127,9 @@
 		18C9EA8B1FB06B30007E8C92 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		18C9EA8D1FB06B38007E8C92 /* iReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iReachability.swift; sourceTree = "<group>"; };
 		18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBackViewController.swift; sourceTree = "<group>"; };
+		18F4E47F1FB588B6005C786E /* ProfileDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataModel.swift; sourceTree = "<group>"; };
+		18F4E4821FB588EF005C786E /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		4A3F82356D05E80B9AED8C77 /* Pods-GoPurpose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPurpose.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoPurpose/Pods-GoPurpose.debug.xcconfig"; sourceTree = "<group>"; };
 		BABAA438305808A98519197A /* Pods-GoPurpose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPurpose.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoPurpose/Pods-GoPurpose.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +139,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B5F8F21FB5BE53004A341E /* ZendeskSDK.framework in Frameworks */,
 				185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */,
+				18B5F8F11FB5BE51004A341E /* ZendeskProviderSDK.framework in Frameworks */,
 				18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */,
 				A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */,
 			);
@@ -143,11 +163,65 @@
 		1842AE961FA97F7F0075BEF2 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				18B5F8EA1FB5BE13004A341E /* Zopim */,
 				182265E61FB3327D00C27783 /* LocalisedFiles */,
 				18C24B2E1FA9CDF70095F260 /* Fonts */,
 				1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		186E90A61FB5586C00EF863A /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				186E90A81FB5589100EF863A /* EditProfileViewController */,
+				186E90A71FB5588B00EF863A /* ChangePasswordViewController */,
+				186FD5001FAB0E0600081D8A /* SettingViewController */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		186E90A71FB5588B00EF863A /* ChangePasswordViewController */ = {
+			isa = PBXGroup;
+			children = (
+				186E90A91FB558BB00EF863A /* ChangePasswordViewController.swift */,
+			);
+			path = ChangePasswordViewController;
+			sourceTree = "<group>";
+		};
+		186E90A81FB5589100EF863A /* EditProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				186E90AB1FB558D000EF863A /* EditProfileViewController.swift */,
+			);
+			path = EditProfileViewController;
+			sourceTree = "<group>";
+		};
+		186E90AD1FB558D900EF863A /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				187D4AE01FA9966400FA96DC /* LoginViewController */,
+				187D4AE31FA9969400FA96DC /* ForgotPasswordViewController */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		186E90AE1FB558EC00EF863A /* GlobalModule */ = {
+			isa = PBXGroup;
+			children = (
+				18B20DC21FAC2C54005A6147 /* GlobalViewController */,
+				187D4AE11FA9967700FA96DC /* SideBarViewController */,
+				18B20DC41FAC2C7F005A6147 /* BottomTabViewController */,
+			);
+			path = GlobalModule;
+			sourceTree = "<group>";
+		};
+		186E90AF1FB5591700EF863A /* DashboardModule */ = {
+			isa = PBXGroup;
+			children = (
+				187D4AE21FA9968500FA96DC /* DashboardViewController */,
+			);
+			path = DashboardModule;
 			sourceTree = "<group>";
 		};
 		186FD4F41FAAD46200081D8A /* Extensions */ = {
@@ -299,15 +373,12 @@
 		189570091FA8A7AC009DC63A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				18B20DC41FAC2C7F005A6147 /* BottomTabViewController */,
-				18B20DC21FAC2C54005A6147 /* GlobalViewController */,
-				187D4AE11FA9967700FA96DC /* SideBarViewController */,
-				187D4AE01FA9966400FA96DC /* LoginViewController */,
-				187D4AE31FA9969400FA96DC /* ForgotPasswordViewController */,
-				187D4AE21FA9968500FA96DC /* DashboardViewController */,
+				186E90AE1FB558EC00EF863A /* GlobalModule */,
+				186E90AF1FB5591700EF863A /* DashboardModule */,
+				186E90AD1FB558D900EF863A /* LoginModule */,
+				186E90A61FB5586C00EF863A /* SettingsModule */,
 				186FD4FE1FAB0DF100081D8A /* ProductListViewController */,
 				186FD4FF1FAB0DFB00081D8A /* MessageViewController */,
-				186FD5001FAB0E0600081D8A /* SettingViewController */,
 				18B20DCC1FAC5735005A6147 /* OrderListingViewController */,
 				18B20DCB1FAC5724005A6147 /* NotificationViewController */,
 				18B20DCD1FAC5746005A6147 /* SalesViewController */,
@@ -367,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				18B20DC31FAC2C68005A6147 /* GlobalViewController.swift */,
+				18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */,
 			);
 			path = GlobalViewController;
 			sourceTree = "<group>";
@@ -412,6 +484,33 @@
 			path = SDGViewController;
 			sourceTree = "<group>";
 		};
+		18B5F8EA1FB5BE13004A341E /* Zopim */ = {
+			isa = PBXGroup;
+			children = (
+				18B5F8EC1FB5BE25004A341E /* Framework */,
+				18B5F8EB1FB5BE1F004A341E /* Bundles */,
+			);
+			path = Zopim;
+			sourceTree = "<group>";
+		};
+		18B5F8EB1FB5BE1F004A341E /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				18B5F8EE1FB5BE37004A341E /* ZendeskSDK.bundle */,
+				18B5F8ED1FB5BE36004A341E /* ZendeskSDKStrings.bundle */,
+			);
+			path = Bundles;
+			sourceTree = "<group>";
+		};
+		18B5F8EC1FB5BE25004A341E /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				18B5F8EF1FB5BE41004A341E /* ZendeskProviderSDK.framework */,
+				18B5F8F01FB5BE46004A341E /* ZendeskSDK.framework */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
 		18C24B2E1FA9CDF70095F260 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +536,7 @@
 		18C9EA791FB0592F007E8C92 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				18F4E47E1FB5889E005C786E /* ProfileModel */,
 				18C9EA7C1FB05A7D007E8C92 /* LoginModel */,
 			);
 			path = Models;
@@ -453,6 +553,7 @@
 		18C9EA7D1FB05A95007E8C92 /* ServerCommuication */ = {
 			isa = PBXGroup;
 			children = (
+				18F4E4811FB588C9005C786E /* ProfileService */,
 				18C9EA861FB0662C007E8C92 /* LoginService */,
 				18C9EA7F1FB05AA9007E8C92 /* ConnectionManager */,
 				18C9EA7E1FB05A9F007E8C92 /* BaseService */,
@@ -483,6 +584,22 @@
 				18C9EA881FB06648007E8C92 /* LoginService.swift */,
 			);
 			path = LoginService;
+			sourceTree = "<group>";
+		};
+		18F4E47E1FB5889E005C786E /* ProfileModel */ = {
+			isa = PBXGroup;
+			children = (
+				18F4E47F1FB588B6005C786E /* ProfileDataModel.swift */,
+			);
+			path = ProfileModel;
+			sourceTree = "<group>";
+		};
+		18F4E4811FB588C9005C786E /* ProfileService */ = {
+			isa = PBXGroup;
+			children = (
+				18F4E4821FB588EF005C786E /* ProfileService.swift */,
+			);
+			path = ProfileService;
 			sourceTree = "<group>";
 		};
 		4346BE6BE6968F803DD44874 /* Frameworks */ = {
@@ -575,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B5F8F41FB5BE57004A341E /* ZendeskSDKStrings.bundle in Resources */,
 				186FD50C1FAB176A00081D8A /* Montserrat-Bold.otf in Resources */,
 				186FD50D1FAB176A00081D8A /* Montserrat-Light.otf in Resources */,
 				182265EC1FB332D700C27783 /* gp_zh.strings in Resources */,
@@ -588,6 +706,7 @@
 				185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */,
 				182265E81FB332B200C27783 /* gp_en.strings in Resources */,
 				189570001FA8A736009DC63A /* LaunchScreen.storyboard in Resources */,
+				18B5F8F31FB5BE55004A341E /* ZendeskSDK.bundle in Resources */,
 				18956FFD1FA8A736009DC63A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,12 +776,15 @@
 				18C9EA931FB06F97007E8C92 /* SCLExtensions.swift in Sources */,
 				18B20DC81FAC2D25005A6147 /* BottomTabViewController.swift in Sources */,
 				18C9EA751FB041F2007E8C92 /* LocalizedString.swift in Sources */,
+				18F4E47D1FB5805A005C786E /* GlobalBackViewController.swift in Sources */,
 				186FD4FD1FAB0DEA00081D8A /* DashboardViewController.swift in Sources */,
 				18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */,
 				186FD5041FAB0E7B00081D8A /* SettingsViewController.swift in Sources */,
 				18B20DC71FAC2D23005A6147 /* GlobalViewController.swift in Sources */,
 				18C9EA7B1FB05A75007E8C92 /* LoginDataModel.swift in Sources */,
+				186E90AA1FB558BB00EF863A /* ChangePasswordViewController.swift in Sources */,
 				18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */,
+				186E90AC1FB558D000EF863A /* EditProfileViewController.swift in Sources */,
 				189263121FB1720900BE00A2 /* MMMaterialDesignSpinner.m in Sources */,
 				186FD5021FAB0E4700081D8A /* ProductListViewController.swift in Sources */,
 				187D4AE51FA996B700FA96DC /* ForgotPasswordViewController.swift in Sources */,
@@ -674,10 +796,12 @@
 				1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */,
 				18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */,
 				189263181FB1AA9000BE00A2 /* UITextField+Validations.swift in Sources */,
+				18F4E4801FB588B6005C786E /* ProfileDataModel.swift in Sources */,
 				186FD4F81FAAD67200081D8A /* CornerRadius+UIVIew.swift in Sources */,
 				18B20DD01FAC5772005A6147 /* NotificationViewController.swift in Sources */,
 				18C9EA8C1FB06B30007E8C92 /* BaseService.swift in Sources */,
 				186FD4FB1FAAE7E500081D8A /* BSKeyboardControls.swift in Sources */,
+				18F4E4831FB588EF005C786E /* ProfileService.swift in Sources */,
 				187D4ADC1FA9960000FA96DC /* Constant.swift in Sources */,
 				18C9EA891FB06648007E8C92 /* LoginService.swift in Sources */,
 				186FD5061FAB0E8F00081D8A /* MessageViewController.swift in Sources */,
@@ -825,6 +949,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Frameworks",
+					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Zopim/Framework",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = GoPurpose/Info.plist;
@@ -854,6 +979,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Frameworks",
+					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Zopim/Framework",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = GoPurpose/Info.plist;

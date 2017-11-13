@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var logoImage:UIImageView = UIImageView()
     var loaderView:UIView = UIView()
     var spinnerView:MMMaterialDesignSpinner=MMMaterialDesignSpinner()
+    var notificationEnabled:String!
     // MARK: - end
     
     // MARK: - Show indicator
@@ -77,6 +78,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         //register device for notification
         registerDeviceForNotification()
+        
+        //Zopim integration
+        ZDKConfig.instance().initialize(withAppId:"e5dd7520b178e21212f5cc2751a28f4b5a7dc76698dc79bd",   zendeskUrl:"https://rememberthedate.zendesk.com",     clientId:"client_for_rtd_jwt_endpoint")
+        
+      
+        
+//        //Style Support SDK
+//        let theme = ZDKTheme.base()
+
         return true
     }
     
@@ -115,6 +125,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
             UIApplication.shared.registerForRemoteNotifications()
         }
+        notificationEnabled="1"
+    }
+    
+    func unRegisterDeviceForNotification() {
+        UIApplication.shared.unregisterForRemoteNotifications()
+        notificationEnabled="0"
     }
     
     // Called when APNs has assigned the device a unique token

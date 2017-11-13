@@ -777,7 +777,12 @@ open class SCLAlertView: UIViewController {
         
         // Done button
         if appearance.showCloseButton {
-            _ = addButton(completeText ?? "Ok", target:self, selector:#selector(SCLAlertView.hideView))
+//            if closeButtonTitle == nil {
+//            //dont add button
+//            }
+//            else {
+                _ = addButton(completeText ?? "Ok", target:self, selector:#selector(SCLAlertView.hideView))
+//            }
         }
         
         //hidden/show circular view based on the ui option

@@ -11,10 +11,10 @@ import UIKit
 
 extension UITextField {
     //add border and corner radius
-    func addBorderRadius(radius:CGFloat) {
+    func addBorderRadius(radius:CGFloat, color: UIColor) {
         self.layer.cornerRadius = radius
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderColor = color.cgColor
     }
     
     //add corner radius
