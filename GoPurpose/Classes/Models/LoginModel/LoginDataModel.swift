@@ -11,7 +11,6 @@ import UIKit
 class LoginDataModel: NSObject {
 
     var userId: String?
-    var userName: String?
     var email: String?
     var password: String?
     var profileImage: String?
@@ -25,11 +24,11 @@ class LoginDataModel: NSObject {
     var defaultCurrency: String?
     var defaultLanguage: String?
     var groupName: String?
-    var groupId: String?
-    var followCount: String?
-    var notificationCount: String?
-    var quoteCount: String?
-    var wishlistCount: String?
+    var groupId: Any?
+    var followCount: Any?
+    var notificationCount: Any?
+    var quoteCount: Any?
+    var wishlistCount: Any?
   
        // MARK: - Login API
     func requestForLogin(_ userData: LoginDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
@@ -39,6 +38,7 @@ class LoginDataModel: NSObject {
             UserDefaults().set(userData.groupName, forKey: "groupName")
             UserDefaults().set(userData.notificationCount, forKey: "notificationCount")
             UserDefaults().set(userData.email, forKey: "userEmail")
+            UserDefaults().set(userData.userId, forKey: "userId")
             success(responseObj)
         }, failure: failure)
     }

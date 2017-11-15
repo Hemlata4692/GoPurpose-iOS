@@ -24,15 +24,15 @@ class ConnectionManager: NSObject {
             userData.userId = customerDict["id"] as? String
             userData.profileImage = customerDict["profile_pic"] as? String
             userData.apiKey = dataDict["api_key"] as? String
-            userData.followCount = dataDict["follow_count"] as? String
-            userData.notificationCount = dataDict["notifications_count"] as? String
+            userData.followCount = dataDict["follow_count"] 
+            userData.notificationCount = dataDict["notifications_count"]
             userData.quoteId = dataDict["quote_id"] as? String
-            userData.quoteCount = dataDict["quote_count"] as? String
-            userData.wishlistCount = dataDict["wishlist_count"] as? String
+            userData.quoteCount = dataDict["quote_count"]
+            userData.wishlistCount = dataDict["wishlist_count"]
             userData.firstName = customerDict["firstname"] as? String
             userData.lastName = customerDict["lastname"] as? String
             userData.groupName = customerDict["group_name"] as? String
-            userData.groupId = customerDict["group_id"] as? String
+            userData.groupId = customerDict["group_id"]
             userData.email = customerDict["email"] as? String
             if ((customerDict["default_currency"] as? String == "") || customerDict["default_currency"] as? String == nil) {
                 UserDefaults().set(dataDict["local_currency_code"] as? String, forKey: "DefaultCurrencyCode")
@@ -106,14 +106,125 @@ class ConnectionManager: NSObject {
         ProfileService().getUserProfileServiceData(profileData, success: {(response) in
             //Parse data from server response and store in data model
             print("user profile response %@", response as Any)
-//            profileData.firstName = response["firstname"] as? String
-//            profileData.lastName = response["lastname"] as? String
-//            profileData.email = response["email"]
-//            profileData.groupId = response["group_id"]
-//            profileData.storeId = response["store_id"]
-//            profileData.websiteId = response["website_id"]
-//            profileData.customAttributeArray = response["custom_attributes"]
-//            profileData.addressArray = response["addresses"]
+            let dataDict = response as! NSDictionary
+            profileData.customerAttributeArray = (dataDict["custom_attributes"] as! NSArray).mutableCopy() as! NSMutableArray
+            let searchPredicate1 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "business_name")
+            let searchPredicate2 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "business_zipcode")
+            let searchPredicate3 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "business_registration_number")
+            let searchPredicate4 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "business_country")
+            let searchPredicate5 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "business_address_line_one")
+            let searchPredicate6 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "business_address_line_two")
+            let searchPredicate7 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "business_description")
+            let searchPredicate8 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "business_contact_person")
+            let searchPredicate9 = NSPredicate(format: "attribute_code CONTAINS[C] %@", "DefaultLanguage")
+            let array1 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate1)
+            if (array1.count>0) {
+             let dictValues = array1[0] as! NSDictionary
+                profileData.businessName=dictValues["value"] as? String
+            }
+            else {
+                profileData.businessName=NSLocalizedText(key: "dataNotAdded")
+            }
+            let array2 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate2)
+            if (array2.count>0) {
+                let dictValues = array2[0] as! NSDictionary
+                profileData.zipcode=dictValues["value"] as? String
+            }
+            else {
+                profileData.zipcode=NSLocalizedText(key: "dataNotAdded")
+            }
+            let array3 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate3)
+            if (array3.count>0) {
+                let dictValues = array3[0] as! NSDictionary
+                profileData.businessNumber=dictValues["value"] as? String
+            }
+            else {
+                profileData.businessNumber=NSLocalizedText(key: "dataNotAdded")
+            }
+            let array4 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate4)
+            if (array4.count>0) {
+                let dictValues = array4[0] as! NSDictionary
+                profileData.businessCountry=dictValues["value"] as? String
+            }
+            else {
+                profileData.businessCountry=NSLocalizedText(key: "dataNotAdded")
+            }
+            let array5 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate5)
+            if (array5.count>0) {
+                let dictValues = array5[0] as! NSDictionary
+                profileData.businessAddressLine1=dictValues["value"] as? String
+            }
+            else {
+                profileData.businessAddressLine1=NSLocalizedText(key: "dataNotAdded")
+            }
+            let array6 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate6)
+            if (array6.count>0) {
+                let dictValues = array6[0] as! NSDictionary
+                profileData.businessAddressLine2=dictValues["value"] as? String
+            }
+            else {
+                profileData.businessAddressLine2=NSLocalizedText(key: "dataNotAdded")
+            }
+            let array7 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate7)
+            if (array7.count>0) {
+                let dictValues = array7[0] as! NSDictionary
+                profileData.businessDescription=dictValues["value"] as? String
+            }
+            else {
+                profileData.businessDescription=NSLocalizedText(key: "dataNotAdded")
+            }
+            let array8 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate8)
+            if (array8.count>0) {
+                let dictValues = array8[0] as! NSDictionary
+                profileData.contactNumber=dictValues["value"] as? String
+            }
+            else {
+                profileData.contactNumber=NSLocalizedText(key: "dataNotAdded")
+            }
+            let array9 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate9)
+            if (array9.count>0) {
+                let dictValues = array9[0] as! NSDictionary
+                profileData.defaultLanguage=dictValues["value"] as? NSString
+            }
+            else {
+                profileData.defaultLanguage="4"
+            }
+            profileData.email=dataDict["email"] as? String
+            profileData.firstName=dataDict["firstname"] as? String
+            profileData.lastName=dataDict["lastname"] as? String
+            profileData.storeId=dataDict["store_id"]
+            profileData.websiteId=dataDict["website_id"]
+            profileData.groupId=dataDict["group_id"]
+            profileData.addressArray=(dataDict["addresses"] as! NSArray).mutableCopy() as! NSMutableArray
+            success(profileData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Save user profile service
+    func saveUserProfileData(_ profileData: ProfileDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProfileService().saveUserProfileServiceData(profileData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("update profile response %@", response as Any)
+            let dataDict = response as! NSDictionary
+            profileData.customerAttributeArray = (dataDict["custom_attributes"] as! NSArray).mutableCopy() as! NSMutableArray
+            let searchPredicate = NSPredicate(format: "attribute_code CONTAINS[C] %@", "DefaultLanguage")
+            let array = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate)
+            if (array.count>0) {
+                let dictValues = array[0] as! NSDictionary
+                profileData.defaultLanguage=dictValues["value"] as? NSString
+                var languageValue:String?
+                if (profileData.defaultLanguage?.intValue == 4) {
+                    languageValue="gp_en";
+                }
+                else if (profileData.defaultLanguage?.intValue == 5) {
+                    languageValue="gp_zh";
+                }
+                else if (profileData.defaultLanguage?.intValue == 6) {
+                    languageValue="gp_cn";
+                }
+                UserDefaults().set(languageValue, forKey: "Language")
+            }
             success(profileData)
         },failure:failure)
     }

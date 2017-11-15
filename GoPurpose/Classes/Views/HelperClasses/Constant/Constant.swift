@@ -24,6 +24,13 @@ let kScreenHeight = UIScreen.main.bounds.size.height
 //appdelegate object
 let myDelegate = UIApplication.shared.delegate as? AppDelegate
 
+
+let kCameraPermission: String       = "\"GoPurpose Would\" Like to Access the Camera"
+let kCameraUsageMessage: String     = "Application will use camera to take photos for report upload and profile photo"
+let kGalleryPermission: String      = "\"GoPurpose Would\" Like to Access Your Photos"
+let kGalleryUsageMessage: String    = "Application will use photo library to select profile photo"
+
+
 //Define to use multi language
 func NSLocalizedText(key: String) -> String {
     return LocalizedString.changeLocalizedString(key)

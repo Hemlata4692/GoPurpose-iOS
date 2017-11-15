@@ -125,22 +125,7 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
     // MARK: - end
     
     // MARK: - Web services
-    //Get user profile
-    func getUserProfile() {
-        let userData = ProfileDataModel()
-        ProfileDataModel().getUserProfile(userData, success: { (response) in
-            AppDelegate().stopIndicator()
-         
-        }) { (error) in
-            if error != nil {
-                if error?.code == 200 {
-                    _ = error?.userInfo["error"] as! String
-                }
-            }
-        }
-    }
-    
-    @objc func saveDeviceToken() {
+   @objc func saveDeviceToken() {
         let userData = LoginDataModel()
         LoginDataModel().saveDeviceToken(userData, success: { (response) in
             AppDelegate().stopIndicator()
