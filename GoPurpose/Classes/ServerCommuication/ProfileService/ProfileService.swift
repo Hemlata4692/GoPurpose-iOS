@@ -34,7 +34,16 @@ class ProfileService: BaseService {
     
     // MARK: - Get country code service
     func getCountryCodeService(_ profileData: ProfileDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
-        // super.get(kCountryCode, parameters: nil, onSuccess: success, onFailure: failure)
+        let headers = [
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
+            ]
+        var request:alamofireRequestModal = alamofireRequestModal()
+        request.method = .get
+        request.parameters = nil
+        request.headers=headers
+        print("get country list request %@", request.parameters as Any)
+        request.path = basePath + kCountryCode
+        self.callPostService(request, success: success, failure: failure)
     }
     // MARK: - end
     

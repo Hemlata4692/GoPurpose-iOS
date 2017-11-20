@@ -24,7 +24,13 @@ let kScreenHeight = UIScreen.main.bounds.size.height
 //appdelegate object
 let myDelegate = UIApplication.shared.delegate as? AppDelegate
 
+//static colors
+let kBorderColor: UIColor = UIColor(red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7)
+let kBottomTabDeSelectedColor: UIColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 1)
+let kBottomTabSelectedColor: UIColor = UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
+let tableViewContentBorderColor: UIColor = UIColor (red: 225.0/255.0, green: 225.0/255.0, blue: 225.0/255.0, alpha: 1.0)
 
+//Camera/Gallery permissions
 let kCameraPermission: String       = "\"GoPurpose Would\" Like to Access the Camera"
 let kCameraUsageMessage: String     = "Application will use camera to take photos for report upload and profile photo"
 let kGalleryPermission: String      = "\"GoPurpose Would\" Like to Access Your Photos"

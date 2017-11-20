@@ -10,7 +10,7 @@ import UIKit
 
 class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDelegate,UITextFieldDelegate,UITextViewDelegate,UIPickerViewDelegate, UIPickerViewDataSource {
     
-    //Mark - Outlets and declarations
+    //MARK: - Outlets and declarations
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var changeProfileImageButton: UIButton!
     @IBOutlet weak var userEmailLabel: UILabel!
@@ -38,22 +38,16 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
     var storeId: Any?
     var pickerType: Int?
     var languageType: Int?
+    var pickerIndex1: Int?
+    var pickerIndex2: Int?
     var addressArray:NSMutableArray = NSMutableArray()
     var customerDataArray:NSMutableArray=NSMutableArray()
+    var countryPickerArray:NSMutableArray = NSMutableArray()
     var keyBoardControl:BSKeyboardControls?
     var changeLanguageArray = [NSLocalizedText(key: "gp_en"), NSLocalizedText(key: "gp_zh"), NSLocalizedText(key: "gp_cn")]
+    //MARK: - end
     
-    private let appName = "GoPurpose"
-    private let cameraNotAvailable = "Device has no camera."
-    private var imageSelectionMessage = "Choose Photo"
-    private let takePhoto = "Take Photo"
-    private let selectFromGallery = "Select From Gallery"
-    private let settings = "Settings"
-    private let cancel = "Cancel"
-    private let ok = "OK"
-    //Mark - end
-    
-    //Mark - View life cycle
+    //MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title=NSLocalizedText(key: "editProfile")
@@ -61,15 +55,10 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
         self.pickerView.dataSource = self
         self.viewCustomisation()
         AppDelegate().showIndicator()
-        self.perform(#selector(getUserProfile), with: nil, afterDelay: 0.1)
+        self.perform(#selector(getCountryList), with: nil, afterDelay: 0.1)
         // Do any additional setup after loading the view.
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear()
-//        //userProfileImageView.image = userImage
-//    }
-//    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -82,20 +71,20 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
         keyBoardControl = BSKeyboardControls(fields: textField as! [UIView])
         keyBoardControl?.delegate=self
         //add corner radius and border
-        firstNameField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        lastNameField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        businessNameFiled.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        addressField1.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        addressField2.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        zipCodeFiled.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        businessRegistrationNumberField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        changeCurrencyField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        changeLanguageField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        businessRegistrationNumberField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        contactNumberField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        businessCuntryField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        businessDescriptionView.addBorderRadius(radius: 10, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        userProfileImageView.addBorderRadius(radius: 65, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
+        firstNameField.addBorderRadius(radius: 20, color: kBorderColor)
+        lastNameField.addBorderRadius(radius: 20, color: kBorderColor)
+        businessNameFiled.addBorderRadius(radius: 20, color: kBorderColor)
+        addressField1.addBorderRadius(radius: 20, color: kBorderColor)
+        addressField2.addBorderRadius(radius: 20, color: kBorderColor)
+        zipCodeFiled.addBorderRadius(radius: 20, color: kBorderColor)
+        businessRegistrationNumberField.addBorderRadius(radius: 20, color: kBorderColor)
+        changeCurrencyField.addBorderRadius(radius: 20, color: kBorderColor)
+        changeLanguageField.addBorderRadius(radius: 20, color: kBorderColor)
+        businessRegistrationNumberField.addBorderRadius(radius: 20, color: kBorderColor)
+        contactNumberField.addBorderRadius(radius: 20, color: kBorderColor)
+        businessCuntryField.addBorderRadius(radius: 20, color: kBorderColor)
+        businessDescriptionView.addBorderRadius(radius: 10, color: kBorderColor)
+        userProfileImageView.addBorderRadius(radius: 65, color: kBorderColor)
         userProfileImageView.clipsToBounds=true
         saveButton.addButtonCornerRadius(radius: 20)
         //set padding to text filed
@@ -125,13 +114,29 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
         contactNumberField.placeholder=NSLocalizedText(key: "contactPerson")
         businessCuntryField.placeholder=NSLocalizedText(key: "businessCountry")
         businessDescriptionView.placeholder=NSLocalizedText(key: "businessDescription")
-        saveButton.titleLabel?.text=NSLocalizedText(key: "saveButton")
+        saveButton.setTitle(NSLocalizedText(key: "saveButton"),for: .normal)
     }
-    //Mark - end
+    //MARK: - end
     
-    //Mark - Webservice
+    //MARK: - Webservices
+    
+    //Get country picker data
+    @objc func getCountryList() {
+        let userData = ProfileDataModel()
+        ProfileDataModel().getCountryListData(userData, success: { (response) in
+            self.countryPickerArray=userData.countryArray.mutableCopy() as! NSMutableArray
+            self.getUserProfile()
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
+    }
+    
     //Get user profile
-    @objc func getUserProfile() {
+    func getUserProfile() {
         let userData = ProfileDataModel()
         ProfileDataModel().getUserProfile(userData, success: { (response) in
             AppDelegate().stopIndicator()
@@ -157,6 +162,8 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
         addressField2?.text=profileData.businessAddressLine2
         contactNumberField?.text=profileData.contactNumber
         businessCuntryField?.text=profileData.businessCountry
+        let indexOfA = countryPickerArray.index(of: profileData.businessCountry as Any)
+        pickerIndex2=indexOfA
         zipCodeFiled?.text=profileData.zipcode
         customerDataArray=profileData.customerAttributeArray.mutableCopy() as! NSMutableArray
         groupId=profileData.groupId
@@ -165,12 +172,18 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
         addressArray=profileData.addressArray.mutableCopy() as! NSMutableArray
         if (profileData.defaultLanguage?.intValue == 4) {
             changeLanguageField?.text=NSLocalizedText(key: "gp_en")
+            languageType = 4
+            pickerIndex1 = 0
         }
         else if (profileData.defaultLanguage?.intValue  == 5) {
             changeLanguageField?.text=NSLocalizedText(key: "gp_zh")
+            languageType = 5
+            pickerIndex1 = 1
         }
         else if (profileData.defaultLanguage?.intValue  == 6) {
             changeLanguageField?.text=NSLocalizedText(key: "gp_cn")
+            languageType = 6
+            pickerIndex1 = 2
         }
     }
     
@@ -305,6 +318,7 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
         }
     }
     
+    //Save user profile
     @objc func saveUserProfile() {
         var userData = ProfileDataModel()
         userData=self.saveUserData(profileData: userData)
@@ -325,17 +339,12 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
         }
     }
     
+    //Edit user profile image
     @objc func editUserProfileImage() {
         let userData = ProfileDataModel()
         userData.userProfileImage=userProfileImageView.image
         ProfileDataModel().updateUserProfileImage(userData, success: { (response) in
             AppDelegate().stopIndicator()
-//            let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
-//            let alert = SCLAlertView(appearance: appearance)
-//            _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
-//                self.navigationController?.popViewController(animated:true)
-//            }
-//            _ = alert.showSuccess(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "editProfileSuccess"), closeButtonTitle: nil)
         }) { (error) in
             if error != nil {
                 if error?.code == 200 {
@@ -344,7 +353,7 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
             }
         }
     }
-    //Mark - end
+    //MARK: - end
     
     // MARK: - BSKeboard delegate methods
     func keyboardControls(keyboardControls: BSKeyboardControls, selectedField field: UIView, inDirection direction: BSKeyboardControlsDirection) {
@@ -386,12 +395,19 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
     
     // MARK: - Picker delegates
     func showPickerWithAnimation(textField:UITextField) {
+        pickerView.reloadAllComponents()
+        if pickerType == 1 {
+            pickerView.selectRow(pickerIndex1!, inComponent: 0, animated: true)
+        }
+        else {
+            pickerView.selectRow(pickerIndex2!, inComponent: 0, animated: true)
+        }
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(0.3)
         editProfileScrollView.setContentOffset(CGPoint(x:0, y:((textField.frame.origin.y + textField.frame.size.height + 200) - (kScreenHeight - 200))), animated: false)
         pickerView.backgroundColor=UIColor(red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1.0)
         pickerView.frame = CGRect(x: pickerView.frame.origin.x, y: kScreenHeight - (pickerView.frame.size.height + 110), width: kScreenWidth, height: 200)
-       pickerToolBar.frame = CGRect(x: pickerToolBar.frame.origin.x, y: pickerView.frame.origin.y - 44, width: kScreenWidth, height: 44)
+        pickerToolBar.frame = CGRect(x: pickerToolBar.frame.origin.x, y: pickerView.frame.origin.y - 44, width: kScreenWidth, height: 44)
         UIView.commitAnimations()
     }
     
@@ -412,39 +428,44 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return changeLanguageArray.count
+        if pickerType == 1 {
+            return changeLanguageArray.count
+        }
+        else {
+            return countryPickerArray.count
+        }
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return changeLanguageArray[row]
+        if pickerType == 1 {
+            return changeLanguageArray[row]
+        }
+        else {
+            return countryPickerArray[row] as? String
+        }
     }
     
     // Catpure the picker view selection
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerType==1 {
+            pickerIndex1=row
             changeLanguageField?.text=changeLanguageArray[row]
+        }
+        else {
+            pickerIndex2=row
+            businessCuntryField?.text=countryPickerArray[row] as? String
         }
     }
     // MARK: - end
     
-    //MARK: - Image picker delegates
-//    private func imagePickerController(_ picker: UIImagePickerController,
-//                               didFinishPickingMediaWithInfo info: [String : AnyObject])
-//    {
-//
-//    }
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//
-//    }
-     // MARK: - end
-    
-    //Mark: - IBActions
+    //MARK: - IBActions
     @IBAction func toolBarDoneAction(_ sender: Any) {
         self.hidePickerWithAnimation()
         if pickerType==1 {
             let index = pickerView.selectedRow(inComponent: 0)
-             changeLanguageField?.text=changeLanguageArray[index]
+            pickerIndex1=index
+            changeLanguageField?.text=changeLanguageArray[index]
             if index==0 {
                 languageType=4
             }
@@ -454,6 +475,11 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
             else {
                 languageType=6
             }
+        }
+        else {
+            let index = pickerView.selectedRow(inComponent: 0)
+            pickerIndex2=index
+            businessCuntryField?.text=(countryPickerArray[index] as? String)
         }
     }
     
@@ -467,6 +493,7 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
     }
     
     @IBAction func changeCurrencyButtonAction(_ sender: Any) {
+        
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
@@ -474,13 +501,18 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
         self.perform(#selector(saveUserProfile), with: nil, afterDelay: 0.1)
     }
     
+    @IBAction func changeCountryAction(_ sender: Any) {
+        pickerType=2
+        self.showPickerWithAnimation(textField: businessCuntryField)
+    }
+    
     @IBAction func changeProfileImageAction(_ sender: Any) {
         self.view.endEditing(true)
         self.loadImagePicker(cameraAccess: true, galleryAccess: true, selectMessage:"Select Photo")
     }
- // MARK: - end
+    // MARK: - end
     
-   // MARK: - Override image picker delegates
+    // MARK: - Override image picker delegates
     override func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }

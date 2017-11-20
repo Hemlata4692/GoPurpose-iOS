@@ -34,6 +34,7 @@ class ConnectionManager: NSObject {
             userData.groupName = customerDict["group_name"] as? String
             userData.groupId = customerDict["group_id"]
             userData.email = customerDict["email"] as? String
+            userData.businesName=customerDict["business_name"] as? String
             if ((customerDict["default_currency"] as? String == "") || customerDict["default_currency"] as? String == nil) {
                 UserDefaults().set(dataDict["local_currency_code"] as? String, forKey: "DefaultCurrencyCode")
             }
@@ -236,6 +237,21 @@ class ConnectionManager: NSObject {
             //Parse data from server response and store in data model
             print("user profile image %@", response as Any)
            // profileData.userImageURL = response["profile_pic"]
+            success(profileData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Get country list
+    func getCountryListing(_ profileData: ProfileDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProfileService().getCountryCodeService(profileData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("getCountryListing data %@", response as Any)
+            let dataArray=(response as! NSArray).mutableCopy() as! NSMutableArray
+            for i in 0..<dataArray.count {
+                let dataDict=dataArray[i] as! NSDictionary
+                profileData.countryArray.add(dataDict["full_name_locale"] as! String)
+            }
             success(profileData)
         },failure:failure)
     }

@@ -60,10 +60,10 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
         confirmPasswordFiled.placeholder=NSLocalizedText(key: "confirmPassword")
         currentPasswordField.placeholder=NSLocalizedText(key: "password")
         otpNumberField.placeholder=NSLocalizedText(key: "otp")
-        forgotPasswordButton.titleLabel?.text=NSLocalizedText(key: "submitButton")
-        resetPasswordButton.titleLabel?.text=NSLocalizedText(key: "resetPassword")
-        resendOTPButton.titleLabel?.text=NSLocalizedText(key: "resendOTP")
-        backToLoginButton.titleLabel?.text=NSLocalizedText(key: "backToLogin")
+        forgotPasswordButton.setTitle(NSLocalizedText(key: "submitButton"),for: .normal)
+        resetPasswordButton.setTitle(NSLocalizedText(key: "resetPassword"),for: .normal)
+        resendOTPButton.setTitle(NSLocalizedText(key: "resendOTP"),for: .normal)
+        backToLoginButton.setTitle(NSLocalizedText(key: "backToLogin"),for: .normal)
     }
     
     override func didReceiveMemoryWarning() {

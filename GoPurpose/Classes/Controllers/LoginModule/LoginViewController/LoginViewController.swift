@@ -9,8 +9,8 @@
 import UIKit
 
 class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFieldDelegate {
-  
-     // MARK: - IBOutlets
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var loginScrollView: UIScrollView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -18,7 +18,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var keyBoardControl:BSKeyboardControls?
-     // MARK: - end
+    // MARK: - end
     
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -44,8 +44,8 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     func setLocalisedText() {
         emailField.placeholder=NSLocalizedText(key: "email")
         passwordField.placeholder=NSLocalizedText(key: "password")
-        loginButton.titleLabel?.text=NSLocalizedText(key: "loginButton")
-        forgotPasswordButton.titleLabel?.text=NSLocalizedText(key: "forgotPassword")
+        forgotPasswordButton.setTitle(NSLocalizedText(key: "forgotPassword"),for: .normal)
+        loginButton.setTitle(NSLocalizedText(key: "loginButton"),for: .normal)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,7 +80,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     // MARK: - Login validation
     func performLoginValidations() -> Bool {
         if emailField.isEmpty() ||  passwordField.isEmpty() {
-           SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
             return false
         } else if emailField.isValidEmail() == false {
             SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validEmailMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
@@ -91,7 +91,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             return false
         }
         else if (passwordField.isValidPassword() == false) {
-          SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
             return false
         }
         return true
@@ -117,9 +117,9 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             if error != nil {
                 if error?.code == 200 {
                     _ = error?.userInfo["error"] as! String
+                }
             }
         }
-    }
     }
     
     @objc func saveDeviceToken() {

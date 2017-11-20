@@ -37,15 +37,7 @@ class ProfileDataModel: NSObject {
     var storeId: Any?
     var customerAttributeArray:NSMutableArray = NSMutableArray()
     var addressArray:NSMutableArray = NSMutableArray()
-    
-//    // MARK: - Shared instance
-//    static let sharedInstance = ProfileDataModel()
-//    // MARK: - end
-
-    override init() {
-        // uncomment this line if your class has been inherited from any other class
-        //super.init()
-    }
+    var countryArray:NSMutableArray = NSMutableArray()
     
     // MARK: - Get user profile
     func getUserProfile(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
@@ -77,6 +69,15 @@ class ProfileDataModel: NSObject {
     // MARK: - save user profile
     func saveUserProfile(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.saveUserProfileData(profileData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Country list
+    func getCountryListData(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.getCountryListing(profileData, success: {(responseObj) in
             
             success(responseObj)
         }, failure: failure)

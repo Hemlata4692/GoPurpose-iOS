@@ -24,18 +24,18 @@ class BottomTabViewController: UIViewController {
     //MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        dashboardButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-        messageButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-        productButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-        settingsButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        dashboardButton.backgroundColor=kBottomTabDeSelectedColor
+        messageButton.backgroundColor=kBottomTabDeSelectedColor
+        productButton.backgroundColor=kBottomTabDeSelectedColor
+        settingsButton.backgroundColor=kBottomTabDeSelectedColor
         dashboardButton.isSelected=false
         productButton.isSelected=false
         messageButton.isSelected=false
         settingsButton.isSelected=false
-        dashboardButton.titleLabel?.text=NSLocalizedText(key: "homeTab")
-        messageButton.titleLabel?.text=NSLocalizedText(key: "messageTab")
-        productButton.titleLabel?.text=NSLocalizedText(key: "productTab")
-        settingsButton.titleLabel?.text=NSLocalizedText(key: "settingTab")
+        dashboardButton.setTitle(NSLocalizedText(key: "homeTab"),for: .normal)
+        messageButton.setTitle(NSLocalizedText(key: "messageTab"),for: .normal)
+        productButton.setTitle(NSLocalizedText(key: "productTab"),for: .normal)
+        settingsButton.setTitle(NSLocalizedText(key: "settingTab"),for: .normal)
         // Do any additional setup after loading the view.
     }
     
@@ -50,19 +50,19 @@ class BottomTabViewController: UIViewController {
         switch item {
         case 1:
             dashboardButton?.isSelected=true
-            dashboardButton?.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
+            dashboardButton?.backgroundColor=kBottomTabSelectedColor
             homeImageIcon.alpha=0.6
         case 2:
             messageButton?.isSelected=true
-            messageButton?.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
+            messageButton?.backgroundColor=kBottomTabSelectedColor
             messageImageIcon.alpha=0.6
         case 3:
             productButton?.isSelected=true
-            productButton?.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
+            productButton?.backgroundColor=kBottomTabSelectedColor
             productImageIcon.alpha=0.6
         case 4:
             settingsButton?.isSelected=true
-            settingsButton?.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
+            settingsButton?.backgroundColor=kBottomTabSelectedColor
             settingsImageIcon.alpha=0.6
         default:
             break
@@ -73,10 +73,10 @@ class BottomTabViewController: UIViewController {
     //MARK: - IBActions
     @IBAction func dashboardButtonAction(_ sender: Any) {
         if (!dashboardButton.isSelected) {
-            dashboardButton.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
-            messageButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            productButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            settingsButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            dashboardButton.backgroundColor=kBottomTabSelectedColor
+            messageButton.backgroundColor=kBottomTabDeSelectedColor
+            productButton.backgroundColor=kBottomTabDeSelectedColor
+            settingsButton.backgroundColor=kBottomTabDeSelectedColor
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
             UIApplication.shared.keyWindow?.rootViewController = nextViewController
@@ -85,10 +85,10 @@ class BottomTabViewController: UIViewController {
     
     @IBAction func messageButtonAction(_ sender: Any) {
         if (!messageButton.isSelected) {
-            dashboardButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            messageButton.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
-            productButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            settingsButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            dashboardButton.backgroundColor=kBottomTabDeSelectedColor
+            messageButton.backgroundColor=kBottomTabSelectedColor
+            productButton.backgroundColor=kBottomTabDeSelectedColor
+            settingsButton.backgroundColor=kBottomTabDeSelectedColor
            //open zopim ticket
             let jwtUserIdentity = ZDKJwtIdentity(jwtUserIdentifier:UserDefaults().string(forKey: "userEmail"))
             ZDKConfig.instance().userIdentity = jwtUserIdentity
@@ -98,10 +98,10 @@ class BottomTabViewController: UIViewController {
     
     @IBAction func productButtonAction(_ sender: Any) {
         if (!productButton.isSelected) {
-            dashboardButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            messageButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            productButton.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
-            settingsButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+            dashboardButton.backgroundColor=kBottomTabDeSelectedColor
+            messageButton.backgroundColor=kBottomTabDeSelectedColor
+            productButton.backgroundColor=kBottomTabSelectedColor
+            settingsButton.backgroundColor=kBottomTabDeSelectedColor
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let loginView = storyBoard.instantiateViewController(withIdentifier: "ProductListViewController") as? ProductListViewController
             self.navigationController?.setViewControllers([loginView!], animated: false)
@@ -110,10 +110,10 @@ class BottomTabViewController: UIViewController {
     
     @IBAction func settingsButtonAction(_ sender: Any) {
         if (!settingsButton.isSelected) {
-            dashboardButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            messageButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            productButton.backgroundColor=UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-            settingsButton.backgroundColor=UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
+            dashboardButton.backgroundColor=kBottomTabDeSelectedColor
+            messageButton.backgroundColor=kBottomTabDeSelectedColor
+            productButton.backgroundColor=kBottomTabDeSelectedColor
+            settingsButton.backgroundColor=kBottomTabSelectedColor
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let loginView = storyBoard.instantiateViewController(withIdentifier: "SettingsViewController") as? SettingsViewController
             self.navigationController?.setViewControllers([loginView!], animated: false)

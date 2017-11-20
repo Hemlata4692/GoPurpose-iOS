@@ -24,6 +24,7 @@ class LoginDataModel: NSObject {
     var defaultCurrency: String?
     var defaultLanguage: String?
     var groupName: String?
+    var businesName: String?
     var groupId: Any?
     var followCount: Any?
     var notificationCount: Any?
@@ -39,6 +40,7 @@ class LoginDataModel: NSObject {
             UserDefaults().set(userData.notificationCount, forKey: "notificationCount")
             UserDefaults().set(userData.email, forKey: "userEmail")
             UserDefaults().set(userData.userId, forKey: "userId")
+             UserDefaults().set(userData.businesName, forKey: "businessName")
             success(responseObj)
         }, failure: failure)
     }
