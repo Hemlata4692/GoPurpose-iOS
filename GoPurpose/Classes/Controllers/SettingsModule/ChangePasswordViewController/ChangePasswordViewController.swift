@@ -39,9 +39,9 @@ class ChangePasswordViewController: GlobalBackViewController,BSKeyboardControlsD
         keyBoardControl = BSKeyboardControls(fields: textField as! [UITextField])
         keyBoardControl?.delegate=self
         //add corner radius and border
-        currentPasswordField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        newPasswordField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
-        confirmPasswordField.addBorderRadius(radius: 20, color: UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7))
+        currentPasswordField.addBorderRadius(radius: 20, color: kBorderColor)
+        newPasswordField.addBorderRadius(radius: 20, color: kBorderColor)
+        confirmPasswordField.addBorderRadius(radius: 20, color: kBorderColor)
         //set padding to text filed
         changePasswordButton.addButtonCornerRadius(radius: 20)
         currentPasswordField.setLeftPaddingPoints(12)
@@ -53,7 +53,7 @@ class ChangePasswordViewController: GlobalBackViewController,BSKeyboardControlsD
         currentPasswordField.placeholder=NSLocalizedText(key: "currentPasswordPlaceholder")
         newPasswordField.placeholder=NSLocalizedText(key: "newPasswordPlaceholder")
         confirmPasswordField.placeholder=NSLocalizedText(key: "confirmPassword")
-        changePasswordButton.titleLabel?.text=NSLocalizedText(key: "changePasswordProfile")
+        changePasswordButton.setTitle(NSLocalizedText(key: "changePasswordProfile"),for: .normal)
     }
     // MARK: - end
     

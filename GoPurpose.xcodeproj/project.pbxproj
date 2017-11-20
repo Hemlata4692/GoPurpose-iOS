@@ -60,6 +60,7 @@
 		18C9EA921FB06F93007E8C92 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD61FA9943500FA96DC /* SCLAlertView.swift */; };
 		18C9EA931FB06F97007E8C92 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD51FA9943500FA96DC /* SCLExtensions.swift */; };
 		18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */; };
+		18DE7AAE1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE7AAD1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift */; };
 		18F4E47D1FB5805A005C786E /* GlobalBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */; };
 		18F4E4801FB588B6005C786E /* ProfileDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E47F1FB588B6005C786E /* ProfileDataModel.swift */; };
 		18F4E4831FB588EF005C786E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E4821FB588EF005C786E /* ProfileService.swift */; };
@@ -127,6 +128,7 @@
 		18C9EA8B1FB06B30007E8C92 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		18C9EA8D1FB06B38007E8C92 /* iReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iReachability.swift; sourceTree = "<group>"; };
 		18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		18DE7AAD1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
 		18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBackViewController.swift; sourceTree = "<group>"; };
 		18F4E47F1FB588B6005C786E /* ProfileDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataModel.swift; sourceTree = "<group>"; };
 		18F4E4821FB588EF005C786E /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		186FD4F41FAAD46200081D8A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				18DE7AAD1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift */,
 				189263171FB1AA8F00BE00A2 /* UITextField+Validations.swift */,
 				18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */,
 				186FD4F71FAAD67200081D8A /* CornerRadius+UIVIew.swift */,
@@ -391,7 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				1892630F1FB1715100BE00A2 /* ActivityIndicator */,
-				18C9EA731FB041CC007E8C92 /* Localisation */,
+				18C9EA731FB041CC007E8C92 /* Localization */,
 				1895700D1FA8A7EE009DC63A /* SWRevealView */,
 				186FD4F41FAAD46200081D8A /* Extensions */,
 				187D4AD41FA9930F00FA96DC /* SCLALertView */,
@@ -525,12 +528,12 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		18C9EA731FB041CC007E8C92 /* Localisation */ = {
+		18C9EA731FB041CC007E8C92 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
 				18C9EA741FB041F2007E8C92 /* LocalizedString.swift */,
 			);
-			path = Localisation;
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		18C9EA791FB0592F007E8C92 /* Models */ = {
@@ -798,6 +801,7 @@
 				189263181FB1AA9000BE00A2 /* UITextField+Validations.swift in Sources */,
 				18F4E4801FB588B6005C786E /* ProfileDataModel.swift in Sources */,
 				186FD4F81FAAD67200081D8A /* CornerRadius+UIVIew.swift in Sources */,
+				18DE7AAE1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift in Sources */,
 				18B20DD01FAC5772005A6147 /* NotificationViewController.swift in Sources */,
 				18C9EA8C1FB06B30007E8C92 /* BaseService.swift in Sources */,
 				186FD4FB1FAAE7E500081D8A /* BSKeyboardControls.swift in Sources */,

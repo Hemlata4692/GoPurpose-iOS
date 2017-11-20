@@ -23,6 +23,34 @@ extension UITextField {
     }
 }
 
+extension UITextView {
+    //add border and corner radius
+    func addBorderRadius(radius:CGFloat, color: UIColor) {
+        self.layer.cornerRadius = radius
+        self.layer.borderWidth = 1
+        self.layer.borderColor = color.cgColor
+    }
+    
+    //add corner radius
+    func addCornerRadius(radius:CGFloat) {
+        self.layer.cornerRadius = radius
+    }
+}
+
+extension UIImageView {
+    //add border and corner radius
+    func addBorderRadius(radius:CGFloat, color: UIColor) {
+        self.layer.cornerRadius = radius
+        self.layer.borderWidth = 1
+        self.layer.borderColor = color.cgColor
+    }
+    
+    //add corner radius
+    func addCornerRadius(radius:CGFloat) {
+        self.layer.cornerRadius = radius
+    }
+}
+
 extension UIButton {
     //add border and corner radius
     func addButtonBorderRadius(radius:CGFloat) {
