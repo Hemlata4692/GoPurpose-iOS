@@ -50,6 +50,7 @@
 		18B5F8F31FB5BE55004A341E /* ZendeskSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B5F8EE1FB5BE37004A341E /* ZendeskSDK.bundle */; };
 		18B5F8F41FB5BE57004A341E /* ZendeskSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B5F8ED1FB5BE36004A341E /* ZendeskSDKStrings.bundle */; };
 		18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */; };
+		18BEAA311FC59EE3007CDB75 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEAA301FC59E9D007CDB75 /* LoadImage.swift */; };
 		18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */; };
 		18C9EA751FB041F2007E8C92 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA741FB041F2007E8C92 /* LocalizedString.swift */; };
 		18C9EA7B1FB05A75007E8C92 /* LoginDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9EA7A1FB05A75007E8C92 /* LoginDataModel.swift */; };
@@ -118,6 +119,7 @@
 		18B5F8EF1FB5BE41004A341E /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskProviderSDK.framework; sourceTree = "<group>"; };
 		18B5F8F01FB5BE46004A341E /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZendeskSDK.framework; sourceTree = "<group>"; };
 		18BA7EDE1FAB256C00BA396E /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
+		18BEAA301FC59E9D007CDB75 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		18C24B311FA9CE0D0095F260 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		18C9EA711FB01096007E8C92 /* DynamicHeightWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightWidth.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 		1895700B1FA8A7BA009DC63A /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				18BEAA2F1FC59E85007CDB75 /* DownloadImages */,
 				1892630F1FB1715100BE00A2 /* ActivityIndicator */,
 				18C9EA731FB041CC007E8C92 /* Localization */,
 				1895700D1FA8A7EE009DC63A /* SWRevealView */,
@@ -512,6 +515,14 @@
 				18B5F8F01FB5BE46004A341E /* ZendeskSDK.framework */,
 			);
 			path = Framework;
+			sourceTree = "<group>";
+		};
+		18BEAA2F1FC59E85007CDB75 /* DownloadImages */ = {
+			isa = PBXGroup;
+			children = (
+				18BEAA301FC59E9D007CDB75 /* LoadImage.swift */,
+			);
+			path = DownloadImages;
 			sourceTree = "<group>";
 		};
 		18C24B2E1FA9CDF70095F260 /* Fonts */ = {
@@ -786,6 +797,7 @@
 				18B20DC71FAC2D23005A6147 /* GlobalViewController.swift in Sources */,
 				18C9EA7B1FB05A75007E8C92 /* LoginDataModel.swift in Sources */,
 				186E90AA1FB558BB00EF863A /* ChangePasswordViewController.swift in Sources */,
+				18BEAA311FC59EE3007CDB75 /* LoadImage.swift in Sources */,
 				18C9EA721FB01096007E8C92 /* DynamicHeightWidth.swift in Sources */,
 				186E90AC1FB558D000EF863A /* EditProfileViewController.swift in Sources */,
 				189263121FB1720900BE00A2 /* MMMaterialDesignSpinner.m in Sources */,

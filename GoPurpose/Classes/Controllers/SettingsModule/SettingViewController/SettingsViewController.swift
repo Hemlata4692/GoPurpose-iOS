@@ -77,6 +77,9 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
         let cell:ProfileTableCell = tableView.dequeueReusableCell(withIdentifier: tableCellKeysArray[indexPath.row], for: indexPath) as! ProfileTableCell
         cell.userProfileImage?.layer.cornerRadius=60
         cell.userProfileImage?.layer.masksToBounds = true
+//        if ((UserDefaults().string(forKey: "userProfileImage"))! != nil) {
+//            cell.userProfileImage?.downloadFrom(link: UserDefaults().string(forKey: "userProfileImage")!)
+//        }
         cell.changePasswordLabel?.text=NSLocalizedText(key: "changePasswordProfile")
         cell.notificationLabel?.text=NSLocalizedText(key: "notifications")
         

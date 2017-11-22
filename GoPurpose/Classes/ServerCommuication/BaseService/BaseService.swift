@@ -67,75 +67,67 @@ class BaseService: NSObject {
         // Log path and parameters
         print("AlamoRequest:\n path: \(alamoReq.path)")
         print("\n param: \(String(describing: alamoReq.parameters))")
-      //  let params: Dictionary<String, String> = alamoReq.parameters! as! Dictionary<String, String>
         if reach.isReachable {
             // Call response handler method of alamofire
-
-            Alamofire.upload(multipartFormData: { (multipartFormData) in
+            let imageName = "\(Date().timeIntervalSince1970 * 1000)"
+            Alamofire.upload(multipartFormData: { multipartFormData in
                 for (key, value) in alamoReq.parameters! {
                     multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
                 }
-                    multipartFormData.append(imageDict, withName: "image", fileName: "image.png", mimeType: "image/png")
-                
-            }, usingThreshold: UInt64.init(), to: alamoReq.path, method: alamoReq.method, headers:  alamoReq.headers) { (result) in
-                switch result{
+                multipartFormData.append(imageDict, withName: "avatar", fileName: imageName+".jpg", mimeType: "image/jpeg")
+            }, to: alamoReq.path, method: alamoReq.method, headers: alamoReq.headers,
+               encodingCompletion: { encodingResult in
+                switch encodingResult {
                 case .success(let upload, _, _):
-                    upload.responseJSON { response in
-                        print("Succesfully uploaded")
-                        if let err = response.error{
-//                            onError?(err)
-                            print(err)
-                            return
+                    upload.responseJSON(completionHandler: { (response) in
+                        print("\n Response/Failure: \(response)")
+                        if response.response?.statusCode == 200 {
+                           // print("Success with JSON: \(String(describing: response.result.value))")
+                            success(response.result.value as AnyObject)
                         }
-//                        onCompletion?(nil)
-                    }
-                case .failure(let error):
-                    print("Error in upload: \(error.localizedDescription)")
-//                    onError?(error)
+                        else {
+                            AppDelegate().stopIndicator()
+                            let error = response.result.value as! NSDictionary
+                            let errorMessage = error.object(forKey: "message") as! String
+                            print(errorMessage)
+                            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:errorMessage, closeButtonTitle: NSLocalizedText(key: "alertOk"))
+                            // failure(error )
+                        }
+                    })
+                case .failure(let encodingError):
+                    AppDelegate().stopIndicator()
+                    SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:encodingError.localizedDescription, closeButtonTitle: NSLocalizedText(key: "alertOk"))
+                    failure(encodingError as NSError?)
                 }
-            }
+            })
+        }  else {
+            AppDelegate().stopIndicator()
+            failure(nil)
+            createNoNetworkConnectionView()
         }
-            
-            
-//            Alamofire.upload(multipartFormData: { multipartFormData in
-//                // Fetching data from dictionary and
-//                // Appending image in the request
-////                let imgData = Array(imageDict.values)[0]
-////                let imgName = Array(imageDict.keys)[0] as String
-//                //[formData appendPartWithFileData:imageData name:@"avatar" fileName:[NSString stringWithFormat:@"%@.jpg",imageName] mimeType:@"image/jpeg"];
-//                //alamoReq.path, method: alamoReq.method, parameters: alamoReq.parameters, encoding: alamoReq.encoding, headers: alamoReq.headers
-//                multipartFormData.append(imageDict, withName: "hemlata", fileName: "file.jpeg", mimeType: "image/jpeg")
-//                }, to: alamoReq.path, method: alamoReq.method, headers: alamoReq.headers,
-//                    encodingCompletion: { encodingResult in
-//                        switch encodingResult {
-//                        case .success(let upload, _, _):
-//                            upload.responseJSON(completionHandler: { (response) in
-//                                print("\n Response/Failure: \(response)")
-//                                switch response.result {
-//                                case .success(let data):
-//                                    guard let errorMessage = (data as? NSDictionary)?.value(forKey: "error") else {
-//                                        print("\n Success: \(response)")
-//                                        success(data as AnyObject?)
-//                                        return
-//                                    }
-//                                    let errorTemp = NSError.init(domain: "", code: 200, userInfo: ["error" : errorMessage])
-//                                    print("\n Failure: \(errorTemp.localizedDescription), errorMessage: \(errorMessage)")
-//                                    failure(errorTemp as NSError?)
+//            Alamofire.upload(multipartFormData: { (multipartFormData) in
+//                for (key, value) in alamoReq.parameters! {
+//                    multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+//                }
+//                    multipartFormData.append(imageDict, withName: "avatar", fileName: imageName+".jpg", mimeType: "image/jpeg")
 //
-//                                case .failure(let error):
-//                                    print("\n Failure: \(error.localizedDescription)")
-//                                    failure(error as NSError?)
-//                                }
-//                            })
-//                        case .failure(let encodingError):
-//                            print("error:\(encodingError.localizedDescription)")
-//                            failure(encodingError as NSError?)
+//            }, usingThreshold: UInt64.init(), to: alamoReq.path, method: alamoReq.method, headers:  alamoReq.headers) { (result) in
+//                switch result{
+//                case .success(let upload, _, _):
+//                    upload.responseJSON { response in
+//                        print(response)
+//                        if let err = response.error{
+////                            onError?(err)
+//                            print(err)
+//                            return
 //                        }
-//            })
-//        } else {
-//            failure(nil)
-//            createNoNetworkConnectionView()
-//        }
-//    }
+////                        onCompletion?(nil)
+//                    }
+//                case .failure(let error):
+//                    print("Error in upload: \(error.localizedDescription)")
+////                    onError?(error)
+//                }
+//            }
+        }
 }
-}
+

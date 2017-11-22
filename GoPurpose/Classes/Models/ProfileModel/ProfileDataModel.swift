@@ -51,7 +51,7 @@ class ProfileDataModel: NSObject {
     // MARK: - Update user image
     func updateUserProfileImage(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.updateUserProfileImage(profileData, success: {(responseObj) in
-
+            UserDefaults().set(profileData.profileImage, forKey: "userProfileImage")
             success(responseObj)
         }, failure: failure)
     }

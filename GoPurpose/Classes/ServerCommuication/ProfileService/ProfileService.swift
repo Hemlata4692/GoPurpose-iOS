@@ -90,14 +90,13 @@ class ProfileService: BaseService {
         request.headers = headers
      
         // Creating image dictionary
-        let imageData = UIImageJPEGRepresentation(profileData.userProfileImage!,1)
+        let imageData = UIImageJPEGRepresentation(profileData.userProfileImage!,0.3)
        // let imageStr = imageData.base64EncodedString()
         
 //        print(strBase64)
  
-        
-      
-        request.path = basePath + kEditProfilePicture
+        let imageUploadPath = BASE_URL + UserDefaults().string(forKey: "Language")! + "/"
+        request.path = imageUploadPath + kEditProfilePicture
         request.parameters = ["customerId" : UserDefaults().string(forKey: "userId") as AnyObject] as [String: AnyObject]
         self.callImageWebServiceAlamofire(imageDict: imageData!, alamoReq: request, success: success, failure: failure)
      

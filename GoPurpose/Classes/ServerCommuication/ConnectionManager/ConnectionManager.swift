@@ -236,7 +236,8 @@ class ConnectionManager: NSObject {
         ProfileService().updateUserprofileImageService(profileData, success: {(response) in
             //Parse data from server response and store in data model
             print("user profile image %@", response as Any)
-           // profileData.userImageURL = response["profile_pic"]
+            let dataDict = response as! NSDictionary
+            profileData.profileImage = dataDict["profile_pic"] as? String
             success(profileData)
         },failure:failure)
     }
