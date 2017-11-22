@@ -42,7 +42,26 @@ class ProductListViewController: GlobalViewController,UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.showSelectedTab(item: 3)
+//        AppDelegate().showIndicator()
+//        self.perform(#selector(getProductList), with: nil, afterDelay: 0.1)
     }
+    
+    //MARK: - Webservices
+    
+    //Get product listing data
+    @objc func getProductList() {
+        let productData = ProductDataModel()
+        ProductDataModel().getProductListingData(productData, success: { (response) in
+            AppDelegate().stopIndicator()
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
+    }
+    //MARK: - end
    
     // MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,7 +71,7 @@ class ProductListViewController: GlobalViewController,UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tableCellKeysArray.count
+        return 5
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

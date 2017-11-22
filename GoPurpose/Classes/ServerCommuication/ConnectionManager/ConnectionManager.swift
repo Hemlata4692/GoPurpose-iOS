@@ -257,4 +257,16 @@ class ConnectionManager: NSObject {
         },failure:failure)
     }
     // MARK: - end
+    
+    // MARK: - Get product list
+    func getProductListing(_ productData: ProductDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProductService().getProductListService(productData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("get product Listing data %@", response as Any)
+            success(productData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    //getProductListingDataWebservice
 }
