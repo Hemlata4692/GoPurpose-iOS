@@ -105,29 +105,6 @@ class BaseService: NSObject {
             failure(nil)
             createNoNetworkConnectionView()
         }
-//            Alamofire.upload(multipartFormData: { (multipartFormData) in
-//                for (key, value) in alamoReq.parameters! {
-//                    multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
-//                }
-//                    multipartFormData.append(imageDict, withName: "avatar", fileName: imageName+".jpg", mimeType: "image/jpeg")
-//
-//            }, usingThreshold: UInt64.init(), to: alamoReq.path, method: alamoReq.method, headers:  alamoReq.headers) { (result) in
-//                switch result{
-//                case .success(let upload, _, _):
-//                    upload.responseJSON { response in
-//                        print(response)
-//                        if let err = response.error{
-////                            onError?(err)
-//                            print(err)
-//                            return
-//                        }
-////                        onCompletion?(nil)
-//                    }
-//                case .failure(let error):
-//                    print("Error in upload: \(error.localizedDescription)")
-////                    onError?(error)
-//                }
-//            }
         }
 }
 

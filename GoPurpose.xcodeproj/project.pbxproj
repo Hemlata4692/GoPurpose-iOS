@@ -65,6 +65,7 @@
 		18F4E47D1FB5805A005C786E /* GlobalBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */; };
 		18F4E4801FB588B6005C786E /* ProfileDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E47F1FB588B6005C786E /* ProfileDataModel.swift */; };
 		18F4E4831FB588EF005C786E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E4821FB588EF005C786E /* ProfileService.swift */; };
+		32018E111FC5B5F900F2A83A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32018E101FC5B5F900F2A83A /* SearchViewController.swift */; };
 		A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154C9D793D75A26BEE0EC7EC /* Pods_GoPurpose.framework */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +135,7 @@
 		18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBackViewController.swift; sourceTree = "<group>"; };
 		18F4E47F1FB588B6005C786E /* ProfileDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataModel.swift; sourceTree = "<group>"; };
 		18F4E4821FB588EF005C786E /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		32018E101FC5B5F900F2A83A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4A3F82356D05E80B9AED8C77 /* Pods-GoPurpose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPurpose.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoPurpose/Pods-GoPurpose.debug.xcconfig"; sourceTree = "<group>"; };
 		BABAA438305808A98519197A /* Pods-GoPurpose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoPurpose.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoPurpose/Pods-GoPurpose.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -378,11 +380,11 @@
 		189570091FA8A7AC009DC63A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				32018E0D1FC5B5BF00F2A83A /* ProductModule */,
 				186E90AE1FB558EC00EF863A /* GlobalModule */,
 				186E90AF1FB5591700EF863A /* DashboardModule */,
 				186E90AD1FB558D900EF863A /* LoginModule */,
 				186E90A61FB5586C00EF863A /* SettingsModule */,
-				186FD4FE1FAB0DF100081D8A /* ProductListViewController */,
 				186FD4FF1FAB0DFB00081D8A /* MessageViewController */,
 				18B20DCC1FAC5735005A6147 /* OrderListingViewController */,
 				18B20DCB1FAC5724005A6147 /* NotificationViewController */,
@@ -616,6 +618,23 @@
 			path = ProfileService;
 			sourceTree = "<group>";
 		};
+		32018E0D1FC5B5BF00F2A83A /* ProductModule */ = {
+			isa = PBXGroup;
+			children = (
+				186FD4FE1FAB0DF100081D8A /* ProductListViewController */,
+				32018E0F1FC5B5D400F2A83A /* SearchView */,
+			);
+			path = ProductModule;
+			sourceTree = "<group>";
+		};
+		32018E0F1FC5B5D400F2A83A /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				32018E101FC5B5F900F2A83A /* SearchViewController.swift */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
 		4346BE6BE6968F803DD44874 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +826,7 @@
 				18B20DD21FAC57A3005A6147 /* OrderListingViewController.swift in Sources */,
 				18C9EA851FB05D98007E8C92 /* ConnectionManager.swift in Sources */,
 				18956FF61FA8A736009DC63A /* AppDelegate.swift in Sources */,
+				32018E111FC5B5F900F2A83A /* SearchViewController.swift in Sources */,
 				18B20DD61FAC57C2005A6147 /* SDGViewController.swift in Sources */,
 				1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */,
 				18BA7EDF1FAB256C00BA396E /* SideBarViewController.swift in Sources */,

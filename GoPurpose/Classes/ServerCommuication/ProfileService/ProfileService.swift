@@ -80,30 +80,18 @@ class ProfileService: BaseService {
     
     // MARK: - User profile image service
     func updateUserprofileImageService(_ profileData: ProfileDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
-        //        let parameters = (["customerId": UserDefaultManager.getValue("userId" as? UnsafeMutableRawPointer ?? UnsafeMutableRawPointer())]) as? [StringLiteralConvertible: UnknownType]
-        //        super.postImage(kEditProfilePicture, parameters: parameters, image: profileData.userImage, success: success, failure: failure)
         let headers = [
             "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
             ]
         var request:alamofireRequestModal = alamofireRequestModal()
         request.method = .post
         request.headers = headers
-     
-        // Creating image dictionary
         let imageData = UIImageJPEGRepresentation(profileData.userProfileImage!,0.3)
-       // let imageStr = imageData.base64EncodedString()
-        
-//        print(strBase64)
- 
         let imageUploadPath = BASE_URL + UserDefaults().string(forKey: "Language")! + "/"
         request.path = imageUploadPath + kEditProfilePicture
         request.parameters = ["customerId" : UserDefaults().string(forKey: "userId") as AnyObject] as [String: AnyObject]
         self.callImageWebServiceAlamofire(imageDict: imageData!, alamoReq: request, success: success, failure: failure)
-     
     }
-    
-    
     // MARK: - end
-    
 }
 
