@@ -43,17 +43,17 @@ class BaseService: NSObject {
         Alamofire.request(alamoReq.path, method: alamoReq.method, parameters: alamoReq.parameters, encoding: alamoReq.encoding, headers: alamoReq.headers)
             .validate(contentType: ["application/json"])
             .responseJSON { response in
+                print(response.response?.statusCode as Any)
                 if response.response?.statusCode == 200 {
                     print("Success with JSON: \(String(describing: response.result.value))")
                     success(response.result.value as Any)
                 }
                 else {
                     AppDelegate().stopIndicator()
-                    let error = response.result.value as! NSDictionary
-                    let errorMessage = error.object(forKey: "message") as! String
-                    print(errorMessage)
-                    SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:errorMessage, closeButtonTitle: NSLocalizedText(key: "alertOk"))
-                    // failure(error )
+//                    let error = response.result.value as? NSDictionary
+//                    let errorMessage = error?.object(forKey: "message") as? String
+                    SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "somethingWrongMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+                   //  failure(errorMessage as NSError?)
                 }
         }
           } else {

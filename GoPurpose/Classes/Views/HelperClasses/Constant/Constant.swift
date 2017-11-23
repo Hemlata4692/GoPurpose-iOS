@@ -13,8 +13,8 @@ import UIKit
 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 // Base URL
-//let BASE_URL: String = "https://dev.gopurpose.com/"
-let BASE_URL: String = "http://192.168.18.141/gopurpose/"
+let BASE_URL: String = "https://dev.gopurpose.com/"
+//let BASE_URL: String = "http://192.168.18.141/gopurpose/"
 let basePath = BASE_URL + UserDefaults().string(forKey: "Language")! + "/rest/" + UserDefaults().string(forKey: "Language")!+"/V1/"
 
 // Constants for screen sizes

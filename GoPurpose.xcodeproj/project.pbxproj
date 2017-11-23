@@ -547,6 +547,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		18C4A5401FC70DF000CEFE9C /* OrderService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OrderService;
+			sourceTree = "<group>";
+		};
 		18C9EA731FB041CC007E8C92 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +583,7 @@
 		18C9EA7D1FB05A95007E8C92 /* ServerCommuication */ = {
 			isa = PBXGroup;
 			children = (
+				18C4A5401FC70DF000CEFE9C /* OrderService */,
 				18CB450A1FC5DF90003B2A88 /* ProductService */,
 				18F4E4811FB588C9005C786E /* ProfileService */,
 				18C9EA861FB0662C007E8C92 /* LoginService */,

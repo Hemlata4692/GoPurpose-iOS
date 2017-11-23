@@ -29,9 +29,9 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         UIApplication.shared.statusBarStyle = .lightContent
         userProfileImageView.layer.cornerRadius=65
         userProfileImageView.layer.masksToBounds = true
-//        if ((UserDefaults().string(forKey: "userProfileImage")) != nil) {
-//            userProfileImageView.downloadFrom(link: UserDefaults().string(forKey: "userProfileImage")!)
-//        }
+        if ((UserDefaults().string(forKey: "userProfileImage")) != nil) {
+            userProfileImageView.downloadFrom(link: UserDefaults().string(forKey: "userProfileImage")!)
+        }
         userTypeLabel.text=UserDefaults().string(forKey: "groupName")
         CompanyNameLabel.text=UserDefaults().string(forKey: "businessName")
         tableCellDataArray = [NSLocalizedText(key: "sideBarDashboard"), NSLocalizedText(key: "sideBarOrder"), NSLocalizedText(key: "sideBarSales"), NSLocalizedText(key: "sideBarNotification"), NSLocalizedText(key: "sideBarSDG"), NSLocalizedText(key: "sideBarLogout")]

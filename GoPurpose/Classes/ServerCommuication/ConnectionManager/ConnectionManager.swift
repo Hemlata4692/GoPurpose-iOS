@@ -263,10 +263,68 @@ class ConnectionManager: NSObject {
         ProductService().getProductListService(productData, success: {(response) in
             //Parse data from server response and store in data model
             print("get product Listing data %@", response as Any)
+            let tempDict = response as! NSDictionary
+            let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+            productData.totalRecordsCount=tempDict["total_count"] as? Int
+            for i in 0..<dataArray.count {
+                let dataDict=dataArray[i] as! NSDictionary
+                let tempData = ProductDataModel()
+                tempData.productName=dataDict["name"] as? String
+                tempData.productPrice=dataDict["price"] as? String
+                tempData.productSKU=dataDict["sku"] as? String
+                tempData.productStatus=dataDict["status"] as? String
+                tempData.productType=dataDict["type_id"] as? String
+                tempData.productImage=dataDict["thumbnail"] as? String
+                productData.productListDataArray.add(tempData)
+            }
             success(productData)
         },failure:failure)
     }
     // MARK: - end
     
-    //getProductListingDataWebservice
+    // MARK: - Get Dashboard list
+    func dashboardServieData(_ productData: ProductDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProductService().getDashboardData(productData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("dashboard Listing data %@", response as Any)
+            let tempDict = response as! NSDictionary
+            productData.groupName = tempDict["group_name"] as? String
+            productData.groupId = tempDict["group_id"]
+            productData.userProfileImage = tempDict["profile_pick"] as? String
+//            Group id 1: customer
+//            Group id 2: Vendor
+//            Group id 3: Reseller
+//            Group id 4:  Franchisee
+            if ((productData.groupId as AnyObject).intValue == 2) {
+                productData.pendingApproval = tempDict["gp_vendor_apploval_pending"]! as? Int
+                productData.dashboardDataArray.setObject(productData.pendingApproval!, forKey: "pendingApproval" as NSCopying)
+                productData.totalProducts = tempDict["gp_vendor_total_products"]! as? Int
+                productData.dashboardDataArray.setObject(productData.totalProducts!, forKey: "totalProducts" as NSCopying)
+            }
+            else if ((productData.groupId as AnyObject).intValue == 3) {
+                productData.totalProducts = tempDict["gp_reseller_total_products"] as? Int
+                productData.dashboardDataArray.setObject(productData.totalProducts!, forKey: "totalProducts" as NSCopying)
+            }
+            else if ((productData.groupId as AnyObject).intValue == 4) {
+                productData.lifeTimeSale = tempDict["gp_franchise_life_time_sale"] as? Int
+                if productData.lifeTimeSale != nil {
+                    productData.dashboardDataArray.setObject(productData.lifeTimeSale!, forKey: "lifeTimeSale" as NSCopying)
+                }
+                productData.totalOrders = tempDict["gp_franchise_total_orders"] as? Int
+                if (productData.totalOrders != nil) {
+                   productData.dashboardDataArray.setObject(productData.totalOrders!, forKey: "totalOrders" as NSCopying)
+                }
+                productData.totalProducts = tempDict["gp_franchise_total_products"] as? Int
+                if productData.totalProducts != nil {
+                   productData.dashboardDataArray.setObject(productData.totalProducts!, forKey: "totalProducts" as NSCopying)
+                }
+                productData.pendingFullfilment = tempDict["gp_franchise_orders_pending_fullefilment"] as? Int
+                if productData.pendingFullfilment != nil {
+                   productData.dashboardDataArray.setObject(productData.pendingFullfilment!, forKey: "pendingApproval" as NSCopying)
+                }
+            }
+            success(productData)
+        },failure:failure)
+    }
+    // MARK: - end
 }
