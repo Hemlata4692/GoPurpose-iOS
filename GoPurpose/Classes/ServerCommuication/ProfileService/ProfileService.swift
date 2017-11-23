@@ -13,6 +13,7 @@ private var kCountryCode = "directory/countries"
 private var kUserProfile = "customers/me"
 private var kUserImpactsPoints = "ranosys/myimpactpoints"
 private var kEditProfilePicture = "customerprofile/index"
+private var kNotificationList = "gopurpose/notifications/getList"
 
 class ProfileService: BaseService {
     
@@ -92,6 +93,26 @@ class ProfileService: BaseService {
         request.parameters = ["customerId" : UserDefaults().string(forKey: "userId") as AnyObject] as [String: AnyObject]
         self.callImageWebServiceAlamofire(imageDict: imageData!, alamoReq: request, success: success, failure: failure)
     }
+    // MARK: - end
+    
+    // MARK: - Notification service
+    func notificationListService(_ profileData: ProfileDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
+        let headers = [
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
+            ]
+        var request:alamofireRequestModal = alamofireRequestModal()
+        request.method = .post
+        let param1=["condition_type": "eq", "field": "customer_id", "value": UserDefaults().string(forKey: "userId") as AnyObject] as [String : Any]
+        let sortOrders=["direction": "DESC", "field": "created_at"]
+        let param2=["current_page": "1","filter_groups":param1,"page_size": "12", "sort_orders": sortOrders] as [String : Any]
+        request.parameters = ["criteria":param2] as [String: AnyObject]
+        request.headers=headers
+        print("notificationListService request %@", request.parameters as Any)
+        request.path = basePath + kNotificationList
+        self.callPostService(request, success: success, failure: failure)
+        
+    }//{"criteria":{"current_page":1,"filter_groups":[{"filters":[{"condition_type":"eq","field":"customer_id","value":"111"}]}],"page_size":12,"sort_orders":[{"direction":"DESC","field":"created_at"}]}}
+    
     // MARK: - end
 }
 

@@ -63,6 +63,7 @@
 		18CB450C1FC5DFC6003B2A88 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB450B1FC5DFC6003B2A88 /* ProductService.swift */; };
 		18CB450D1FC5E3E7003B2A88 /* ProductDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB45081FC5DF83003B2A88 /* ProductDataModel.swift */; };
 		18CB45111FC5F511003B2A88 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB45101FC5F511003B2A88 /* OrderDetailViewController.swift */; };
+		18D7A68F1FC73E420058F3DD /* ReportsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D7A68E1FC73E420058F3DD /* ReportsWebViewController.swift */; };
 		18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */; };
 		18DE7AAE1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE7AAD1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift */; };
 		18F4E47D1FB5805A005C786E /* GlobalBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */; };
@@ -136,6 +137,7 @@
 		18CB45081FC5DF83003B2A88 /* ProductDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataModel.swift; sourceTree = "<group>"; };
 		18CB450B1FC5DFC6003B2A88 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		18CB45101FC5F511003B2A88 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		18D7A68E1FC73E420058F3DD /* ReportsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsWebViewController.swift; sourceTree = "<group>"; };
 		18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		18DE7AAD1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
 		18F4E47C1FB5805A005C786E /* GlobalBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBackViewController.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 		189570091FA8A7AC009DC63A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18D7A6891FC73DD00058F3DD /* SalesViewModule */,
 				18CB450E1FC5F4E1003B2A88 /* OrderModule */,
 				32018E0D1FC5B5BF00F2A83A /* ProductModule */,
 				186E90AE1FB558EC00EF863A /* GlobalModule */,
@@ -394,7 +397,6 @@
 				186E90A61FB5586C00EF863A /* SettingsModule */,
 				186FD4FF1FAB0DFB00081D8A /* MessageViewController */,
 				18B20DCB1FAC5724005A6147 /* NotificationViewController */,
-				18B20DCD1FAC5746005A6147 /* SalesViewController */,
 				18B20DCE1FAC5751005A6147 /* SDGViewController */,
 			);
 			path = Controllers;
@@ -651,6 +653,23 @@
 			path = OrderDetailView;
 			sourceTree = "<group>";
 		};
+		18D7A6891FC73DD00058F3DD /* SalesViewModule */ = {
+			isa = PBXGroup;
+			children = (
+				18B20DCD1FAC5746005A6147 /* SalesViewController */,
+				18D7A68A1FC73DF00058F3DD /* ReportsWebViewController */,
+			);
+			path = SalesViewModule;
+			sourceTree = "<group>";
+		};
+		18D7A68A1FC73DF00058F3DD /* ReportsWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18D7A68E1FC73E420058F3DD /* ReportsWebViewController.swift */,
+			);
+			path = ReportsWebViewController;
+			sourceTree = "<group>";
+		};
 		18F4E47E1FB5889E005C786E /* ProfileModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -863,6 +882,7 @@
 				186FD4FD1FAB0DEA00081D8A /* DashboardViewController.swift in Sources */,
 				18B20DD41FAC57B4005A6147 /* SalesViewController.swift in Sources */,
 				186FD5041FAB0E7B00081D8A /* SettingsViewController.swift in Sources */,
+				18D7A68F1FC73E420058F3DD /* ReportsWebViewController.swift in Sources */,
 				18B20DC71FAC2D23005A6147 /* GlobalViewController.swift in Sources */,
 				18C9EA7B1FB05A75007E8C92 /* LoginDataModel.swift in Sources */,
 				186E90AA1FB558BB00EF863A /* ChangePasswordViewController.swift in Sources */,

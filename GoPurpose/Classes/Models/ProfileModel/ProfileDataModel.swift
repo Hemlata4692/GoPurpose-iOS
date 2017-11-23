@@ -83,4 +83,13 @@ class ProfileDataModel: NSObject {
         }, failure: failure)
     }
     // MARK: - end
+    
+    // MARK: - Notification list data
+    func notificationListService(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.notificationService(profileData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    // MARK: - end
 }

@@ -23,11 +23,29 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         self.title=NSLocalizedText(key: "notifications")
         // Do any additional setup after loading the view.
+        AppDelegate().showIndicator()
+        self.perform(#selector(getNotificationList), with: nil, afterDelay: 0.1)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    // MARK: - end
+    
+    // MARK: - Webservice
+    @objc func getNotificationList() {
+        let notificationList = ProfileDataModel()
+        ProfileDataModel().notificationListService(notificationList, success: { (response) in
+            AppDelegate().stopIndicator()
+            
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
     }
     // MARK: - end
     

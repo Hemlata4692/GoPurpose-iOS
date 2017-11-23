@@ -55,7 +55,7 @@
 "profile"="輪廓";
 "orderList"="訂單列表";
 "notifications"="通知";
-"sales"="銷售";
+"salesReport"="銷售報告";
 "sdg"="SDG";
 "editProfile"="Edit Profile";
 "firstName"="First Name";
@@ -85,3 +85,6 @@
 "totalProducts"="Total Products";
 "totalOrders"="Total Orders";
 "lifeTimeSale"="Lifetime Sales";
+"completeOrder"="Complete Orders";
+"pendingOrder"="Pending Orders";
+"compareOrder"="Compare Orders";

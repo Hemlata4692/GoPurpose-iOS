@@ -55,6 +55,10 @@ class ConnectionManager: NSObject {
                     UserDefaults.standard.setValue("gp_cn", forKey: "Language")
                 }
             }
+            //            Group id 1: customer
+            //            Group id 2: Vendor
+            //            Group id 3: Reseller
+            //            Group id 4:  Franchisee
             success(userData)
             },failure:failure)
     }
@@ -291,10 +295,6 @@ class ConnectionManager: NSObject {
             productData.groupName = tempDict["group_name"] as? String
             productData.groupId = tempDict["group_id"]
             productData.userProfileImage = tempDict["profile_pick"] as? String
-//            Group id 1: customer
-//            Group id 2: Vendor
-//            Group id 3: Reseller
-//            Group id 4:  Franchisee
             if ((productData.groupId as AnyObject).intValue == 2) {
                 productData.pendingApproval = tempDict["gp_vendor_apploval_pending"]! as? Int
                 productData.dashboardDataArray.setObject(productData.pendingApproval!, forKey: "pendingApproval" as NSCopying)
@@ -324,6 +324,16 @@ class ConnectionManager: NSObject {
                 }
             }
             success(productData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Notification list
+    func notificationService(_ profileData: ProfileDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProfileService().notificationListService(profileData, success: {(response) in
+            print("Notification Service response %@", response as AnyObject)
+            //Parse data from server response and store in data model
+            success(profileData)
         },failure:failure)
     }
     // MARK: - end
