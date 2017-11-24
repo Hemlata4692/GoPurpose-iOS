@@ -17,6 +17,10 @@ class FontUtility: UIFont {
     class func montserratMedium(size: CGFloat) -> UIFont {
         return UIFont(name: "Montserrat-Medium", size: size)!
     }
+    
+    class func montserratLight(size: CGFloat) -> UIFont {
+        return UIFont(name: "Montserrat-Light", size: size)!
+    }
 
     class func montserratSemiBold(size: CGFloat) -> UIFont {
         return UIFont(name: "Montserrat-SemiBold", size: size)!

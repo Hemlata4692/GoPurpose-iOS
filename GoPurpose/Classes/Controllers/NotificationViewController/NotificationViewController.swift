@@ -123,7 +123,7 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
         var notificationData = ProfileDataModel()
         notificationData=notificationListArray[indexPath.row] as! ProfileDataModel
         self.marknotificationRead(index: indexPath.row, notificationId: notificationData.notificationId!)
-        let secondViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+        let secondViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetailsViewController") as! OrderDetailsViewController
          secondViewController.orderId = notificationData.targetId!
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }

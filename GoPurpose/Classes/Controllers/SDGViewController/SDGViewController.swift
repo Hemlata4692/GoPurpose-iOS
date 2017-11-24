@@ -8,16 +8,18 @@
 
 import UIKit
 
-class SDGViewController: GlobalViewController {
-
+class SDGViewController: GlobalViewController, UIWebViewDelegate {
+    @IBOutlet weak var sdgWebView: UIWebView!
+    
     @IBOutlet weak var noRecordLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title=NSLocalizedText(key: "sdg")
+         self.noRecordLabel.text=NSLocalizedText(key: "norecord")
+        self.noRecordLabel.isHidden=true
         // Do any additional setup after loading the view.
         AppDelegate().showIndicator()
         self.perform(#selector(cmsBlockService), with: nil, afterDelay: 0.1)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,10 +31,13 @@ class SDGViewController: GlobalViewController {
     @objc func cmsBlockService() {
         let userData = LoginDataModel()
         LoginDataModel().getCMSBlockData(userData, success: { (response) in
-            AppDelegate().stopIndicator()
-            print(userData as AnyObject)
-           self.noRecordLabel.text=NSLocalizedText(key: "norecord")
-            // Successfully logged in, move to next screen
+            if  (userData.cmsContentData?.isEmpty)! {
+                AppDelegate().stopIndicator()
+                self.noRecordLabel.isHidden=false
+            }
+            else {
+                self.sdgWebView.loadHTMLString(userData.cmsContentData!, baseURL: nil)
+            }
         }) { (error) in
             if error != nil {
                 if error?.code == 200 {
@@ -42,5 +47,17 @@ class SDGViewController: GlobalViewController {
         }
     }
     
-
+    // Mark: Webview delegates
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        AppDelegate().stopIndicator()
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        AppDelegate().stopIndicator()
+    }
+    // Mark: end
 }

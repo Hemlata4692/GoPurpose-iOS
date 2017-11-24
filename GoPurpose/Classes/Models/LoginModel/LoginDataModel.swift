@@ -25,6 +25,7 @@ class LoginDataModel: NSObject {
     var defaultLanguage: String?
     var groupName: String?
     var businesName: String?
+    var cmsContentData: String?
     var groupId: Any?
     var followCount: Any?
     var notificationCount: Any?

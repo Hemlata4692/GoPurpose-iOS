@@ -47,7 +47,7 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
     @objc func getDashboardData() {
         let productData = ProductDataModel()
         ProductDataModel().getDashboardListingData(productData, success: { (response) in
-             AppDelegate().stopIndicator()
+  
             self.dashboardArray=productData.dashboardDataArray.mutableCopy() as! NSMutableDictionary
             self.groupID=productData.groupId
             let reportURL = BASE_URL + UserDefaults().string(forKey: "Language")! + "/marketplace_report/graph/unfulfilled/?token=" + UserDefaults().string(forKey: "apiKey")!

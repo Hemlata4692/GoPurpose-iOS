@@ -40,7 +40,7 @@ class OrderService: BaseService {
         let filterGroup:NSMutableArray = NSMutableArray()
         let filter:NSMutableArray = NSMutableArray()
         let sortOrders:NSMutableArray = NSMutableArray()
-        filter.add(["condition_type": "eq", "field": "entity_id", "value": "orderid"])
+        filter.add(["condition_type": "eq", "field": "entity_id", "value": productData.orderDetailId])
             filterGroup.add(["filters":filter])
             sortOrders.add(["direction": "DESC", "field": "created_at"])
         let param2=["current_page": "1","filter_groups":filterGroup,"page_size": "12", "sort_orders": sortOrders] as [String : Any]

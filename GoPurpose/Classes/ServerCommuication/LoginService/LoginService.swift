@@ -68,7 +68,7 @@ class LoginService: BaseService {
         request.method = .post
         let filterGroup:NSMutableArray = NSMutableArray()
         let filter:NSMutableArray = NSMutableArray()
-        filter.add(["condition_type": "eq", "field": "identifier", "value": "cmsPAgeIdentifier"])
+        filter.add(["condition_type": "eq", "field": "identifier", "value": "understanding_sdg"])
         filterGroup.add(["filters":filter])
         let param2=["current_page": "0","filter_groups":filterGroup,"page_size": "0"] as [String : Any]
         request.parameters = ["searchCriteria":param2] as [String : AnyObject]

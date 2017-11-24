@@ -98,6 +98,10 @@ class ConnectionManager: NSObject {
     func getBlockData(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
         LoginService().cmsBlockService(userData, success: {(response) in
             print("cms response %@", response as AnyObject)
+            let tempDict = response as! NSDictionary
+            let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+            let dataDict = dataArray[0] as! NSDictionary
+            userData.cmsContentData = dataDict["content"] as! String?
             //Parse data from server response and store in data model
             success(userData)
         },failure:failure)
@@ -392,20 +396,28 @@ class ConnectionManager: NSObject {
         OrderService().getOrderDetailsData(productData, success: {(response) in
             //Parse data from server response and store in data model
             print("get product Listing data %@", response as Any)
-            //            let tempDict = response as! NSDictionary
-            //            let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
-            //            productData.totalRecordsCount=tempDict["total_count"] as? Int
-            //            for i in 0..<dataArray.count {
-            //                let dataDict=dataArray[i] as! NSDictionary
-            //                let tempData = ProductDataModel()
-            //                tempData.productName=dataDict["name"] as? String
-            //                tempData.productPrice=dataDict["price"] as? String
-            //                tempData.productSKU=dataDict["sku"] as? String
-            //                tempData.productStatus=dataDict["status"] as? String
-            //                tempData.productType=dataDict["type_id"] as? String
-            //                tempData.productImage=dataDict["thumbnail"] as? String
-            //                productData.productListDataArray.add(tempData)
-            //            }
+            let tempDict = response as! NSDictionary
+            let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+            let detailDict=dataArray[0] as! NSDictionary
+            productData.totalAmount=detailDict["grand_total"] as? String
+            productData.purchaseOrderId=detailDict["increment_id"] as? String
+            productData.orderStatus=detailDict["status"] as? String
+            productData.billingAddress=detailDict["billing_address"] as! NSDictionary
+            let orderInfoDict=detailDict["extension_attributes"] as! NSDictionary
+            let productArray=(orderInfoDict["shipping_assignments"] as! NSArray).mutableCopy() as! NSMutableArray
+            let dataDict = productArray[0] as! NSDictionary
+            productData.shippingAddress=dataDict["shipping"] as! NSDictionary
+            let productsDetailsArray = (dataDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+                        for i in 0..<productsDetailsArray.count {
+                            let orderDetailsDict = productsDetailsArray[i] as! NSDictionary
+                            let tempData = OrderDataModel()
+                            tempData.productName=orderDetailsDict["name"] as? String
+                            tempData.productPrice=orderDetailsDict["price"] as? String
+                            tempData.productSKU=orderDetailsDict["sku"] as? String
+                            tempData.productQty=orderDetailsDict["qty_ordered"] as? String
+                            tempData.productId=orderDetailsDict["quote_item_id"] as? String
+                            productData.productDataArray.add(tempData)
+                        }
             success(productData)
         },failure:failure)
     }

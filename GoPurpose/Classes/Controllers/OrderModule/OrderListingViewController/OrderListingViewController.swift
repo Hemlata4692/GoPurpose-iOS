@@ -107,7 +107,7 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
         //navigate to other screen
         var productData = OrderDataModel()
         productData = self.orderListingArray[indexPath.row] as! OrderDataModel
-        let secondViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetailViewController") as! OrderDetailViewController
+        let secondViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetailsViewController") as! OrderDetailsViewController
         secondViewController.orderId = productData.orderDetailId!
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }

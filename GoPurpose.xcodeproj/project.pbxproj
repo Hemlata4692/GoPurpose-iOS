@@ -34,6 +34,7 @@
 		187D4AD81FA9952A00FA96DC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD71FA9952A00FA96DC /* LoginViewController.swift */; };
 		187D4ADC1FA9960000FA96DC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4ADB1FA9960000FA96DC /* Constant.swift */; };
 		187D4AE51FA996B700FA96DC /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AE41FA996B700FA96DC /* ForgotPasswordViewController.swift */; };
+		18917B031FC8422300E247A2 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18917B021FC83F2500E247A2 /* OrderDetailsViewController.swift */; };
 		189263121FB1720900BE00A2 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 189263101FB171F000BE00A2 /* MMMaterialDesignSpinner.m */; };
 		189263181FB1AA9000BE00A2 /* UITextField+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189263171FB1AA8F00BE00A2 /* UITextField+Validations.swift */; };
 		18956FF61FA8A736009DC63A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18956FF51FA8A736009DC63A /* AppDelegate.swift */; };
@@ -64,7 +65,6 @@
 		18C9EA931FB06F97007E8C92 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D4AD51FA9943500FA96DC /* SCLExtensions.swift */; };
 		18CB450C1FC5DFC6003B2A88 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB450B1FC5DFC6003B2A88 /* ProductService.swift */; };
 		18CB450D1FC5E3E7003B2A88 /* ProductDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB45081FC5DF83003B2A88 /* ProductDataModel.swift */; };
-		18CB45111FC5F511003B2A88 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CB45101FC5F511003B2A88 /* OrderDetailViewController.swift */; };
 		18D7A68F1FC73E420058F3DD /* ReportsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D7A68E1FC73E420058F3DD /* ReportsWebViewController.swift */; };
 		18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */; };
 		18DE7AAE1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DE7AAD1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift */; };
@@ -108,6 +108,7 @@
 		187D4ADD1FA9961D00FA96DC /* BSKeyboardControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSKeyboardControls.swift; sourceTree = "<group>"; };
 		187D4ADF1FA9963600FA96DC /* FontUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtility.swift; sourceTree = "<group>"; };
 		187D4AE41FA996B700FA96DC /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		18917B021FC83F2500E247A2 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
 		189263101FB171F000BE00A2 /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
 		189263111FB171F000BE00A2 /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
 		189263171FB1AA8F00BE00A2 /* UITextField+Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Validations.swift"; sourceTree = "<group>"; };
@@ -140,7 +141,6 @@
 		18C9EA8D1FB06B38007E8C92 /* iReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iReachability.swift; sourceTree = "<group>"; };
 		18CB45081FC5DF83003B2A88 /* ProductDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataModel.swift; sourceTree = "<group>"; };
 		18CB450B1FC5DFC6003B2A88 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
-		18CB45101FC5F511003B2A88 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		18D7A68E1FC73E420058F3DD /* ReportsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsWebViewController.swift; sourceTree = "<group>"; };
 		18DA616F1FAB4DC800330B96 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		18DE7AAD1FB9BAF700DC9C39 /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
@@ -662,7 +662,7 @@
 		18CB450F1FC5F4EF003B2A88 /* OrderDetailView */ = {
 			isa = PBXGroup;
 			children = (
-				18CB45101FC5F511003B2A88 /* OrderDetailViewController.swift */,
+				18917B021FC83F2500E247A2 /* OrderDetailsViewController.swift */,
 			);
 			path = OrderDetailView;
 			sourceTree = "<group>";
@@ -887,7 +887,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18CB45111FC5F511003B2A88 /* OrderDetailViewController.swift in Sources */,
 				187D4AD81FA9952A00FA96DC /* LoginViewController.swift in Sources */,
 				18C9EA931FB06F97007E8C92 /* SCLExtensions.swift in Sources */,
 				18B20DC81FAC2D25005A6147 /* BottomTabViewController.swift in Sources */,
@@ -926,6 +925,7 @@
 				18F4E4831FB588EF005C786E /* ProfileService.swift in Sources */,
 				18CB450D1FC5E3E7003B2A88 /* ProductDataModel.swift in Sources */,
 				187D4ADC1FA9960000FA96DC /* Constant.swift in Sources */,
+				18917B031FC8422300E247A2 /* OrderDetailsViewController.swift in Sources */,
 				18C9EA891FB06648007E8C92 /* LoginService.swift in Sources */,
 				186FD5061FAB0E8F00081D8A /* MessageViewController.swift in Sources */,
 				1828C0FC1FC7F969008398BA /* OrderService.swift in Sources */,
