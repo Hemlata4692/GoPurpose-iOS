@@ -19,7 +19,7 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
     var totalRecords: Any?
     var currentPageCount:Int = 1
     let footerView = UIView()
-    var orderListingArray:NSMutableArray = []
+    var orderListingArray:NSMutableArray = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.addFooterView()
-         orderListingArray = NSMutableArray()
+        orderListingArray.removeAllObjects()
         AppDelegate().showIndicator()
         self.perform(#selector(getOrderListing), with: nil, afterDelay: 0.1)
     }
@@ -109,12 +109,14 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
         productData = self.orderListingArray[indexPath.row] as! OrderDataModel
         let secondViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetailsViewController") as! OrderDetailsViewController
         secondViewController.orderId = productData.orderDetailId!
+        secondViewController.purchaseOrderId=NSLocalizedText(key: "purchaseOrder")+productData.orderId!
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
     
     //pagination
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
+            if !(self.orderListingArray.count==0) {
             if self.orderListingArray.count == totalRecords as! Int {
                 orderListTableView.tableFooterView=nil
             }
@@ -124,6 +126,7 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
                 currentPageCount = +1
                 self.getOrderListing()
             }
+        }
         }
     }
     // MARK: - end

@@ -56,7 +56,8 @@ class LoginService: BaseService {
         request.method = .post
         request.parameters = ["customerId": UserDefaults().string(forKey: "userId") as AnyObject, "deviceType": 2, "deviceToken": UserDefaults().string(forKey: "deviceToken") as AnyObject] as [String : AnyObject]
         print("save device token request %@", request.parameters as Any)
-      
+        SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:request.parameters as Any as! String, closeButtonTitle: NSLocalizedText(key: "alertOk"))
+
         request.path = basePath + kSaveDeviceToken
         self.callPostService(request, success: success, failure: failure)
     }

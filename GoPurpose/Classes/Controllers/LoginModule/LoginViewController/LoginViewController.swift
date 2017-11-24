@@ -123,7 +123,9 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             }
 
             else {
-            if (UserDefaults().string(forKey: "deviceToken") != nil) {
+            if !(UserDefaults().string(forKey: "deviceToken") == nil) {
+                SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:UserDefaults().string(forKey: "deviceToken")!, closeButtonTitle: NSLocalizedText(key: "alertOk"))
+
                 self.saveDeviceToken()
             }
             print(userData as AnyObject)

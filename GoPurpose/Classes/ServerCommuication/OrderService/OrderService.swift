@@ -10,6 +10,7 @@ import UIKit
 
 private var kOrderList = "gopurpose/marketplace/orders"
 private var kOrderDetails = "orders"
+private var kTrackShippment="shipments";
 
 class OrderService: BaseService {
 
@@ -50,26 +51,27 @@ class OrderService: BaseService {
         request.path = basePath + kOrderDetails
         self.callPostService(request, success: success, failure: failure)
     }
-    
-//    parameters = @{@"searchCriteria" : @{@"filter_groups" : @[
-//    @{
-//    @"filters":@[
-//    @{@"field":@"entity_id",
-//    @"value":orderData.orderId,
-//    @"condition_type": @"eq"
-//    }
-//    ]
-//    }
-//    ],
-//    @"sort_orders" : @[
-//    @{@"field":@"created_at",
-//    @"direction":DESC
-//    }
-//    ],
-//    @"page_size" : orderData.pageSize,
-//    @"current_page" : orderData.currentPage
-//    }
-//    };
     // MARK: - end
     
+    // MARK: - Order detail
+    func trackShipmentData(_ productData: OrderDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
+        let headers = [
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!
+        ]
+        var request:alamofireRequestModal = alamofireRequestModal()
+        request.method = .post
+        let filterGroup:NSMutableArray = NSMutableArray()
+        let filter:NSMutableArray = NSMutableArray()
+        let sortOrders:NSMutableArray = NSMutableArray()
+        filter.add(["condition_type": "eq", "field": "order_id", "value": productData.orderId])
+        filterGroup.add(["filters":filter])
+        sortOrders.add(["direction": "DESC", "field": "order_id"])
+        let param2=["current_page": "0","filter_groups":filterGroup,"page_size": "0", "sort_orders": sortOrders] as [String : Any]
+        request.parameters = ["searchCriteria":param2] as [String : AnyObject]
+        request.headers=headers
+        print("track shipment request %@", request.parameters as Any)
+        request.path = basePath + kTrackShippment
+        self.callPostService(request, success: success, failure: failure)
+    }
+    // MARK: - end
 }

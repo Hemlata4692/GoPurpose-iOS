@@ -56,7 +56,7 @@
 "orderList"="訂單列表";
 "notifications"="通知";
 "salesReport"="銷售報告";
-"sdg"="SDG";
+"sdg"="了解SDG";
 "editProfile"="Edit Profile";
 "firstName"="First Name";
 "lastName"="Last Name";
@@ -91,3 +91,6 @@
 "purchaseOrder"="Purchase Order: ";
 "orderDate"="Date: ";
 "notAuthorisedUser"="You are not authorize to access it.";
+"status"="Status: ";
+"billingShippingText"="Shipping & Billing Information";
+"orderDetails"="Order Detail";

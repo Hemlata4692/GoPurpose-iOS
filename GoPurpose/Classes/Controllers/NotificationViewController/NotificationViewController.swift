@@ -130,6 +130,7 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
+            if !(self.notificationListArray.count==0) {
             if self.notificationListArray.count == totalRecords as! Int {
                 notificationTableView.tableFooterView=nil
             }
@@ -138,6 +139,7 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
                 // call method to add data to tableView
                 currentPageCount = +1
                 self.getNotificationList()
+            }
             }
         }
     }

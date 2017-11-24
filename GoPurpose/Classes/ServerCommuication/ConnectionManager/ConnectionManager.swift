@@ -399,7 +399,7 @@ class ConnectionManager: NSObject {
             let tempDict = response as! NSDictionary
             let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
             let detailDict=dataArray[0] as! NSDictionary
-            productData.totalAmount=detailDict["grand_total"] as? String
+            productData.totalAmount=detailDict["grand_total"]
             productData.purchaseOrderId=detailDict["increment_id"] as? String
             productData.orderStatus=detailDict["status"] as? String
             productData.billingAddress=detailDict["billing_address"] as! NSDictionary
@@ -412,12 +412,32 @@ class ConnectionManager: NSObject {
                             let orderDetailsDict = productsDetailsArray[i] as! NSDictionary
                             let tempData = OrderDataModel()
                             tempData.productName=orderDetailsDict["name"] as? String
-                            tempData.productPrice=orderDetailsDict["price"] as? String
+                            tempData.productPrice=orderDetailsDict["price"]
                             tempData.productSKU=orderDetailsDict["sku"] as? String
-                            tempData.productQty=orderDetailsDict["qty_ordered"] as? String
+                            tempData.productQty=orderDetailsDict["qty_ordered"]
                             tempData.productId=orderDetailsDict["quote_item_id"] as? String
                             productData.productDataArray.add(tempData)
                         }
+            success(productData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    //MARK: - Track shipment data
+    func getShipmentDataService(_ productData: OrderDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        OrderService().trackShipmentData(productData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("get shipment data %@", response as Any)
+            let tempDict = response as! NSDictionary
+            let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+            let detailDict=dataArray[0] as! NSDictionary
+            let trackArray = (detailDict["tracks"] as! NSArray).mutableCopy() as! NSMutableArray
+            for i in 0..<trackArray.count {
+                let shipDict = trackArray[i] as! NSDictionary
+                let tempData = OrderDataModel()
+                tempData.trackingNumber=shipDict["track_number"] as? String
+                productData.trackShipmentArray.add(tempData)
+            }
             success(productData)
         },failure:failure)
     }

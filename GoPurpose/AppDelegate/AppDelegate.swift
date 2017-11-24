@@ -141,9 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .trimmingCharacters(in: CharacterSet(charactersIn:"<>"))
             .replacingOccurrences(of: " ", with: "")
         print("deviceTokenString : \(deviceTokenString)")
-        
         UserDefaults().set(deviceTokenString, forKey: "deviceToken")
-        SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:UserDefaults().string(forKey: "deviceToken")!, closeButtonTitle: NSLocalizedText(key: "alertOk"))
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
         // Persist it in your backend in case it's new

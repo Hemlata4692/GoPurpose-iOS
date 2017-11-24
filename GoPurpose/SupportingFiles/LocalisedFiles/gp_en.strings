@@ -56,7 +56,7 @@
 "orderList"="Order List";
 "notifications"="Notifications";
 "salesReport"="Sales Report";
-"sdg"="SDG";
+"sdg"="Understanding SDG";
 "editProfile"="Edit Profile";
 "firstName"="First Name";
 "lastName"="Last Name";
@@ -91,3 +91,8 @@
 "purchaseOrder"="Purchase Order: ";
 "orderDate"="Date: ";
 "notAuthorisedUser"="You are not authorize to access it.";
+"status"="Status: ";
+"billingShippingText"="Shipping & Billing Information";
+"complete"="canceled";
+"canceled"="canceled";
+"orderDetails"="Order Detail";

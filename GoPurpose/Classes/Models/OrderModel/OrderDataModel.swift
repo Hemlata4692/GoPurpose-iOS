@@ -28,11 +28,13 @@ class OrderDataModel: NSObject {
     var incrementId: String?
     var productId: String?
     var productName: String?
-    var productPrice: String?
+    var productPrice: Any?
     var productSKU: String?
-    var productQty: String?
-    var totalAmount: String?
+    var productQty: Any?
+    var totalAmount: Any?
     var productDataArray:NSMutableArray = NSMutableArray()
+    var trackingNumber: String?
+    var trackShipmentArray:NSMutableArray = NSMutableArray()
     
     // MARK: - Get order list
     func getOrderListingData(_ productData: OrderDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
@@ -45,6 +47,15 @@ class OrderDataModel: NSObject {
     // MARK: - Order details
     func getOrderDetailsData(_ productData: OrderDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.getOrderDetailsDataService(productData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Shipment details
+    func trackShipmetDetail(_ productData: OrderDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.getShipmentDataService(productData, success: {(responseObj) in
             
             success(responseObj)
         }, failure: failure)

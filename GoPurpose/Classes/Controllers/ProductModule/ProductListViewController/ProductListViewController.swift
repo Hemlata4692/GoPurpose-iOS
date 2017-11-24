@@ -172,6 +172,7 @@ class ProductListViewController: GlobalViewController,UITableViewDelegate, UITab
         
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
+            if !(self.productListingArray.count==0) {
             if self.productListingArray.count == totalRecords as! Int {
                  productTableView.tableFooterView=nil
             }
@@ -181,6 +182,7 @@ class ProductListViewController: GlobalViewController,UITableViewDelegate, UITab
             currentPageCount = +1
             self.getProductList()
             }
+        }
         }
     }
     // MARK: - end

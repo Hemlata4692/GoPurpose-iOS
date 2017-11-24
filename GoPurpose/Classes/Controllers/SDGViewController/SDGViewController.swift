@@ -10,7 +10,7 @@ import UIKit
 
 class SDGViewController: GlobalViewController, UIWebViewDelegate {
     @IBOutlet weak var sdgWebView: UIWebView!
-    
+
     @IBOutlet weak var noRecordLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
