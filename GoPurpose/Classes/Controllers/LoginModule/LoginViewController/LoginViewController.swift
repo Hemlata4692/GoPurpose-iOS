@@ -28,6 +28,12 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     }
     
     func viewCustomisation() {
+        
+        if #available(iOS 11, *) {
+            // Disables the password autoFill accessory view.
+            passwordField.textContentType = UITextContentType("")
+        }
+        
         self.setLocalisedText()
         //set keyboard controller text field array
         let textField=[emailField,passwordField]
@@ -106,6 +112,17 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         userData.isSocialLogin="0"
         LoginDataModel().requestForLogin(userData, success: { (response) in
             AppDelegate().stopIndicator()
+            
+            if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 1 {
+                let alert = SCLAlertView()
+                _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
+                    let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginView") as! UINavigationController
+                    UIApplication.shared.keyWindow?.rootViewController = loginView
+                }
+                _ = alert.showWarning(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "notAuthorisedUser"), closeButtonTitle: NSLocalizedText(key: "alertCancel"))
+            }
+
+            else {
             if (UserDefaults().string(forKey: "deviceToken") != nil) {
                 self.saveDeviceToken()
             }
@@ -113,13 +130,14 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             // Successfully logged in, move to next screen
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
             UIApplication.shared.keyWindow?.rootViewController = nextViewController
-        }) { (error) in
+            }}) { (error) in
             if error != nil {
                 if error?.code == 200 {
                     _ = error?.userInfo["error"] as! String
                 }
             }
         }
+            
     }
     
     @objc func saveDeviceToken() {

@@ -60,7 +60,26 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        if indexPath.row == 1 {
+            if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
+                return 50
+            }
+            else {
+                return 0
+            }
+        }
+        else if indexPath.row == 3 {
+            if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
+                return 50
+            }
+            else {
+                return 0
+            }
+        }
+        else {
+            return 50
+
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,6 +88,9 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         nameLabel?.text=tableCellDataArray[indexPath.row]
         
         let notificationCountLabel = cell.contentView.viewWithTag(3) as? UILabel
+        notificationCountLabel?.layer.cornerRadius = 8;
+        notificationCountLabel?.clipsToBounds=true
+         print(UserDefaults().string(forKey: "notificationCount")as AnyObject)
         if ((nil == UserDefaults().string(forKey: "notificationCount")) || (UserDefaults().string(forKey: "notificationCount")?.isEmpty)!) {
             notificationCountLabel?.isHidden=true
         }

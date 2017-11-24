@@ -97,22 +97,38 @@ class ProfileService: BaseService {
     
     // MARK: - Notification service
     func notificationListService(_ profileData: ProfileDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
+        print(UserDefaults().string(forKey: "apiKey")!)
         let headers = [
             "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
             ]
         var request:alamofireRequestModal = alamofireRequestModal()
         request.method = .post
-        let param1=["condition_type": "eq", "field": "customer_id", "value": UserDefaults().string(forKey: "userId") as AnyObject] as [String : Any]
-        let sortOrders=["direction": "DESC", "field": "created_at"]
-        let param2=["current_page": "1","filter_groups":param1,"page_size": "12", "sort_orders": sortOrders] as [String : Any]
-        request.parameters = ["criteria":param2] as [String: AnyObject]
+        let filterGroup:NSMutableArray = NSMutableArray()
+        let filter:NSMutableArray = NSMutableArray()
+        let sortOrders:NSMutableArray = NSMutableArray()
+        filter.add(["condition_type": "eq", "field": "customer_id", "value": UserDefaults().string(forKey: "userId") as AnyObject])
+        filterGroup.add(["filters":filter])
+       sortOrders.add(["direction": "DESC", "field": "created_at"])
+        let param2=["current_page": "1","filter_groups":filterGroup,"page_size": "12", "sort_orders": sortOrders] as [String : Any]
+        request.parameters = ["criteria":param2] as [String : AnyObject]
         request.headers=headers
         print("notificationListService request %@", request.parameters as Any)
         request.path = basePath + kNotificationList
         self.callPostService(request, success: success, failure: failure)
-        
-    }//{"criteria":{"current_page":1,"filter_groups":[{"filters":[{"condition_type":"eq","field":"customer_id","value":"111"}]}],"page_size":12,"sort_orders":[{"direction":"DESC","field":"created_at"}]}}
+    }
     
+    func markNotificationRead(_ profileData: ProfileDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
+        let headers = [
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
+            ]
+        var request:alamofireRequestModal = alamofireRequestModal()
+        request.method = .post
+        request.parameters = ["notificationId":profileData.notificationId, "status":"1"] as [String : AnyObject]
+        request.headers=headers
+        print("mark notificationread request %@", request.parameters as Any)
+        request.path = basePath + kNotificationList
+        self.callPostService(request, success: success, failure: failure)
+    }
     // MARK: - end
 }
 

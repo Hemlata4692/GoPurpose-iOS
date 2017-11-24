@@ -40,6 +40,7 @@ class BaseService: NSObject {
         // Create alamofire request
       if reach.isReachable {
         // "alamoReq" is overridden in services, which will create a request here
+
         Alamofire.request(alamoReq.path, method: alamoReq.method, parameters: alamoReq.parameters, encoding: alamoReq.encoding, headers: alamoReq.headers)
             .validate(contentType: ["application/json"])
             .responseJSON { response in
@@ -50,9 +51,16 @@ class BaseService: NSObject {
                 }
                 else {
                     AppDelegate().stopIndicator()
-//                    let error = response.result.value as? NSDictionary
-//                    let errorMessage = error?.object(forKey: "message") as? String
-                    SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "somethingWrongMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+                    print("error with JSON: \(String(describing: response))")
+                     print("error with JSON: \(String(describing: response.result.error!.localizedDescription))")
+                   // let error = response.result.value as? NSDictionary
+                    var errorMessage: String
+                    errorMessage = response.result.error!.localizedDescription
+                    if errorMessage.isEmpty {
+                        errorMessage=NSLocalizedText(key: "somethingWrongMessage")
+                    }
+                    
+                    SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:errorMessage, closeButtonTitle: NSLocalizedText(key: "alertOk"))
                    //  failure(errorMessage as NSError?)
                 }
         }

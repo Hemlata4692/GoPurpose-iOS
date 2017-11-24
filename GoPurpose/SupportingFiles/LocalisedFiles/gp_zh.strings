@@ -88,3 +88,6 @@
 "completeOrder"="Complete Orders";
 "pendingOrder"="Pending Orders";
 "compareOrder"="Compare Orders";
+"purchaseOrder"="Purchase Order: ";
+"orderDate"="Date: ";
+"notAuthorisedUser"="You are not authorize to access it.";

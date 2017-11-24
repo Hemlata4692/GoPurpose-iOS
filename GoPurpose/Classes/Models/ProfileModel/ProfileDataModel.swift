@@ -38,6 +38,14 @@ class ProfileDataModel: NSObject {
     var customerAttributeArray:NSMutableArray = NSMutableArray()
     var addressArray:NSMutableArray = NSMutableArray()
     var countryArray:NSMutableArray = NSMutableArray()
+    var notificationArray:NSMutableArray = NSMutableArray()
+    var notificationId: String?
+    var notificationType: String?
+    var notificationMessage: String?
+    var targetId: String?
+    var notificationStatus: String?
+    var totalRecords: Any?
+    var currentPage: String?
     
     // MARK: - Get user profile
     func getUserProfile(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
@@ -87,6 +95,13 @@ class ProfileDataModel: NSObject {
     // MARK: - Notification list data
     func notificationListService(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.notificationService(profileData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    
+    func markNotificationAsRead(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.notificationReadService(profileData, success: {(responseObj) in
             
             success(responseObj)
         }, failure: failure)

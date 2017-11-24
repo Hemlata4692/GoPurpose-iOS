@@ -10,6 +10,8 @@
 		182265E81FB332B200C27783 /* gp_en.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E71FB332B200C27783 /* gp_en.strings */; };
 		182265EA1FB332CA00C27783 /* gp_cn.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265E91FB332CA00C27783 /* gp_cn.strings */; };
 		182265EC1FB332D700C27783 /* gp_zh.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182265EB1FB332D700C27783 /* gp_zh.strings */; };
+		1828C0FA1FC7F941008398BA /* OrderDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C0F91FC7F941008398BA /* OrderDataModel.swift */; };
+		1828C0FC1FC7F969008398BA /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C0FB1FC7F969008398BA /* OrderService.swift */; };
 		1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */; };
 		185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185773911FB4370B00CE693E /* UserNotifications.framework */; };
 		185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185FCBC11FA9D75400D11A4D /* Main.storyboard */; };
@@ -78,6 +80,8 @@
 		182265E71FB332B200C27783 /* gp_en.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_en.strings; sourceTree = "<group>"; };
 		182265E91FB332CA00C27783 /* gp_cn.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_cn.strings; sourceTree = "<group>"; };
 		182265EB1FB332D700C27783 /* gp_zh.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = gp_zh.strings; sourceTree = "<group>"; };
+		1828C0F91FC7F941008398BA /* OrderDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDataModel.swift; sourceTree = "<group>"; };
+		1828C0FB1FC7F969008398BA /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
 		1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoPurpose-Bridging-Header.h"; sourceTree = "<group>"; };
 		1842AE931FA97F6E0075BEF2 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -172,6 +176,14 @@
 				182265EB1FB332D700C27783 /* gp_zh.strings */,
 			);
 			path = LocalisedFiles;
+			sourceTree = "<group>";
+		};
+		1828C0F81FC7F8E7008398BA /* OrderModel */ = {
+			isa = PBXGroup;
+			children = (
+				1828C0F91FC7F941008398BA /* OrderDataModel.swift */,
+			);
+			path = OrderModel;
 			sourceTree = "<group>";
 		};
 		1842AE961FA97F7F0075BEF2 /* SupportingFiles */ = {
@@ -552,6 +564,7 @@
 		18C4A5401FC70DF000CEFE9C /* OrderService */ = {
 			isa = PBXGroup;
 			children = (
+				1828C0FB1FC7F969008398BA /* OrderService.swift */,
 			);
 			path = OrderService;
 			sourceTree = "<group>";
@@ -567,6 +580,7 @@
 		18C9EA791FB0592F007E8C92 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1828C0F81FC7F8E7008398BA /* OrderModel */,
 				18CB45041FC5DEC2003B2A88 /* ProductModel */,
 				18F4E47E1FB5889E005C786E /* ProfileModel */,
 				18C9EA7C1FB05A7D007E8C92 /* LoginModel */,
@@ -891,6 +905,7 @@
 				18CB450C1FC5DFC6003B2A88 /* ProductService.swift in Sources */,
 				186E90AC1FB558D000EF863A /* EditProfileViewController.swift in Sources */,
 				189263121FB1720900BE00A2 /* MMMaterialDesignSpinner.m in Sources */,
+				1828C0FA1FC7F941008398BA /* OrderDataModel.swift in Sources */,
 				186FD5021FAB0E4700081D8A /* ProductListViewController.swift in Sources */,
 				187D4AE51FA996B700FA96DC /* ForgotPasswordViewController.swift in Sources */,
 				18B20DCA1FAC35A8005A6147 /* FontUtility.swift in Sources */,
@@ -913,6 +928,7 @@
 				187D4ADC1FA9960000FA96DC /* Constant.swift in Sources */,
 				18C9EA891FB06648007E8C92 /* LoginService.swift in Sources */,
 				186FD5061FAB0E8F00081D8A /* MessageViewController.swift in Sources */,
+				1828C0FC1FC7F969008398BA /* OrderService.swift in Sources */,
 				186FD4FA1FAAD89900081D8A /* Padding+UITextField.swift in Sources */,
 				18C9EA921FB06F93007E8C92 /* SCLAlertView.swift in Sources */,
 				18C9EA8E1FB06B38007E8C92 /* iReachability.swift in Sources */,

@@ -152,6 +152,9 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
     
     //display user profile data
     func displayData(profileData:ProfileDataModel) {
+        if ((UserDefaults().string(forKey: "userProfileImage")) != nil) {
+            userProfileImageView?.downloadFrom(link: UserDefaults().string(forKey: "userProfileImage")!)
+        }
         userEmailLabel.text=profileData.email
         firstNameField?.text=profileData.firstName
         lastNameField?.text=profileData.lastName

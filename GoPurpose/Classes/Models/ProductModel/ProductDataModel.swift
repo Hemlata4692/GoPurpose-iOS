@@ -30,6 +30,7 @@ class ProductDataModel: NSObject {
     var groupName: String?
     var userProfileImage: String?
     var groupId: Any?
+    var notificationCount: Any?
     var dashboardDataArray:NSMutableDictionary = NSMutableDictionary()
     
     // MARK: - Get product list
@@ -44,6 +45,9 @@ class ProductDataModel: NSObject {
     func getDashboardListingData(_ productData: ProductDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.dashboardServieData(productData, success: {(responseObj) in
               UserDefaults().set(productData.userProfileImage!, forKey: "userProfileImage")
+            UserDefaults().set(productData.groupName, forKey: "groupName")
+            UserDefaults().set(productData.groupId, forKey: "groupId")
+            UserDefaults().set(productData.notificationCount, forKey: "notificationCount")
             success(responseObj)
         }, failure: failure)
     }

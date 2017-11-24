@@ -68,8 +68,6 @@ class ConnectionManager: NSObject {
     func resetPasswordService(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
         LoginService().resetPasswordService(userData, success: {(response) in
             print("reset password response %@", response as AnyObject)
-            //Parse data from server response and store in data model
-           // userData.successMessage = response["message"]
             success(userData)
         },failure:failure)
     }
@@ -90,6 +88,16 @@ class ConnectionManager: NSObject {
     func sendDevcieToken(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
         LoginService().saveDeviceTokenService(userData, success: {(response) in
             print("save device token response %@", response as AnyObject)
+            //Parse data from server response and store in data model
+            success(userData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Block Service
+    func getBlockData(_ userData: LoginDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        LoginService().cmsBlockService(userData, success: {(response) in
+            print("cms response %@", response as AnyObject)
             //Parse data from server response and store in data model
             success(userData)
         },failure:failure)
@@ -294,6 +302,7 @@ class ConnectionManager: NSObject {
             let tempDict = response as! NSDictionary
             productData.groupName = tempDict["group_name"] as? String
             productData.groupId = tempDict["group_id"]
+            productData.notificationCount = tempDict["notification_count"]
             productData.userProfileImage = tempDict["profile_pick"] as? String
             if ((productData.groupId as AnyObject).intValue == 2) {
                 productData.pendingApproval = tempDict["gp_vendor_apploval_pending"]! as? Int
@@ -333,7 +342,71 @@ class ConnectionManager: NSObject {
         ProfileService().notificationListService(profileData, success: {(response) in
             print("Notification Service response %@", response as AnyObject)
             //Parse data from server response and store in data model
+            let tempDict = response as! NSDictionary
+            let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+            profileData.totalRecords=tempDict["total_count"] as? Int
+            for i in 0..<dataArray.count {
+                let dataDict=dataArray[i] as! NSDictionary
+                let tempData = ProfileDataModel()
+                tempData.notificationId=dataDict["id"] as? String
+                tempData.notificationType=dataDict["type"] as? String
+                tempData.notificationMessage=dataDict["message"] as? String
+                tempData.targetId=dataDict["targat_id"] as? String
+                tempData.notificationStatus=dataDict["status"] as? String
+                profileData.notificationArray.add(tempData)
+            }
             success(profileData)
+        },failure:failure)
+    }
+    
+    func notificationReadService(_ profileData: ProfileDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        ProfileService().markNotificationRead(profileData, success: {(response) in
+            print("Notification read Service response %@", response as AnyObject)
+            //Parse data from server response and store in data model
+            success(profileData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Get order list
+    func getOrderListing(_ productData: OrderDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        OrderService().getOrderListService(productData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("get product Listing data %@", response as Any)
+            let tempDict = response as! NSDictionary
+            let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+            productData.totalRecord=tempDict["total_count"] as? Int
+            for i in 0..<dataArray.count {
+                let dataDict=dataArray[i] as! NSDictionary
+                let tempData = OrderDataModel()
+                tempData.orderId=dataDict["magerealorder_id"] as? String
+                tempData.orderDetailId=dataDict["order_id"] as? String
+                tempData.orderDate=dataDict["created_at"] as? String
+                productData.orderListDataArray.add(tempData)
+            }
+            success(productData)
+        },failure:failure)
+    }
+    
+    func getOrderDetailsDataService(_ productData: OrderDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        OrderService().getOrderDetailsData(productData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("get product Listing data %@", response as Any)
+            //            let tempDict = response as! NSDictionary
+            //            let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+            //            productData.totalRecordsCount=tempDict["total_count"] as? Int
+            //            for i in 0..<dataArray.count {
+            //                let dataDict=dataArray[i] as! NSDictionary
+            //                let tempData = ProductDataModel()
+            //                tempData.productName=dataDict["name"] as? String
+            //                tempData.productPrice=dataDict["price"] as? String
+            //                tempData.productSKU=dataDict["sku"] as? String
+            //                tempData.productStatus=dataDict["status"] as? String
+            //                tempData.productType=dataDict["type_id"] as? String
+            //                tempData.productImage=dataDict["thumbnail"] as? String
+            //                productData.productListDataArray.add(tempData)
+            //            }
+            success(productData)
         },failure:failure)
     }
     // MARK: - end

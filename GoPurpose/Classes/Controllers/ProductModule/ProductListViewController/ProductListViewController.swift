@@ -29,8 +29,8 @@ class ProductListViewController: GlobalViewController,UITableViewDelegate, UITab
     @IBOutlet weak var noRecordLabel: UILabel!
     var totalRecords: Any?
     var currentPageCount:Int = 1
-    var productListingArray:NSMutableArray = NSMutableArray()
     let footerView = UIView()
+    var productListingArray:NSMutableArray = []
   //MARK: - end
     
     //MARK: - View life cycle
@@ -51,6 +51,7 @@ class ProductListViewController: GlobalViewController,UITableViewDelegate, UITab
         super.viewWillAppear(true)
         self.showSelectedTab(item: 3)
         self.addFooterView()
+        productListingArray = NSMutableArray()
         AppDelegate().showIndicator()
         self.perform(#selector(getProductList), with: nil, afterDelay: 0.1)
     }

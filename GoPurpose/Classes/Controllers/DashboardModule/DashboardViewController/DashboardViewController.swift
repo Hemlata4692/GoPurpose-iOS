@@ -12,6 +12,7 @@ class CardsCell: UICollectionViewCell {
     @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var cardImageView: UIImageView!
     @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var cardIconImage: UIImageView!
 }
 
 
@@ -46,6 +47,7 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
     @objc func getDashboardData() {
         let productData = ProductDataModel()
         ProductDataModel().getDashboardListingData(productData, success: { (response) in
+             AppDelegate().stopIndicator()
             self.dashboardArray=productData.dashboardDataArray.mutableCopy() as! NSMutableDictionary
             self.groupID=productData.groupId
             let reportURL = BASE_URL + UserDefaults().string(forKey: "Language")! + "/marketplace_report/graph/unfulfilled/?token=" + UserDefaults().string(forKey: "apiKey")!
@@ -98,46 +100,45 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
                 cell.headingLabel.text=NSLocalizedText(key: "totalProducts")
                 cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: (dashboardArray.allKeys as NSArray).object(at: indexPath.row)) as! Int) as String
                 cell.cardImageView.backgroundColor = UIColor(red: 90.0/255.0, green: 161.0/255.0, blue: 228.0/255.0, alpha: 1.0)
-                cell.cardImageView.image=UIImage(named: "total-product")
+                cell.cardIconImage.image=UIImage(named: "total-product")
             }
             else  if ((dashboardArray.allKeys as NSArray).object(at: indexPath.row) as! String)=="pendingApproval" {
                 cell.headingLabel.text=NSLocalizedText(key: "pendingApproval")
-                print((dashboardArray.object(forKey: (dashboardArray.allKeys as NSArray).object(at: indexPath.row)) as? Int as Any))
                 cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: (dashboardArray.allKeys as NSArray).object(at: indexPath.row)) as! Int) as String
                 cell.cardImageView.backgroundColor = UIColor(red: 245.0/255.0, green: 218.0/255.0, blue: 63.0/255.0, alpha: 1.0)
-                cell.cardImageView.image=UIImage(named: "pending-approval")
+                cell.cardIconImage.image=UIImage(named: "pending-approval")
             }
         case 3:
             if ((dashboardArray.allKeys as NSArray).object(at: indexPath.row) as! String)=="totalProducts" {
                 cell.headingLabel.text=NSLocalizedText(key: "totalProducts")
                 cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: (dashboardArray.allKeys as NSArray).object(at: indexPath.row)) as! Int) as String
                  cell.cardImageView.backgroundColor = UIColor(red: 90.0/255.0, green: 161.0/255.0, blue: 228.0/255.0, alpha: 1.0)
-                cell.cardImageView.image=UIImage(named: "total-product")
+                cell.cardIconImage.image=UIImage(named: "total-product")
             }
         case 4:
             if ((dashboardArray.allKeys as NSArray).object(at: indexPath.row) as! String)=="lifeTimeSale" {
                 cell.headingLabel.text=NSLocalizedText(key: "lifeTimeSale")
                 cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: (dashboardArray.allKeys as NSArray).object(at: indexPath.row)) as! Int) as String
                 cell.cardImageView.backgroundColor = UIColor(red: 163.0/255.0, green: 217.0/255.0, blue: 131.0/255.0, alpha: 1.0)
-                cell.cardImageView.image=UIImage(named: "lifetime-sales")
+                cell.cardIconImage.image=UIImage(named: "lifetime-sales")
             }
             else  if ((dashboardArray.allKeys as NSArray).object(at: indexPath.row) as! String)=="totalProducts" {
                 cell.headingLabel.text=NSLocalizedText(key: "totalProducts")
                 cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: (dashboardArray.allKeys as NSArray).object(at: indexPath.row)) as! Int) as String
                  cell.cardImageView.backgroundColor = UIColor(red: 90.0/255.0, green: 161.0/255.0, blue: 228.0/255.0, alpha: 1.0)
-                cell.cardImageView.image=UIImage(named: "total-product")
+                cell.cardIconImage.image=UIImage(named: "total-product")
             }
             else  if ((dashboardArray.allKeys as NSArray).object(at: indexPath.row) as! String)=="totalOrders" {
                 cell.headingLabel.text=NSLocalizedText(key: "totalOrders")
                 cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: (dashboardArray.allKeys as NSArray).object(at: indexPath.row)) as! Int) as String
                 cell.cardImageView.backgroundColor =  UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1.0)
-                cell.cardImageView.image=UIImage(named: "total-product")
+                cell.cardIconImage.image=UIImage(named: "total-payment")
             }
             else  if ((dashboardArray.allKeys as NSArray).object(at: indexPath.row) as! String)=="pendingApproval" {
                 cell.headingLabel.text=NSLocalizedText(key: "pendingApproval")
                 cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: (dashboardArray.allKeys as NSArray).object(at: indexPath.row)) as! Int) as String
                 cell.cardImageView.backgroundColor = UIColor(red: 245.0/255.0, green: 218.0/255.0, blue: 63.0/255.0, alpha: 1.0)
-                cell.cardImageView.image=UIImage(named: "pending-approval")
+                cell.cardIconImage.image=UIImage(named: "pending-approval")
             }
         default:
             print("default data")

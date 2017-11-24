@@ -16,7 +16,7 @@ class ProductService: BaseService {
     // MARK: - Get product service
     func getProductListService(_ productData: ProductDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
         let headers = [
-            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!
             ]
         var request:alamofireRequestModal = alamofireRequestModal()
         request.method = .post
@@ -32,8 +32,8 @@ class ProductService: BaseService {
     // MARK: - Dashboard service
     func getDashboardData(_ productData: ProductDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
         let headers = [
-            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
-            ]
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!
+        ]
         var request:alamofireRequestModal = alamofireRequestModal()
         request.method = .post
         request.parameters = nil
