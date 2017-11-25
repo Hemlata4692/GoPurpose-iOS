@@ -48,6 +48,7 @@ class OrderDetailCell: UITableViewCell {
 
 class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate, UITableViewDataSource {
    
+    // MARK: - IBOutlets and variables
     var orderId: String?
     var orderDetailArray:NSMutableArray = NSMutableArray()
     var totalPrice: String?
@@ -55,12 +56,14 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     var purchaseOrderId: String?
     var shippingAddressData: NSDictionary = NSDictionary()
     var billingAddressData: NSDictionary = NSDictionary()
-     var trackingDataArray:NSMutableArray = NSMutableArray()
-  
+    var trackingDataArray:NSMutableArray = NSMutableArray()
+    
     @IBOutlet weak var noRecordLabel: UILabel!
     @IBOutlet weak var trackOrderButton: UIButton!
     @IBOutlet weak var orderTableView: UITableView!
-  
+    // MARK: - end
+    
+    // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title=NSLocalizedText(key:"orderDetails")
@@ -82,22 +85,21 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
         let orderData = OrderDataModel()
         orderData.orderDetailId=orderId
         OrderDataModel().getOrderDetailsData(orderData, success: { (response) in
-           
             self.orderDetailArray=(orderData.productDataArray as NSArray).mutableCopy() as! NSMutableArray
             if self.orderDetailArray.count==0 {
                 self.noRecordLabel.isHidden=false
-                 self.orderTableView.isHidden=true
+                self.orderTableView.isHidden=true
                 self.trackOrderButton.isHidden=true
             }
             else{
-                 self.getShipmentDetails(purchaseId: orderData.purchaseOrderId!)
+                self.getShipmentDetails(purchaseId: orderData.purchaseOrderId!)
                 self.noRecordLabel.isHidden=true
                 self.orderTableView.isHidden=false
-            self.totalPrice=NSString(format:"%.1f", orderData.totalAmount as! Double) as String
-            self.orderStatus=orderData.orderStatus
-            self.shippingAddressData=orderData.shippingAddress["address"] as! NSDictionary
-            self.billingAddressData=orderData.billingAddress
-            self.orderTableView.reloadData()
+                self.totalPrice=NSString(format:"%.1f", orderData.totalAmount as! Double) as String
+                self.orderStatus=orderData.orderStatus
+                self.shippingAddressData=orderData.shippingAddress["address"] as! NSDictionary
+                self.billingAddressData=orderData.billingAddress
+                self.orderTableView.reloadData()
                 self.orderTableView.translatesAutoresizingMaskIntoConstraints=true
                 if (self.orderStatus?.contains(NSLocalizedText(key: "canceled")))! {
                     self.trackOrderButton.isHidden=true
@@ -117,6 +119,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
         }
     }
     
+    //track shipment service
     func getShipmentDetails(purchaseId:String) {
         let orderData = OrderDataModel()
         orderData.orderId=orderId
@@ -171,9 +174,9 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
             }
         } else {
             if !(self.orderDetailArray.count==0) {
-            let addressArray=shippingAddressData["street"] as! NSArray
-            let textHeight = ((addressArray[0] as? String)! + (addressArray[1] as? String)!).dynamicHeightWidthForString(width: (orderTableView.frame.size.width/2) - 30, font: FontUtility.montserratLight(size: 14), isWidth: false)
-            return 260+textHeight
+                let addressArray=shippingAddressData["street"] as! NSArray
+                let textHeight = ((addressArray[0] as? String)! + (addressArray[1] as? String)!).dynamicHeightWidthForString(width: (orderTableView.frame.size.width/2) - 30, font: FontUtility.montserratLight(size: 14), isWidth: false)
+                return 260+textHeight
             }
             else {
                 return 280
@@ -201,78 +204,75 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
         
         if indexPath.section == 0 {
             if !(self.orderDetailArray.count==0) {
-            var data = OrderDataModel()
-       
-            if indexPath.row == 0 {
-                cell.orderIdLabel.text=purchaseOrderId
-                if (orderStatus?.contains(NSLocalizedText(key: "complete")))! {
-                    cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 163.0/255.0, green: 217.0/255.0, blue: 131.0/255.0, alpha: 1.0))
+                var data = OrderDataModel()
+                
+                if indexPath.row == 0 {
+                    cell.orderIdLabel.text=purchaseOrderId
+                    if (orderStatus?.contains(NSLocalizedText(key: "complete")))! {
+                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 163.0/255.0, green: 217.0/255.0, blue: 131.0/255.0, alpha: 1.0))
+                    }
+                    else  if (orderStatus?.contains(NSLocalizedText(key: "canceled")))! {
+                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 227.0/255.0, green: 88.0/255.0, blue: 95.0/255.0, alpha: 1.0))
+                    }
+                    else {
+                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 245.0/255.0, green: 218.0/255.0, blue: 63.0/255.0, alpha: 1.0))
+                    }
+                } else if indexPath.row ==  orderDetailArray.count + 1 {
+                    cell.totalHeadingLabel.text=NSLocalizedText(key: "totalHeading")
+                    cell.priceTotalLabel.text = totalPrice
+                } else {
+                    data = self.orderDetailArray[orderDetailArray.count - 1] as! OrderDataModel
+                    cell.productNameHeadingLabel.text=NSLocalizedText(key: "productName")
+                    cell.skuHeadingLabel.text=NSLocalizedText(key: "skuHeading")
+                    cell.QuantityHeadingLabel.text=NSLocalizedText(key: "qty")
+                    cell.priceHeadingLabel.text=NSLocalizedText(key: "priceHeading")
+
+                    cell.skuLabel.text = data.productSKU
+                    cell.productNameLabel.text=data.productName
+                    cell.quantityLabel.text = NSString(format:"%d", data.productQty as! Int) as String
+                    cell.priceLabel.text = NSString(format:"%.1f", data.productPrice as! NSNumber) as String
                 }
-                else  if (orderStatus?.contains(NSLocalizedText(key: "canceled")))! {
-                    cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 227.0/255.0, green: 88.0/255.0, blue: 95.0/255.0, alpha: 1.0))
-                }
-                else {
-                      cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 245.0/255.0, green: 218.0/255.0, blue: 63.0/255.0, alpha: 1.0))
-                }
-            } else if indexPath.row ==  orderDetailArray.count + 1 {
-                //total cell
-                 //cell.totalHeadingLabel.text
-                cell.priceTotalLabel.text = totalPrice
-            } else {
-                data = self.orderDetailArray[orderDetailArray.count - 1] as! OrderDataModel
-                //cell.productNameHeadingLabel
-                cell.productNameLabel.text=data.productName
-                //             cell.orderIdLabel.text=
-                //            //Order detail cell
-                //            // cell.skuHeadingLabel
-                cell.skuLabel.text = data.productSKU
-                //             //cell.QuantityHeadingLabel
-                cell.quantityLabel.text = NSString(format:"%d", data.productQty as! Int) as String
-                //             //cell.priceHeadingLabel
-//               NSNumber(value: data.productPrice)
-                cell.priceLabel.text = NSString(format:"%.1f", data.productPrice as! NSNumber) as String
-            }
             }
         }
-       else if indexPath.section == 1 {
+        else if indexPath.section == 1 {
             if !(self.orderDetailArray.count==0) {
-           cell.addressInfoHeadingLabel.text=NSLocalizedText(key: "billingShippingText")
-           // shipToHeadingLabel
-          // shippingAddressHeadingLabel
-            let addressArray=shippingAddressData["street"] as! NSArray
-           cell.shippingAddressLabel.text=(addressArray[0] as? String)! + (addressArray[1] as? String)!
-           //shippingZipcodeHeadingLabel
-           cell.shippingZipcodeLabel.text=shippingAddressData["postcode"] as? String
-           // shippingContactHeadingLabel
-           cell.shippingContactLabel.text=shippingAddressData["firstname"] as? String
-            // shippingContactNumberHeadingLabel
-             cell.shippingContactNumberLabel.text=shippingAddressData["telephone"] as? String
-           // billToHeadingLabel
-           // billingAddressHeadingLabel
-            let billingAddressArray=billingAddressData["street"] as! NSArray
-            cell.billingAddressLabel.text=(billingAddressArray[0] as? String)! + (billingAddressArray[1] as? String)!
-           // billingZipcodeHeadingLabel
-           cell.billingZipcodeLabel.text=billingAddressData["postcode"] as? String
-          //  billingContactHeadingLabel
-            cell.billingContactLabel.text=billingAddressData["firstname"] as? String
-          //  billingContactNumberHeadingLabel
-             cell.billingContactNumberLabel.text=billingAddressData["telephone"] as? String
-            
-    
-            cell.shippingAddressLabel.numberOfLines = 0
-            cell.shippingAddressLabel.translatesAutoresizingMaskIntoConstraints = true
-            var textHeight = cell.shippingAddressLabel.text?.dynamicHeightWidthForString(width: (orderTableView.frame.size.width/2) - 30, font: FontUtility.montserratLight(size: 14), isWidth: false)
-            cell.shippingAddressLabel.frame=CGRect(x:10,y:cell.shippingAddressLabel.frame.origin.y + 1,width: (orderTableView.frame.size.width/2) - 25,height:textHeight!)
-            
-            cell.billingAddressLabel.numberOfLines = 0
-            cell.billingAddressLabel.translatesAutoresizingMaskIntoConstraints = true
-            textHeight = cell.billingAddressLabel.text?.dynamicHeightWidthForString(width: (orderTableView.frame.size.width/2) - 30, font: FontUtility.montserratLight(size: 14), isWidth: false)
-            cell.billingAddressLabel.frame=CGRect(x:cell.shippingAddressLabel.frame.origin.x + cell.shippingAddressLabel.frame.size.width+20,y:cell.billingAddressLabel.frame.origin.y + 1,width: (orderTableView.frame.size.width/2) - 25,height:textHeight!)
-        }
+                //set localised text
+                cell.addressInfoHeadingLabel.text=NSLocalizedText(key: "billingShippingText")
+                cell.shipToHeadingLabel.text=NSLocalizedText(key: "shipTo")
+                cell.shippingAddressHeadingLabel.text=NSLocalizedText(key: "address")
+                cell.shippingZipcodeHeadingLabel.text=NSLocalizedText(key: "zipCode")
+                cell.shippingContactNumberHeadingLabel.text=NSLocalizedText(key: "contactNumber")
+                cell.billToHeadingLabel.text=NSLocalizedText(key: "billTo")
+                cell.billingAddressHeadingLabel.text=NSLocalizedText(key: "address")
+                cell.shippingContactHeadingLabel.text=NSLocalizedText(key: "contactPerson")
+                cell.billingZipcodeHeadingLabel.text=NSLocalizedText(key: "zipCode")
+                cell.billingContactHeadingLabel.text=NSLocalizedText(key: "contactPerson")
+                cell.billingContactNumberHeadingLabel.text=NSLocalizedText(key: "contactNumber")
+                //set text
+                cell.shippingZipcodeLabel.text=shippingAddressData["postcode"] as? String
+                cell.shippingContactLabel.text=shippingAddressData["firstname"] as? String
+                let addressArray=shippingAddressData["street"] as! NSArray
+                cell.shippingAddressLabel.text=(addressArray[0] as? String)! + (addressArray[1] as? String)!
+                let billingAddressArray=billingAddressData["street"] as! NSArray
+                cell.billingAddressLabel.text=(billingAddressArray[0] as? String)! + (billingAddressArray[1] as? String)!
+                cell.billingZipcodeLabel.text=billingAddressData["postcode"] as? String
+                cell.billingContactLabel.text=billingAddressData["firstname"] as? String
+                cell.billingContactNumberLabel.text=billingAddressData["telephone"] as? String
+                //dynamic height
+                cell.shippingAddressLabel.numberOfLines = 0
+                cell.shippingAddressLabel.translatesAutoresizingMaskIntoConstraints = true
+                var textHeight = cell.shippingAddressLabel.text?.dynamicHeightWidthForString(width: (orderTableView.frame.size.width/2) - 30, font: FontUtility.montserratLight(size: 14), isWidth: false)
+                cell.shippingAddressLabel.frame=CGRect(x:10,y:cell.shippingAddressLabel.frame.origin.y + 1,width: (orderTableView.frame.size.width/2) - 25,height:textHeight!)
+                cell.billingAddressLabel.numberOfLines = 0
+                cell.billingAddressLabel.translatesAutoresizingMaskIntoConstraints = true
+                textHeight = cell.billingAddressLabel.text?.dynamicHeightWidthForString(width: (orderTableView.frame.size.width/2) - 30, font: FontUtility.montserratLight(size: 14), isWidth: false)
+                cell.billingAddressLabel.frame=CGRect(x:cell.shippingAddressLabel.frame.origin.x + cell.shippingAddressLabel.frame.size.width+20,y:cell.billingAddressLabel.frame.origin.y + 1,width: (orderTableView.frame.size.width/2) - 25,height:textHeight!)
+            }
         }
         return cell
     }
     
+    //set attributed code
     func setAttributedString(dataString: String, headingData: String, textFont:UIFont, headingFont:UIFont, color:UIColor) -> NSMutableAttributedString {
         let headingString = [NSAttributedStringKey.foregroundColor: UIColor(red: 71.0/255.0, green: 71.0/255.0, blue: 71.0/255.0, alpha: 1.0), NSAttributedStringKey.font: headingFont]
         let valueString = [NSAttributedStringKey.foregroundColor:color, NSAttributedStringKey.font: textFont]
@@ -283,14 +283,14 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
         combination.append(partTwo)
         return combination
     }
-    
     // MARK: - end
+    
+    // MARK: - IBActions
     @IBAction func trackOrderButtonAction(_ sender: Any) {
         var orderData = OrderDataModel()
         orderData=self.trackingDataArray[0] as! OrderDataModel
         let trackingURL="http://gonatuur.aftership.com/" + orderData.trackingNumber!
-       // http://gonatuur.aftership.com/593159230543
         UIApplication.shared.openURL(NSURL.init(string: trackingURL)! as URL)
-
     }
+    // MARK: - end
 }

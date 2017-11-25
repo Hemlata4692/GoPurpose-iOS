@@ -96,3 +96,17 @@
 "complete"="complete";
 "canceled"="canceled";
 "orderDetails"="Order Detail";
+"impactPointsHeading"="Impact Points";
+"qty"="Qty";
+"itemDescription"="Item Description";
+"status"="Status";
+"shipTo"="Ship To";
+"billTo"="Bill To";
+"address"="Address";
+"country"="Country";
+"zipCode"="Zipcode";
+"contactNumber"="Contact Number";
+"trackOrderButton"="Track Orders";
+"totalHeading"="Total";
+"productName"="Product Name";
+"contactPerson"="Contact Person";
