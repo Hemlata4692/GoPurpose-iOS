@@ -52,12 +52,13 @@ class BaseService: NSObject {
                 else {
                     AppDelegate().stopIndicator()
                     print("error with JSON: \(String(describing: response))")
-                     print("error with JSON: \(String(describing: response.result.error!.localizedDescription))")
-                   // let error = response.result.value as? NSDictionary
                     var errorMessage: String
-                    errorMessage = response.result.error!.localizedDescription
-                    if errorMessage.isEmpty {
+                    if response.result.error!.localizedDescription.isEmpty {
                         errorMessage=NSLocalizedText(key: "somethingWrongMessage")
+                    }
+                    else {
+                        print("error with JSON: \(String(describing: response.result.error!.localizedDescription))")
+                        errorMessage = response.result.error!.localizedDescription
                     }
                     
                     SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:errorMessage, closeButtonTitle: NSLocalizedText(key: "alertOk"))

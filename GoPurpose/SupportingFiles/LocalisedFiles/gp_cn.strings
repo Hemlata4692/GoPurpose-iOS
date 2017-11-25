@@ -93,4 +93,6 @@
 "notAuthorisedUser"="You are not authorize to access it.";
 "status"="Status: ";
 "billingShippingText"="Shipping & Billing Information";
+"complete"="complete";
+"canceled"="canceled";
 "orderDetails"="Order Detail";

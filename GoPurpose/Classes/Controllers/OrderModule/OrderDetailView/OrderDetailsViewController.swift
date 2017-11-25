@@ -98,11 +98,14 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
             self.shippingAddressData=orderData.shippingAddress["address"] as! NSDictionary
             self.billingAddressData=orderData.billingAddress
             self.orderTableView.reloadData()
+                self.orderTableView.translatesAutoresizingMaskIntoConstraints=true
                 if (self.orderStatus?.contains(NSLocalizedText(key: "canceled")))! {
                     self.trackOrderButton.isHidden=true
+                    self.orderTableView.frame=CGRect(x:10,y:-12,width:kScreenWidth-20,height:kScreenHeight-70)
                 }
                 else {
                     self.trackOrderButton.isHidden=false
+                    self.orderTableView.frame=CGRect(x:10,y:-15,width:kScreenWidth-20,height:kScreenHeight-165)
                 }
             }
         }) { (error) in
@@ -120,7 +123,6 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
         OrderDataModel().trackShipmetDetail(orderData, success: { (response) in
             AppDelegate().stopIndicator()
             self.trackingDataArray=(orderData.trackShipmentArray as NSArray).mutableCopy() as! NSMutableArray
-
         }) { (error) in
             if error != nil {
                 if error?.code == 200 {

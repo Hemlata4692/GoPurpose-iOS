@@ -65,7 +65,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return 50
             }
             else {
-                return 0
+                return 50
             }
         }
         else if indexPath.row == 3 {
@@ -73,7 +73,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return 50
             }
             else {
-                return 0
+                return 50
             }
         }
         else {
@@ -90,7 +90,6 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         let notificationCountLabel = cell.contentView.viewWithTag(3) as? UILabel
         notificationCountLabel?.layer.cornerRadius = 8;
         notificationCountLabel?.clipsToBounds=true
-         print(UserDefaults().string(forKey: "notificationCount")as AnyObject)
         if ((nil == UserDefaults().string(forKey: "notificationCount")) || (UserDefaults().string(forKey: "notificationCount")?.isEmpty)!) {
             notificationCountLabel?.isHidden=true
         }

@@ -430,6 +430,7 @@ class ConnectionManager: NSObject {
             print("get shipment data %@", response as Any)
             let tempDict = response as! NSDictionary
             let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
+            if !(dataArray.count==0) {
             let detailDict=dataArray[0] as! NSDictionary
             let trackArray = (detailDict["tracks"] as! NSArray).mutableCopy() as! NSMutableArray
             for i in 0..<trackArray.count {
@@ -437,6 +438,7 @@ class ConnectionManager: NSObject {
                 let tempData = OrderDataModel()
                 tempData.trackingNumber=shipDict["track_number"] as? String
                 productData.trackShipmentArray.add(tempData)
+            }
             }
             success(productData)
         },failure:failure)

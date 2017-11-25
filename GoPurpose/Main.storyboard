@@ -2430,7 +2430,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQN-gZ-Qz1">
+                            <webView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQN-gZ-Qz1">
                                 <rect key="frame" x="5" y="10" width="310" height="429"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -2827,7 +2827,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="o8e-FF-0YS">
-                                <rect key="frame" x="10" y="-10" width="300" height="374"/>
+                                <rect key="frame" x="10" y="-10" width="300" height="390"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -3305,17 +3305,17 @@ QWRkcmVzczoDA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Rev-DO-jrZ" firstAttribute="top" secondItem="o8e-FF-0YS" secondAttribute="bottom" constant="30" id="4li-yI-7Ub"/>
-                            <constraint firstItem="oGh-d3-Hwk" firstAttribute="trailing" secondItem="o8e-FF-0YS" secondAttribute="trailing" constant="10" id="6cM-Jr-MlW"/>
                             <constraint firstItem="oGh-d3-Hwk" firstAttribute="trailing" secondItem="Rev-DO-jrZ" secondAttribute="trailing" constant="20" id="9rh-8h-kwj"/>
-                            <constraint firstItem="o8e-FF-0YS" firstAttribute="leading" secondItem="oGh-d3-Hwk" secondAttribute="leading" constant="10" id="MOb-b2-yEN"/>
+                            <constraint firstItem="o8e-FF-0YS" firstAttribute="leading" secondItem="oGh-d3-Hwk" secondAttribute="leading" constant="10" id="INB-25-7w1"/>
+                            <constraint firstItem="oGh-d3-Hwk" firstAttribute="bottom" secondItem="o8e-FF-0YS" secondAttribute="bottom" constant="124" id="PDC-Tp-bH1"/>
                             <constraint firstItem="oGh-d3-Hwk" firstAttribute="bottom" secondItem="Rev-DO-jrZ" secondAttribute="bottom" constant="70" id="Ybj-Jd-y8k"/>
+                            <constraint firstItem="oGh-d3-Hwk" firstAttribute="top" secondItem="o8e-FF-0YS" secondAttribute="top" constant="10" id="eQ8-Oc-8JA"/>
                             <constraint firstItem="BOc-bl-BOF" firstAttribute="leading" secondItem="oGh-d3-Hwk" secondAttribute="leading" id="fsZ-CF-Rib"/>
                             <constraint firstItem="Rev-DO-jrZ" firstAttribute="leading" secondItem="oGh-d3-Hwk" secondAttribute="leading" constant="20" id="g1x-X1-RMs"/>
-                            <constraint firstItem="o8e-FF-0YS" firstAttribute="top" secondItem="oGh-d3-Hwk" secondAttribute="top" constant="-10" id="jnJ-Ce-c18"/>
                             <constraint firstItem="oGh-d3-Hwk" firstAttribute="trailing" secondItem="BOc-bl-BOF" secondAttribute="trailing" id="oST-vp-JVC"/>
                             <constraint firstItem="BOc-bl-BOF" firstAttribute="centerX" secondItem="oGh-d3-Hwk" secondAttribute="centerX" id="oko-st-Pi3"/>
                             <constraint firstItem="BOc-bl-BOF" firstAttribute="centerY" secondItem="oGh-d3-Hwk" secondAttribute="centerY" id="rIG-gv-foP"/>
+                            <constraint firstItem="oGh-d3-Hwk" firstAttribute="trailing" secondItem="o8e-FF-0YS" secondAttribute="trailing" constant="10" id="v7m-Ic-Qqc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oGh-d3-Hwk"/>
                     </view>
