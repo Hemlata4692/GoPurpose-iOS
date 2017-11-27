@@ -22,6 +22,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        sideBarTableView.tableFooterView = UIView()
         // Do any additional setup after loading the view.
     }
     
@@ -29,8 +30,22 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         UIApplication.shared.statusBarStyle = .lightContent
         userProfileImageView.layer.cornerRadius=65
         userProfileImageView.layer.masksToBounds = true
+        if ((UserDefaults().string(forKey: "userProfileImage")) != nil) {
+            userProfileImageView.downloadFrom(link: UserDefaults().string(forKey: "userProfileImage")!)
+        }
+        if (UserDefaults().string(forKey: "groupName") == nil) {
+            userTypeLabel.text=NSLocalizedText(key: "dataNotAdded")
+        }
+        else {
         userTypeLabel.text=UserDefaults().string(forKey: "groupName")
-        CompanyNameLabel.text=UserDefaults().string(forKey: "businessName")
+        }
+        if (UserDefaults().string(forKey: "businessName") == nil) {
+            CompanyNameLabel.text=NSLocalizedText(key: "dataNotAdded")
+        }
+        else {
+            CompanyNameLabel.text=UserDefaults().string(forKey: "businessName")
+
+        }
         tableCellDataArray = [NSLocalizedText(key: "sideBarDashboard"), NSLocalizedText(key: "sideBarOrder"), NSLocalizedText(key: "sideBarSales"), NSLocalizedText(key: "sideBarNotification"), NSLocalizedText(key: "sideBarSDG"), NSLocalizedText(key: "sideBarLogout")]
         self.sideBarTableView.reloadData()
     }
@@ -57,7 +72,26 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        if indexPath.row == 1 {
+            if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
+                return 50
+            }
+            else {
+                return 0
+            }
+        }
+        else if indexPath.row == 3 {
+            if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
+                return 50
+            }
+            else {
+                return 0
+            }
+        }
+        else {
+            return 50
+
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,6 +100,8 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         nameLabel?.text=tableCellDataArray[indexPath.row]
         
         let notificationCountLabel = cell.contentView.viewWithTag(3) as? UILabel
+        notificationCountLabel?.layer.cornerRadius = 8;
+        notificationCountLabel?.clipsToBounds=true
         if ((nil == UserDefaults().string(forKey: "notificationCount")) || (UserDefaults().string(forKey: "notificationCount")?.isEmpty)!) {
             notificationCountLabel?.isHidden=true
         }

@@ -81,12 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Zopim integration
         ZDKConfig.instance().initialize(withAppId:"e5dd7520b178e21212f5cc2751a28f4b5a7dc76698dc79bd",   zendeskUrl:"https://rememberthedate.zendesk.com",     clientId:"client_for_rtd_jwt_endpoint")
-        
-      
-        
-//        //Style Support SDK
-//        let theme = ZDKTheme.base()
-
         return true
     }
     
@@ -116,14 +110,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Push notification methods
     //register device for remote notifications
     func registerDeviceForNotification() {
-        if #available(iOS 10, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
-            UIApplication.shared.registerForRemoteNotifications()
-        }
             // iOS 9 support
-        else if #available(iOS 9, *) {
+       if #available(iOS 9, *) {
             UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
             UIApplication.shared.registerForRemoteNotifications()
+        }
+       else {
+        UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+        UIApplication.shared.registerForRemoteNotifications()
         }
         notificationEnabled="1"
     }
@@ -136,7 +130,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when APNs has assigned the device a unique token
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // Convert token to string//let datastring = NSString(data: fooData, encoding: String.Encoding.utf8.rawValue)
-         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        let deviceID = NSData(data: deviceToken)
+        let deviceTokenString = "\(deviceID)"
+            .trimmingCharacters(in: CharacterSet(charactersIn:"<>"))
+            .replacingOccurrences(of: " ", with: "")
+        print("deviceTokenString : \(deviceTokenString)")
         UserDefaults().set(deviceTokenString, forKey: "deviceToken")
         // Print it to console
         print("APNs device token: \(deviceTokenString)")

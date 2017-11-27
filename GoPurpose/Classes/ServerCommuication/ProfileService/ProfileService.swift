@@ -13,6 +13,7 @@ private var kCountryCode = "directory/countries"
 private var kUserProfile = "customers/me"
 private var kUserImpactsPoints = "ranosys/myimpactpoints"
 private var kEditProfilePicture = "customerprofile/index"
+private var kNotificationList = "gopurpose/notifications/getList"
 
 class ProfileService: BaseService {
     
@@ -80,31 +81,54 @@ class ProfileService: BaseService {
     
     // MARK: - User profile image service
     func updateUserprofileImageService(_ profileData: ProfileDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
-        //        let parameters = (["customerId": UserDefaultManager.getValue("userId" as? UnsafeMutableRawPointer ?? UnsafeMutableRawPointer())]) as? [StringLiteralConvertible: UnknownType]
-        //        super.postImage(kEditProfilePicture, parameters: parameters, image: profileData.userImage, success: success, failure: failure)
         let headers = [
             "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
             ]
         var request:alamofireRequestModal = alamofireRequestModal()
         request.method = .post
         request.headers = headers
-     
-        // Creating image dictionary
-        let imageData = UIImageJPEGRepresentation(profileData.userProfileImage!,1)
-       // let imageStr = imageData.base64EncodedString()
-        
-//        print(strBase64)
- 
-        
-      
-        request.path = basePath + kEditProfilePicture
+        let imageData = UIImageJPEGRepresentation(profileData.userProfileImage!,0.3)
+        let imageUploadPath = BASE_URL + UserDefaults().string(forKey: "Language")! + "/"
+        request.path = imageUploadPath + kEditProfilePicture
         request.parameters = ["customerId" : UserDefaults().string(forKey: "userId") as AnyObject] as [String: AnyObject]
         self.callImageWebServiceAlamofire(imageDict: imageData!, alamoReq: request, success: success, failure: failure)
-     
     }
-    
-    
     // MARK: - end
     
+    // MARK: - Notification service
+    func notificationListService(_ profileData: ProfileDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
+        print(UserDefaults().string(forKey: "apiKey")!)
+        let headers = [
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
+            ]
+        var request:alamofireRequestModal = alamofireRequestModal()
+        request.method = .post
+        let filterGroup:NSMutableArray = NSMutableArray()
+        let filter:NSMutableArray = NSMutableArray()
+        let sortOrders:NSMutableArray = NSMutableArray()
+        filter.add(["condition_type": "eq", "field": "customer_id", "value": UserDefaults().string(forKey: "userId") as AnyObject])
+        filterGroup.add(["filters":filter])
+       sortOrders.add(["direction": "DESC", "field": "created_at"])
+        let param2=["current_page": "1","filter_groups":filterGroup,"page_size": "12", "sort_orders": sortOrders] as [String : Any]
+        request.parameters = ["criteria":param2] as [String : AnyObject]
+        request.headers=headers
+        print("notificationListService request %@", request.parameters as Any)
+        request.path = basePath + kNotificationList
+        self.callPostService(request, success: success, failure: failure)
+    }
+    
+    func markNotificationRead(_ profileData: ProfileDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
+        let headers = [
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!,
+            ]
+        var request:alamofireRequestModal = alamofireRequestModal()
+        request.method = .post
+        request.parameters = ["notificationId":profileData.notificationId, "status":"1"] as [String : AnyObject]
+        request.headers=headers
+        print("mark notificationread request %@", request.parameters as Any)
+        request.path = basePath + kNotificationList
+        self.callPostService(request, success: success, failure: failure)
+    }
+    // MARK: - end
 }
 

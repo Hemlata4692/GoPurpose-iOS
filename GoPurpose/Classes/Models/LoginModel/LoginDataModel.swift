@@ -25,6 +25,7 @@ class LoginDataModel: NSObject {
     var defaultLanguage: String?
     var groupName: String?
     var businesName: String?
+    var cmsContentData: String?
     var groupId: Any?
     var followCount: Any?
     var notificationCount: Any?
@@ -37,6 +38,7 @@ class LoginDataModel: NSObject {
             UserDefaults().set(userData.quoteId, forKey: "quoteId")
             UserDefaults().set(userData.apiKey, forKey: "apiKey")
             UserDefaults().set(userData.groupName, forKey: "groupName")
+            UserDefaults().set(userData.groupId, forKey: "groupId")
             UserDefaults().set(userData.notificationCount, forKey: "notificationCount")
             UserDefaults().set(userData.email, forKey: "userEmail")
             UserDefaults().set(userData.userId, forKey: "userId")
@@ -67,6 +69,14 @@ class LoginDataModel: NSObject {
         ConnectionManager.sharedInstance.sendDevcieToken(userData, success: {(responseObj) in
            success(responseObj)
          }, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - CMS block
+    func getCMSBlockData(_ userData: LoginDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.getBlockData(userData, success: {(responseObj) in
+            success(responseObj)
+        }, failure: failure)
     }
     // MARK: - end
     

@@ -24,6 +24,7 @@ class BottomTabViewController: UIViewController {
     //MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor=kBottomTabDeSelectedColor
         dashboardButton.backgroundColor=kBottomTabDeSelectedColor
         messageButton.backgroundColor=kBottomTabDeSelectedColor
         productButton.backgroundColor=kBottomTabDeSelectedColor

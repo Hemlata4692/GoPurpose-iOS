@@ -14,6 +14,7 @@ let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 // Base URL
 let BASE_URL: String = "https://dev.gopurpose.com/"
+//let BASE_URL: String = "http://192.168.18.141/gopurpose/"
 let basePath = BASE_URL + UserDefaults().string(forKey: "Language")! + "/rest/" + UserDefaults().string(forKey: "Language")!+"/V1/"
 
 // Constants for screen sizes
@@ -26,8 +27,8 @@ let myDelegate = UIApplication.shared.delegate as? AppDelegate
 
 //static colors
 let kBorderColor: UIColor = UIColor(red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7)
-let kBottomTabDeSelectedColor: UIColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 1)
-let kBottomTabSelectedColor: UIColor = UIColor(red: 182/255, green: 37/255, blue: 70/255, alpha: 1)
+let kBottomTabDeSelectedColor: UIColor = UIColor(red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
+let kBottomTabSelectedColor: UIColor = UIColor(red: 182.0/255.0, green: 37.0/255.0, blue: 70.0/255.0, alpha: 1.0)
 let tableViewContentBorderColor: UIColor = UIColor (red: 225.0/255.0, green: 225.0/255.0, blue: 225.0/255.0, alpha: 1.0)
 
 //Camera/Gallery permissions
