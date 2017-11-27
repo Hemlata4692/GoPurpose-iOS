@@ -22,6 +22,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        sideBarTableView.tableFooterView = UIView()
         // Do any additional setup after loading the view.
     }
     
@@ -32,8 +33,19 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         if ((UserDefaults().string(forKey: "userProfileImage")) != nil) {
             userProfileImageView.downloadFrom(link: UserDefaults().string(forKey: "userProfileImage")!)
         }
+        if (UserDefaults().string(forKey: "groupName") == nil) {
+            userTypeLabel.text=NSLocalizedText(key: "dataNotAdded")
+        }
+        else {
         userTypeLabel.text=UserDefaults().string(forKey: "groupName")
-        CompanyNameLabel.text=UserDefaults().string(forKey: "businessName")
+        }
+        if (UserDefaults().string(forKey: "businessName") == nil) {
+            CompanyNameLabel.text=NSLocalizedText(key: "dataNotAdded")
+        }
+        else {
+            CompanyNameLabel.text=UserDefaults().string(forKey: "businessName")
+
+        }
         tableCellDataArray = [NSLocalizedText(key: "sideBarDashboard"), NSLocalizedText(key: "sideBarOrder"), NSLocalizedText(key: "sideBarSales"), NSLocalizedText(key: "sideBarNotification"), NSLocalizedText(key: "sideBarSDG"), NSLocalizedText(key: "sideBarLogout")]
         self.sideBarTableView.reloadData()
     }
@@ -65,7 +77,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return 50
             }
             else {
-                return 50
+                return 0
             }
         }
         else if indexPath.row == 3 {
@@ -73,7 +85,7 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return 50
             }
             else {
-                return 50
+                return 0
             }
         }
         else {

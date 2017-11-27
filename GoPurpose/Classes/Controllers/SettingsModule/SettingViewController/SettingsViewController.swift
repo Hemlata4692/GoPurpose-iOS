@@ -116,7 +116,7 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
     @objc func switchIsChanged(mySwitch: UISwitch) {
         if mySwitch.isOn {
             AppDelegate().registerDeviceForNotification()
-            self.saveDeviceToken()
+            //self.saveDeviceToken()
         } else {
             AppDelegate().unRegisterDeviceForNotification()
         }

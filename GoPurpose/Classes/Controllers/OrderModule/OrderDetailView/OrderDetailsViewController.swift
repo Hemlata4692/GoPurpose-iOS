@@ -163,6 +163,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.orderDetailArray.count>0 {
         if indexPath.section == 0 {
             if indexPath.row==0 {
                 return 55
@@ -181,6 +182,10 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
             else {
                 return 280
             }
+        }
+        }
+        else {
+            return 0
         }
     }
     

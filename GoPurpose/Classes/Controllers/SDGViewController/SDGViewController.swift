@@ -36,6 +36,8 @@ class SDGViewController: GlobalViewController, UIWebViewDelegate {
                 self.noRecordLabel.isHidden=false
             }
             else {
+                // [_productDetailWebView loadHTMLString:[NSString stringWithFormat:@"<div style='text-align:left; font-size:16px;font-family:Montserrat-Light;color:#000000;link:#B62546'>%@", productDetaiData] baseURL: nil]
+//                userData.cmsContentData! = "<div style='text-align:left; font-size:16px;font-family:Montserrat-Light;color:#000000;link:#B62546'>"
                 self.sdgWebView.loadHTMLString(userData.cmsContentData!, baseURL: nil)
             }
         }) { (error) in
