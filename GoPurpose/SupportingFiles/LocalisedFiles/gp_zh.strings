@@ -39,7 +39,7 @@
 "norecord"="沒有找到記錄.";
 "submitButton"="提交";
 "loginButton"="登錄";
-"homeTab"="家";
+"homeTab"="仪表板";
 "messageTab"="消息";
 "productTab"="產品";
 "settingTab"="設置";
@@ -85,8 +85,8 @@
 "totalProducts"="產品總數";
 "totalOrders"="總訂單";
 "lifeTimeSale"="終身銷售";
-"completeOrder"="完成訂單";
-"pendingOrder"="掛單";
+"completeOrder"="訂單已送達";
+"pendingOrder"="訂單等待";
 "compareOrder"="比較訂單";
 "purchaseOrder"="採購訂單：";
 "orderDate"="日期：";

@@ -139,64 +139,40 @@ class ConnectionManager: NSObject {
              let dictValues = array1[0] as! NSDictionary
                 profileData.businessName=dictValues["value"] as? String
             }
-            else {
-                profileData.businessName=NSLocalizedText(key: "dataNotAdded")
-            }
             let array2 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate2)
             if (array2.count>0) {
                 let dictValues = array2[0] as! NSDictionary
                 profileData.zipcode=dictValues["value"] as? String
-            }
-            else {
-                profileData.zipcode=NSLocalizedText(key: "dataNotAdded")
             }
             let array3 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate3)
             if (array3.count>0) {
                 let dictValues = array3[0] as! NSDictionary
                 profileData.businessNumber=dictValues["value"] as? String
             }
-            else {
-                profileData.businessNumber=NSLocalizedText(key: "dataNotAdded")
-            }
             let array4 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate4)
             if (array4.count>0) {
                 let dictValues = array4[0] as! NSDictionary
                 profileData.businessCountry=dictValues["value"] as? String
-            }
-            else {
-                profileData.businessCountry=NSLocalizedText(key: "dataNotAdded")
             }
             let array5 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate5)
             if (array5.count>0) {
                 let dictValues = array5[0] as! NSDictionary
                 profileData.businessAddressLine1=dictValues["value"] as? String
             }
-            else {
-                profileData.businessAddressLine1=NSLocalizedText(key: "dataNotAdded")
-            }
             let array6 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate6)
             if (array6.count>0) {
                 let dictValues = array6[0] as! NSDictionary
                 profileData.businessAddressLine2=dictValues["value"] as? String
-            }
-            else {
-                profileData.businessAddressLine2=NSLocalizedText(key: "dataNotAdded")
             }
             let array7 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate7)
             if (array7.count>0) {
                 let dictValues = array7[0] as! NSDictionary
                 profileData.businessDescription=dictValues["value"] as? String
             }
-            else {
-                profileData.businessDescription=NSLocalizedText(key: "dataNotAdded")
-            }
             let array8 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate8)
             if (array8.count>0) {
                 let dictValues = array8[0] as! NSDictionary
                 profileData.contactNumber=dictValues["value"] as? String
-            }
-            else {
-                profileData.contactNumber=NSLocalizedText(key: "dataNotAdded")
             }
             let array9 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate9)
             if (array9.count>0) {
@@ -291,6 +267,7 @@ class ConnectionManager: NSObject {
                 tempData.productStatus=dataDict["status"] as? String
                 tempData.productType=dataDict["type_id"] as? String
                 tempData.productImage=dataDict["thumbnail"] as? String
+                tempData.productQuantity=dataDict["qty"] as? String
                 productData.productListDataArray.add(tempData)
             }
             success(productData)

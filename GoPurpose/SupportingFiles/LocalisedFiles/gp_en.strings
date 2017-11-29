@@ -39,7 +39,7 @@
 "norecord"="No record(s) found.";
 "submitButton"="Submit";
 "loginButton"="Log In";
-"homeTab"="Home";
+"homeTab"="Dashboard";
 "messageTab"="Messages";
 "productTab"="Product";
 "settingTab"="Settings";
@@ -85,8 +85,8 @@
 "totalProducts"="Total Products";
 "totalOrders"="Total Orders";
 "lifeTimeSale"="Lifetime Sales";
-"completeOrder"="Complete Orders";
-"pendingOrder"="Pending Orders";
+"completeOrder"=" Orders Served";
+"pendingOrder"="Orders Pending";
 "compareOrder"="Compare Orders";
 "purchaseOrder"="Purchase Order: ";
 "orderDate"="Date: ";

@@ -48,3 +48,19 @@ func localeCountryCode() -> String {
     return ((Locale.current as NSLocale).object(forKey: .countryCode) as? String)!
 }
 
+// MARK: - Date formatter
+func convertDateFormater(date: String) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    
+    guard let date = dateFormatter.date(from: date) else {
+        assert(false, "no date from string")
+        return ""
+    }
+    
+    dateFormatter.dateFormat = "dd-MM-yyyy"
+    let timeStamp = dateFormatter.string(from: date)
+    
+    return timeStamp
+}
+// MARK: - end
