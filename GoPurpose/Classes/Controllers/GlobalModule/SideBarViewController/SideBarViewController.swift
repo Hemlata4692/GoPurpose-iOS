@@ -41,6 +41,8 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         if (UserDefaults().string(forKey: "businessName") == nil) {
             CompanyNameLabel.text=NSLocalizedText(key: "dataNotAdded")
+            CompanyNameLabel.translatesAutoresizingMaskIntoConstraints = true;
+            CompanyNameLabel.frame = CGRect(x: CompanyNameLabel.frame.origin.x, y: CompanyNameLabel.frame.origin.y, width: CompanyNameLabel.frame.size.width, height: 0)
         }
         else {
             CompanyNameLabel.text=UserDefaults().string(forKey: "businessName")
@@ -73,6 +75,14 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 1 {
+            if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
+                return 50
+            }
+            else {
+                return 0
+            }
+        }
+        else if indexPath.row == 2 {
             if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
                 return 50
             }
