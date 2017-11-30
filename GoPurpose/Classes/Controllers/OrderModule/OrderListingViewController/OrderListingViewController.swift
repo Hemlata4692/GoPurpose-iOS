@@ -99,7 +99,7 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
         
         cell.orderIdLabel.attributedText=self.setAttributedString(dataString:productData.orderId!, headingData:NSLocalizedText(key: "purchaseOrder"), textFont:FontUtility.montserratMedium(size: 15), headingFont:FontUtility.montserratSemiBold(size: 16))
        
-        cell.dateLabel.attributedText = self.setAttributedString(dataString:self.convertDateFormater(date:productData.orderDate!), headingData:NSLocalizedText(key: "orderDate"),textFont:FontUtility.montserratMedium(size: 12), headingFont:FontUtility.montserratSemiBold(size: 14))
+        cell.dateLabel.attributedText = self.setAttributedString(dataString:convertDateFormater(date:productData.orderDate!), headingData:NSLocalizedText(key: "orderDate"),textFont:FontUtility.montserratMedium(size: 12), headingFont:FontUtility.montserratSemiBold(size: 14))
             return cell
     }
     
@@ -130,23 +130,6 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
         }
     }
     // MARK: - end
-    
-    // MARK: - Date formatter
-    func convertDateFormater(date: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        guard let date = dateFormatter.date(from: date) else {
-            assert(false, "no date from string")
-            return ""
-        }
-        
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        let timeStamp = dateFormatter.string(from: date)
-        
-        return timeStamp
-    }
-  // MARK: - end
     
     func setAttributedString(dataString: String, headingData: String, textFont:UIFont, headingFont:UIFont) -> NSMutableAttributedString {
         let headingString = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: headingFont]
