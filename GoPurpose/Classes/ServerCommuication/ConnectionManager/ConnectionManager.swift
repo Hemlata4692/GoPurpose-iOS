@@ -304,13 +304,13 @@ class ConnectionManager: NSObject {
                 if (productData.totalOrders != nil) {
                    productData.dashboardDataArray.setObject(productData.totalOrders!, forKey: "totalOrders" as NSCopying)
                 }
+                productData.pendingFullfilment = tempDict["gp_franchise_orders_pending_fullefilment"] as? Int
+                if productData.pendingFullfilment != nil {
+                    productData.dashboardDataArray.setObject(productData.pendingFullfilment!, forKey: "pendingApproval" as NSCopying)
+                }
                 productData.totalProducts = tempDict["gp_franchise_total_products"] as? Int
                 if productData.totalProducts != nil {
                    productData.dashboardDataArray.setObject(productData.totalProducts!, forKey: "totalProducts" as NSCopying)
-                }
-                productData.pendingFullfilment = tempDict["gp_franchise_orders_pending_fullefilment"] as? Int
-                if productData.pendingFullfilment != nil {
-                   productData.dashboardDataArray.setObject(productData.pendingFullfilment!, forKey: "pendingApproval" as NSCopying)
                 }
             }
             success(productData)

@@ -63,7 +63,12 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
             return 160
         }
         else if indexPath.row==1 {
+            if(UserDefaults().string(forKey: "businessName")==nil){
+                return 0
+            }
+            else{
             return 25
+            }
         }
         else if indexPath.row==2 {
             return 45
