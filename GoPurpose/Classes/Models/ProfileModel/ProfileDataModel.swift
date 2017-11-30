@@ -15,20 +15,42 @@ class ProfileDataModel: NSObject {
     var email: String?
     var companyName: String?
     var profileImage: String?
+    var userProfileImage: UIImage?
     var currentPassword: String?
     var newPassword: String?
     var firstName: String?
     var lastName: String?
     var defaultCurrency: String?
-    var defaultLanguage: String?
+    var defaultLanguage: NSString?
     var groupName: String?
-    var groupId: String?
+    var groupId: Any?
     var successMessage: String?
-
+    var businessName: String?
+    var zipcode: String?
+    var businessNumber: String?
+    var businessCountry: String?
+    var businessAddressLine1: String?
+    var businessAddressLine2: String?
+    var businessDescription: String?
+    var contactNumber: String?
+    var websiteId: Any?
+    var storeId: Any?
+    var customerAttributeArray:NSMutableArray = NSMutableArray()
+    var addressArray:NSMutableArray = NSMutableArray()
+    var countryArray:NSMutableArray = NSMutableArray()
+    var notificationArray:NSMutableArray = NSMutableArray()
+    var notificationId: String?
+    var notificationType: String?
+    var notificationMessage: String?
+    var targetId: String?
+    var notificationStatus: String?
+    var totalRecords: Any?
+    var currentPage: String?
+    
     // MARK: - Get user profile
     func getUserProfile(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
             ConnectionManager.sharedInstance.getUserProfileData(profileData, success: {(responseObj) in
-       
+//        let responseObj = ProfileDataModel.init(dictionary: responseObj as! Dictionary)
                 success(responseObj)
             }, failure: failure)
         }
@@ -37,7 +59,7 @@ class ProfileDataModel: NSObject {
     // MARK: - Update user image
     func updateUserProfileImage(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.updateUserProfileImage(profileData, success: {(responseObj) in
-
+            UserDefaults().set(profileData.profileImage, forKey: "userProfileImage")
             success(responseObj)
         }, failure: failure)
     }
@@ -47,6 +69,40 @@ class ProfileDataModel: NSObject {
     func changePasswordService(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.changePasswordService(profileData, success: {(responseObj) in
            
+            success(responseObj)
+        }, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - save user profile
+    func saveUserProfile(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.saveUserProfileData(profileData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Country list
+    func getCountryListData(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.getCountryListing(profileData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Notification list data
+    func notificationListService(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.notificationService(profileData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    
+    func markNotificationAsRead(_ profileData: ProfileDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.notificationReadService(profileData, success: {(responseObj) in
+            
             success(responseObj)
         }, failure: failure)
     }

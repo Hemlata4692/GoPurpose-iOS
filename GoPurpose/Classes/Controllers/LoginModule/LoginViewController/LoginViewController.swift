@@ -9,8 +9,8 @@
 import UIKit
 
 class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFieldDelegate {
-  
-     // MARK: - IBOutlets
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var loginScrollView: UIScrollView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -18,7 +18,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var keyBoardControl:BSKeyboardControls?
-     // MARK: - end
+    // MARK: - end
     
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -28,6 +28,12 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     }
     
     func viewCustomisation() {
+        
+        if #available(iOS 11, *) {
+            // Disables the password autoFill accessory view.
+            passwordField.textContentType = UITextContentType("")
+        }
+        
         self.setLocalisedText()
         //set keyboard controller text field array
         let textField=[emailField,passwordField]
@@ -44,8 +50,8 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     func setLocalisedText() {
         emailField.placeholder=NSLocalizedText(key: "email")
         passwordField.placeholder=NSLocalizedText(key: "password")
-        loginButton.titleLabel?.text=NSLocalizedText(key: "loginButton")
-        forgotPasswordButton.titleLabel?.text=NSLocalizedText(key: "forgotPassword")
+        forgotPasswordButton.setTitle(NSLocalizedText(key: "forgotPassword"),for: .normal)
+        loginButton.setTitle(NSLocalizedText(key: "loginButton"),for: .normal)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,7 +86,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
     // MARK: - Login validation
     func performLoginValidations() -> Bool {
         if emailField.isEmpty() ||  passwordField.isEmpty() {
-           SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "emptyFieldMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
             return false
         } else if emailField.isValidEmail() == false {
             SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validEmailMessage"), closeButtonTitle: NSLocalizedText(key: "alertOk"))
@@ -91,7 +97,7 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             return false
         }
         else if (passwordField.isValidPassword() == false) {
-          SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
+            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:NSLocalizedText(key: "validPassword"),closeButtonTitle: NSLocalizedText(key: "alertOk"))
             return false
         }
         return true
@@ -106,20 +112,33 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         userData.isSocialLogin="0"
         LoginDataModel().requestForLogin(userData, success: { (response) in
             AppDelegate().stopIndicator()
-            if (UserDefaults().string(forKey: "deviceToken") != nil) {
-                self.saveDeviceToken()
+            
+            if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 1 {
+                let alert = SCLAlertView()
+                _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
+                    let loginView = storyBoard.instantiateViewController(withIdentifier: "LoginView") as! UINavigationController
+                    UIApplication.shared.keyWindow?.rootViewController = loginView
+                }
+                _ = alert.showWarning(NSLocalizedText(key: "alertTitle"), subTitle: NSLocalizedText(key: "notAuthorisedUser"), closeButtonTitle: NSLocalizedText(key: "alertCancel"))
+            }
+
+            else {
+            if !(UserDefaults().string(forKey: "deviceToken") == nil) {
+                SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:UserDefaults().string(forKey: "deviceToken")!, closeButtonTitle: NSLocalizedText(key: "alertOk"))
+                //self.saveDeviceToken()
             }
             print(userData as AnyObject)
             // Successfully logged in, move to next screen
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
             UIApplication.shared.keyWindow?.rootViewController = nextViewController
-        }) { (error) in
+            }}) { (error) in
             if error != nil {
                 if error?.code == 200 {
                     _ = error?.userInfo["error"] as! String
+                }
             }
         }
-    }
+            
     }
     
     @objc func saveDeviceToken() {

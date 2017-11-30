@@ -40,20 +40,32 @@ class BaseService: NSObject {
         // Create alamofire request
       if reach.isReachable {
         // "alamoReq" is overridden in services, which will create a request here
+
         Alamofire.request(alamoReq.path, method: alamoReq.method, parameters: alamoReq.parameters, encoding: alamoReq.encoding, headers: alamoReq.headers)
             .validate(contentType: ["application/json"])
             .responseJSON { response in
+                print(response.response?.statusCode as Any)
                 if response.response?.statusCode == 200 {
                     print("Success with JSON: \(String(describing: response.result.value))")
                     success(response.result.value as Any)
                 }
                 else {
                     AppDelegate().stopIndicator()
-                    let error = response.result.value as! NSDictionary
-                    let errorMessage = error.object(forKey: "message") as! String
-                    print(errorMessage)
+                    print("error with JSON: \(String(describing: response))")
+                    var errorMessage: String
+                    if !(response.result.value==nil) {
+                        let error = response.result.value as! NSDictionary
+                        errorMessage = error.object(forKey: "message") as! String
+                    }
+                    else if !(response.result.error == nil) {
+                        errorMessage = response.result.error!.localizedDescription
+                    }
+                    else {
+                        errorMessage=NSLocalizedText(key: "somethingWrongMessage")
+                    }
+                    
                     SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:errorMessage, closeButtonTitle: NSLocalizedText(key: "alertOk"))
-                    // failure(error )
+                   //  failure(errorMessage as NSError?)
                 }
         }
           } else {
@@ -62,4 +74,49 @@ class BaseService: NSObject {
             createNoNetworkConnectionView()
         }
     }
+    
+    func callImageWebServiceAlamofire(imageDict: Data, alamoReq: alamofireRequestModal, success:@escaping ((_ responseObject: AnyObject?) -> Void), failure:@escaping ((_ error : NSError?) -> Void)) {
+        // Log path and parameters
+        print("AlamoRequest:\n path: \(alamoReq.path)")
+        print("\n param: \(String(describing: alamoReq.parameters))")
+        if reach.isReachable {
+            // Call response handler method of alamofire
+            let imageName = "\(Date().timeIntervalSince1970 * 1000)"
+            Alamofire.upload(multipartFormData: { multipartFormData in
+                for (key, value) in alamoReq.parameters! {
+                    multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+                }
+                multipartFormData.append(imageDict, withName: "avatar", fileName: imageName+".jpg", mimeType: "image/jpeg")
+            }, to: alamoReq.path, method: alamoReq.method, headers: alamoReq.headers,
+               encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON(completionHandler: { (response) in
+                        print("\n Response/Failure: \(response)")
+                        if response.response?.statusCode == 200 {
+                           // print("Success with JSON: \(String(describing: response.result.value))")
+                            success(response.result.value as AnyObject)
+                        }
+                        else {
+                            AppDelegate().stopIndicator()
+                            let error = response.result.value as! NSDictionary
+                            let errorMessage = error.object(forKey: "message") as! String
+                            print(errorMessage)
+                            SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:errorMessage, closeButtonTitle: NSLocalizedText(key: "alertOk"))
+                            // failure(error )
+                        }
+                    })
+                case .failure(let encodingError):
+                    AppDelegate().stopIndicator()
+                    SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:encodingError.localizedDescription, closeButtonTitle: NSLocalizedText(key: "alertOk"))
+                    failure(encodingError as NSError?)
+                }
+            })
+        }  else {
+            AppDelegate().stopIndicator()
+            failure(nil)
+            createNoNetworkConnectionView()
+        }
+        }
 }
+

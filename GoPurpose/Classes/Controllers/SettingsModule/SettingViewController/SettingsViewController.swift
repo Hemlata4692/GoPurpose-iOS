@@ -31,7 +31,6 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title=NSLocalizedText(key: "profile")
         // Do any additional setup after loading the view.
     }
     
@@ -42,7 +41,9 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.title=NSLocalizedText(key: "profile")
         self.showSelectedTab(item: 4)
+        self.profileTableView.reloadData()
     }
     // MARK: - end
     
@@ -76,11 +77,14 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
         let cell:ProfileTableCell = tableView.dequeueReusableCell(withIdentifier: tableCellKeysArray[indexPath.row], for: indexPath) as! ProfileTableCell
         cell.userProfileImage?.layer.cornerRadius=60
         cell.userProfileImage?.layer.masksToBounds = true
+        if ((UserDefaults().string(forKey: "userProfileImage")) != nil) {
+            cell.userProfileImage?.downloadFrom(link: UserDefaults().string(forKey: "userProfileImage")!)
+        }
         cell.changePasswordLabel?.text=NSLocalizedText(key: "changePasswordProfile")
         cell.notificationLabel?.text=NSLocalizedText(key: "notifications")
-      
+        
         cell.enableNotificationSwitch?.addTarget(self, action: #selector(switchIsChanged(mySwitch:)), for: UIControlEvents.valueChanged)
-        cell.enableNotificationSwitch?.backgroundColor=UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 0.7)
+        cell.enableNotificationSwitch?.backgroundColor=kBorderColor
         cell.enableNotificationSwitch?.layer.cornerRadius=16.0
         cell.editProfileButton?.addTarget(self, action:#selector(editProfileAction(sender:)), for: .touchUpInside)
         
@@ -93,6 +97,7 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
         }
         
         cell.emailLabel?.text=UserDefaults().string(forKey: "userEmail")
+        cell.companyNameLabel?.text=UserDefaults().string(forKey: "businessName")
         return cell
     }
     
@@ -111,7 +116,7 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
     @objc func switchIsChanged(mySwitch: UISwitch) {
         if mySwitch.isOn {
             AppDelegate().registerDeviceForNotification()
-            self.saveDeviceToken()
+            //self.saveDeviceToken()
         } else {
             AppDelegate().unRegisterDeviceForNotification()
         }
@@ -125,21 +130,6 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
     // MARK: - end
     
     // MARK: - Web services
-    //Get user profile
-    func getUserProfile() {
-        let userData = ProfileDataModel()
-        ProfileDataModel().getUserProfile(userData, success: { (response) in
-            AppDelegate().stopIndicator()
-         
-        }) { (error) in
-            if error != nil {
-                if error?.code == 200 {
-                    _ = error?.userInfo["error"] as! String
-                }
-            }
-        }
-    }
-    
     @objc func saveDeviceToken() {
         let userData = LoginDataModel()
         LoginDataModel().saveDeviceToken(userData, success: { (response) in
@@ -154,6 +144,6 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
             }
         }
     }
-     // MARK: - end
+    // MARK: - end
 }
 

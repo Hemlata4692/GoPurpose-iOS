@@ -8,12 +8,18 @@
 
 import UIKit
 
-class SDGViewController: GlobalViewController {
+class SDGViewController: GlobalViewController, UIWebViewDelegate {
+    @IBOutlet weak var sdgWebView: UIWebView!
 
+    @IBOutlet weak var noRecordLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title=NSLocalizedText(key: "sdg")
+         self.noRecordLabel.text=NSLocalizedText(key: "norecord")
+        self.noRecordLabel.isHidden=true
         // Do any additional setup after loading the view.
+        AppDelegate().showIndicator()
+        self.perform(#selector(cmsBlockService), with: nil, afterDelay: 0.1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +28,38 @@ class SDGViewController: GlobalViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc func cmsBlockService() {
+        let userData = LoginDataModel()
+        LoginDataModel().getCMSBlockData(userData, success: { (response) in
+            if  (userData.cmsContentData?.isEmpty)! {
+                AppDelegate().stopIndicator()
+                self.noRecordLabel.isHidden=false
+            }
+            else {
+                // [_productDetailWebView loadHTMLString:[NSString stringWithFormat:@"<div style='text-align:left; font-size:16px;font-family:Montserrat-Light;color:#000000;link:#B62546'>%@", productDetaiData] baseURL: nil]
+//                userData.cmsContentData! = "<div style='text-align:left; font-size:16px;font-family:Montserrat-Light;color:#000000;link:#B62546'>"
+                self.sdgWebView.loadHTMLString(userData.cmsContentData!, baseURL: nil)
+            }
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
     }
-    */
-
+    
+    // Mark: Webview delegates
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        AppDelegate().stopIndicator()
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        AppDelegate().stopIndicator()
+    }
+    // Mark: end
 }

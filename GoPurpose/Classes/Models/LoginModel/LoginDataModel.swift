@@ -11,7 +11,6 @@ import UIKit
 class LoginDataModel: NSObject {
 
     var userId: String?
-    var userName: String?
     var email: String?
     var password: String?
     var profileImage: String?
@@ -25,11 +24,13 @@ class LoginDataModel: NSObject {
     var defaultCurrency: String?
     var defaultLanguage: String?
     var groupName: String?
-    var groupId: String?
-    var followCount: String?
-    var notificationCount: String?
-    var quoteCount: String?
-    var wishlistCount: String?
+    var businesName: String?
+    var cmsContentData: String?
+    var groupId: Any?
+    var followCount: Any?
+    var notificationCount: Any?
+    var quoteCount: Any?
+    var wishlistCount: Any?
   
        // MARK: - Login API
     func requestForLogin(_ userData: LoginDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
@@ -37,8 +38,11 @@ class LoginDataModel: NSObject {
             UserDefaults().set(userData.quoteId, forKey: "quoteId")
             UserDefaults().set(userData.apiKey, forKey: "apiKey")
             UserDefaults().set(userData.groupName, forKey: "groupName")
+            UserDefaults().set(userData.groupId, forKey: "groupId")
             UserDefaults().set(userData.notificationCount, forKey: "notificationCount")
             UserDefaults().set(userData.email, forKey: "userEmail")
+            UserDefaults().set(userData.userId, forKey: "userId")
+             UserDefaults().set(userData.businesName, forKey: "businessName")
             success(responseObj)
         }, failure: failure)
     }
@@ -65,6 +69,14 @@ class LoginDataModel: NSObject {
         ConnectionManager.sharedInstance.sendDevcieToken(userData, success: {(responseObj) in
            success(responseObj)
          }, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - CMS block
+    func getCMSBlockData(_ userData: LoginDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.getBlockData(userData, success: {(responseObj) in
+            success(responseObj)
+        }, failure: failure)
     }
     // MARK: - end
     
