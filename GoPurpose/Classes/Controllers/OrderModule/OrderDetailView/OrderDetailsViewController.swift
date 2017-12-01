@@ -51,12 +51,15 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     // MARK: - IBOutlets and variables
     var orderId: String?
     var orderDetailArray:NSMutableArray = NSMutableArray()
+    var currencySymbolArray:NSMutableArray = NSMutableArray()
     var totalPrice: String?
     var orderStatus: String?
     var purchaseOrderId: String?
     var shippingAddressData: NSDictionary = NSDictionary()
     var billingAddressData: NSDictionary = NSDictionary()
     var trackingDataArray:NSMutableArray = NSMutableArray()
+    var conversionPrice: Double = 0.0
+    var currencySymbol: String?
     
     @IBOutlet weak var noRecordLabel: UILabel!
     @IBOutlet weak var trackOrderButton: UIButton!
@@ -81,12 +84,11 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     
     //MARK: - Webservices
     //track shipment service
-    @objc func getCurrencyDetails(purchaseId:String) {
+    @objc func getCurrencyDetails() {
         let orderData = OrderDataModel()
         OrderDataModel().getCurrencyDetail(orderData, success: { (response) in
-            AppDelegate().stopIndicator()
+            self.currencySymbolArray=orderData.availableCurrencyArray.mutableCopy() as! NSMutableArray
             self.getOrderDetails()
-
         }) { (error) in
             if error != nil {
                 if error?.code == 200 {
@@ -106,15 +108,23 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
                 self.noRecordLabel.isHidden=false
                 self.orderTableView.isHidden=true
                 self.trackOrderButton.isHidden=true
+                AppDelegate().stopIndicator()
             }
-            else{
+            else {
                 self.getShipmentDetails(purchaseId: orderData.purchaseOrderId!)
                 self.noRecordLabel.isHidden=true
                 self.orderTableView.isHidden=false
-                self.totalPrice=NSString(format:"%.1f", orderData.totalAmount as! Double) as String
                 self.orderStatus=orderData.orderStatus
                 self.shippingAddressData=orderData.shippingAddress["address"] as! NSDictionary
                 self.billingAddressData=orderData.billingAddress
+                for i in 0..<self.currencySymbolArray.count {
+                    let currencyDict = self.currencySymbolArray.object(at: i) as! NSDictionary
+                    if (currencyDict["currency_to"]! as? String == orderData.orderCurrencyCode! as? String) {
+                        self.conversionPrice = currencyDict["rate"] as! Double
+                        self.currencySymbol = currencyDict["currency_symbol"] as? String
+                    }
+                }
+                self.totalPrice = self.currencySymbol! + (NSString(format:"%.1f", orderData.totalAmount! as! Double) as String) as String
                 self.orderTableView.reloadData()
                 self.orderTableView.translatesAutoresizingMaskIntoConstraints=true
                 if (self.orderStatus?.contains(NSLocalizedText(key: "canceled")))! {
@@ -138,7 +148,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     //track shipment service
     func getShipmentDetails(purchaseId:String) {
         let orderData = OrderDataModel()
-        orderData.orderId=purchaseOrderId
+        orderData.orderId=orderId
         OrderDataModel().trackShipmetDetail(orderData, success: { (response) in
             AppDelegate().stopIndicator()
             self.trackingDataArray=(orderData.trackShipmentArray as NSArray).mutableCopy() as! NSMutableArray
@@ -247,11 +257,12 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
                     cell.skuHeadingLabel.text=NSLocalizedText(key: "skuHeading")
                     cell.QuantityHeadingLabel.text=NSLocalizedText(key: "qty")
                     cell.priceHeadingLabel.text=NSLocalizedText(key: "priceHeading")
-
                     cell.skuLabel.text = data.productSKU
                     cell.productNameLabel.text=data.productName
                     cell.quantityLabel.text = NSString(format:"%d", data.productQty as! Int) as String
-                    cell.priceLabel.text = "$" + (NSString(format:"%.1f", data.productPrice as! Double) as String) as String
+//                    let totalMultipliedPrice = Double(data.productPrice as! Double) * (data.productQty as! Double)
+//                    let convertedPrice = Double(totalMultipliedPrice) * (conversionPrice)
+                    cell.priceLabel.text = currencySymbol! + (NSString(format:"%.1f", data.productPrice as! Double) as String) as String
                 }
             }
         }

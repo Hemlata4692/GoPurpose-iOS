@@ -64,8 +64,9 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
             self.dataArray.add("totalOrders")
             self.dataArray.add("pendingApproval")
             self.dataArray.add("totalProducts")
+            self.dataArray.add("totalApproved")
             let tempArray1=self.dataArray.mutableCopy() as! NSMutableArray
-            for i in 0..<4 {
+            for i in 0..<5 {
                 if (!(self.dashboardArray.allKeys as NSArray) .contains(tempArray1[i])) {
                     self.dataArray.remove(tempArray1[i])
                 }
@@ -94,7 +95,7 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         AppDelegate().stopIndicator()
     }
-    // Mark: end
+    // MARK: end
     
     //MARK: UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -121,7 +122,7 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
         else if ((dataArray.object(at: indexPath.row) as! String)=="totalOrders") {
             cell.headingLabel.text=NSLocalizedText(key: "totalOrders")
             cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: ((dataArray.object(at: indexPath.row) as! String))) as! Int) as String
-             cell.cardImageView.backgroundColor = UIColor(red: 90.0/255.0, green: 161.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+            cell.cardImageView.backgroundColor = UIColor(red: 230.0/255.0, green: 90.0/255.0, blue: 92.0/255.0, alpha: 1.0)
             cell.cardIconImage.image=UIImage(named: "total-payment")
         }
         else  if ((dataArray.object(at: indexPath.row) as! String)=="pendingApproval") {
@@ -136,6 +137,12 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
             cell.cardImageView.backgroundColor =  UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1.0)
 
             cell.cardIconImage.image=UIImage(named: "total-product")
+        }
+        else if ((dataArray.object(at: indexPath.row) as! String)=="totalApproved") {
+            cell.headingLabel.text=NSLocalizedText(key: "totalApproved")
+            cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: ((dataArray.object(at: indexPath.row) as! String))) as! Int) as String
+            cell.cardImageView.backgroundColor = UIColor(red: 90.0/255.0, green: 161.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+            cell.cardIconImage.image=UIImage(named: "total-order")
         }
         return cell
     }

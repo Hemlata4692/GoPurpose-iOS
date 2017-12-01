@@ -24,6 +24,7 @@ class ProductDataModel: NSObject {
     
     var totalProducts: Any?
     var pendingApproval: Any?
+    var totalApproved: Any?
     var lifeTimeSale: Any?
     var pendingFullfilment: Any?
     var totalOrders: Any?

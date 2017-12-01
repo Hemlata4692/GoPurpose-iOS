@@ -81,7 +81,8 @@
 "Approved"="批准";
 "Pending"="有待";
 "searchProducts"="搜索產品";
-"pendingApproval"="待批准";
+"pendingApproval"="Total Pending Orders";
+"totalApproved"="Total Approved";
 "totalProducts"="產品總數";
 "totalOrders"="總訂單";
 "lifeTimeSale"="終身銷售";

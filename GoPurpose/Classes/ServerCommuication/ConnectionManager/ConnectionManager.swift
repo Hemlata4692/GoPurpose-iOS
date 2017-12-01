@@ -286,8 +286,8 @@ class ConnectionManager: NSObject {
             productData.notificationCount = tempDict["notification_count"]
             productData.userProfileImage = tempDict["profile_pick"] as? String
             if ((productData.groupId as AnyObject).intValue == 2) {
-                productData.pendingApproval = tempDict["gp_vendor_apploval_pending"]! as? Int
-                productData.dashboardDataArray.setObject(productData.pendingApproval!, forKey: "pendingApproval" as NSCopying)
+                productData.totalApproved = tempDict["gp_vendor_apploval_pending"]! as? Int
+                productData.dashboardDataArray.setObject(productData.totalApproved!, forKey: "totalApproved" as NSCopying)
                 productData.totalProducts = tempDict["gp_vendor_total_products"]! as? Int
                 productData.dashboardDataArray.setObject(productData.totalProducts!, forKey: "totalProducts" as NSCopying)
             }
@@ -376,7 +376,9 @@ class ConnectionManager: NSObject {
             let tempDict = response as! NSDictionary
             let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
             let detailDict=dataArray[0] as! NSDictionary
+            productData.baseCurrency=detailDict["base_currency_code"] as? String
             productData.totalAmount=detailDict["grand_total"]
+            productData.orderCurrencyCode=detailDict["order_currency_code"]
             productData.purchaseOrderId=detailDict["increment_id"] as? String
             productData.orderStatus=detailDict["status"] as? String
             productData.billingAddress=detailDict["billing_address"] as! NSDictionary
@@ -389,7 +391,7 @@ class ConnectionManager: NSObject {
                             let orderDetailsDict = productsDetailsArray[i] as! NSDictionary
                             let tempData = OrderDataModel()
                             tempData.productName=orderDetailsDict["name"] as? String
-                            tempData.productPrice=orderDetailsDict["price"]
+                            tempData.productPrice=orderDetailsDict["row_total"]
                             tempData.productSKU=orderDetailsDict["sku"] as? String
                             tempData.productQty=orderDetailsDict["qty_ordered"]
                             tempData.productId=orderDetailsDict["quote_item_id"] as? String
@@ -426,21 +428,9 @@ class ConnectionManager: NSObject {
     func getCurrencyDetailService(_ productData: OrderDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
         OrderService().getCurrencyDetailData(productData, success: {(response) in
             //Parse data from server response and store in data model
-            print("get shipment data %@", response as Any)
-         
-            
-            
-            productData.availableCurrencyRatesArray = NSMutableArray()
-//            var ratesArray = response["exchange_rates"]
-//            UserDefaults().set(response["exchange_rates"], forKey: "availableCurrencyRatesArray")
-            for i in 0..<ratesArray.count {
-                var footerDataDict = ratesArray[i] as? [AnyHashable: Any]
-                var exchangeData = CurrencyDataModel()
-                exchangeData.currencyExchangeCode = footerDataDict["currency_to"]
-                exchangeData.currencyExchangeRates = footerDataDict["rate"]
-                exchangeData.currencysymbol = footerDataDict["currency_symbol"]
-                productData.availableCurrencyRatesArray.append(exchangeData)
-            }
+            print("currency data %@", response as Any)
+            let tempDict = response as! NSDictionary
+             productData.availableCurrencyArray = (tempDict["exchange_rates"] as! NSArray).mutableCopy() as! NSMutableArray
             success(productData)
         },failure:failure)
     }

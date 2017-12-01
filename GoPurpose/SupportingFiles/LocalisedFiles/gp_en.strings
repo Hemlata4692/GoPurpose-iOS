@@ -81,10 +81,11 @@
 "Approved"="Approved";
 "Pending"="Pending";
 "searchProducts"="Search for products";
-"pendingApproval"="Pending Approval";
+"pendingApproval"="Total Pending Orders";
 "totalProducts"="Total Products";
 "totalOrders"="Total Orders";
 "lifeTimeSale"="Lifetime Sales";
+"totalApproved"="Total Approved";
 "completeOrder"=" Orders Served";
 "pendingOrder"="Orders Pending";
 "compareOrder"="Compare Orders";
