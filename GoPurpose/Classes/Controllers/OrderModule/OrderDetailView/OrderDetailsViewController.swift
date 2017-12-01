@@ -71,7 +71,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
         noRecordLabel.text=NSLocalizedText(key: "noRecord")
         trackOrderButton.addButtonCornerRadius(radius: 20)
         AppDelegate().showIndicator()
-        self.perform(#selector(getOrderDetails), with: nil, afterDelay: 0.1)
+        self.perform(#selector(getCurrencyDetails), with: nil, afterDelay: 0.1)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,6 +80,22 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     // MARK: - end
     
     //MARK: - Webservices
+    //track shipment service
+    @objc func getCurrencyDetails(purchaseId:String) {
+        let orderData = OrderDataModel()
+        OrderDataModel().getCurrencyDetail(orderData, success: { (response) in
+            AppDelegate().stopIndicator()
+            self.getOrderDetails()
+
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
+    }
+    
     //Get order details data
     @objc func getOrderDetails() {
         let orderData = OrderDataModel()

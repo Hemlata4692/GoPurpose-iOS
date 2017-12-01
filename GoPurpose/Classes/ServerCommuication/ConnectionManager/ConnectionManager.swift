@@ -421,4 +421,28 @@ class ConnectionManager: NSObject {
         },failure:failure)
     }
     // MARK: - end
+    
+    //MARK: - Get currency detail
+    func getCurrencyDetailService(_ productData: OrderDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        OrderService().getCurrencyDetailData(productData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("get shipment data %@", response as Any)
+         
+            
+            
+            productData.availableCurrencyRatesArray = NSMutableArray()
+//            var ratesArray = response["exchange_rates"]
+//            UserDefaults().set(response["exchange_rates"], forKey: "availableCurrencyRatesArray")
+            for i in 0..<ratesArray.count {
+                var footerDataDict = ratesArray[i] as? [AnyHashable: Any]
+                var exchangeData = CurrencyDataModel()
+                exchangeData.currencyExchangeCode = footerDataDict["currency_to"]
+                exchangeData.currencyExchangeRates = footerDataDict["rate"]
+                exchangeData.currencysymbol = footerDataDict["currency_symbol"]
+                productData.availableCurrencyRatesArray.append(exchangeData)
+            }
+            success(productData)
+        },failure:failure)
+    }
+    // MARK: - end
 }
