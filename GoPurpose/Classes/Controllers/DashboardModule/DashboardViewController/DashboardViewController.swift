@@ -51,14 +51,19 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
             
             self.dashboardArray=productData.dashboardDataArray.mutableCopy() as! NSMutableDictionary
             self.groupID=productData.groupId
+            
+             if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
             let reportURL = BASE_URL + UserDefaults().string(forKey: "Language")! + "/marketplace_report/graph/unfulfilled/?token=" + UserDefaults().string(forKey: "apiKey")!
             self.reportsWebView.loadRequest(URLRequest(url: URL(string: reportURL)!))
-            
+            }
+             else {
+                AppDelegate().stopIndicator()
+                self.reportsWebView.isHidden=true;
+            }
             self.dataArray.add("lifeTimeSale")
             self.dataArray.add("totalOrders")
             self.dataArray.add("pendingApproval")
             self.dataArray.add("totalProducts")
-            
             let tempArray1=self.dataArray.mutableCopy() as! NSMutableArray
             for i in 0..<4 {
                 if (!(self.dashboardArray.allKeys as NSArray) .contains(tempArray1[i])) {
@@ -116,7 +121,7 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
         else if ((dataArray.object(at: indexPath.row) as! String)=="totalOrders") {
             cell.headingLabel.text=NSLocalizedText(key: "totalOrders")
             cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: ((dataArray.object(at: indexPath.row) as! String))) as! Int) as String
-            cell.cardImageView.backgroundColor =  UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+             cell.cardImageView.backgroundColor = UIColor(red: 90.0/255.0, green: 161.0/255.0, blue: 228.0/255.0, alpha: 1.0)
             cell.cardIconImage.image=UIImage(named: "total-payment")
         }
         else  if ((dataArray.object(at: indexPath.row) as! String)=="pendingApproval") {
@@ -128,7 +133,8 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
         else if ((dataArray.object(at: indexPath.row) as! String)=="totalProducts") {
             cell.headingLabel.text=NSLocalizedText(key: "totalProducts")
             cell.dataLabel.text=NSString(format:"%d", dashboardArray.object(forKey: ((dataArray.object(at: indexPath.row) as! String))) as! Int) as String
-            cell.cardImageView.backgroundColor = UIColor(red: 90.0/255.0, green: 161.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+            cell.cardImageView.backgroundColor =  UIColor (red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+
             cell.cardIconImage.image=UIImage(named: "total-product")
         }
         return cell

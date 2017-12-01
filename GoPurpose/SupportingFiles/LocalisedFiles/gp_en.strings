@@ -91,7 +91,7 @@
 "purchaseOrder"="Purchase Order: ";
 "orderDate"="Date: ";
 "notAuthorisedUser"="You are not authorize to access it.";
-"status"="Status: ";
+"status1"="Status: ";
 "billingShippingText"="Shipping & Billing Information";
 "complete"="complete";
 "canceled"="canceled";

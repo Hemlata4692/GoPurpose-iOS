@@ -91,7 +91,7 @@
 "purchaseOrder"="採購訂單：";
 "orderDate"="日期：";
 "notAuthorisedUser"="您沒有授權訪問它.";
-"status"="狀態：";
+"status1"="狀態：";
 "billingShippingText"="運輸和計費信息";
 "complete"="完成";
 "canceled"="取消";

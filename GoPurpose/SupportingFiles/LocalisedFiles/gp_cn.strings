@@ -91,7 +91,7 @@
 "purchaseOrder"="采购订单：";
 "orderDate"="日期：";
 "notAuthorisedUser"="您没有授权访问它.";
-"status"="状态: ";
+"status1"="状态: ";
 "billingShippingText"="运输和计费信息";
 "complete"="完成";
 "canceled"="取消";

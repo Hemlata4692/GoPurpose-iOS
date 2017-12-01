@@ -80,6 +80,14 @@ class SideBarViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return 0
             }
         }
+        else  if indexPath.row == 2 {
+            if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
+                return 50
+            }
+            else {
+                return 0
+            }
+        }
         else if indexPath.row == 3 {
             if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 4 {
                 return 50

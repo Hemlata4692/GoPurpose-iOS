@@ -122,7 +122,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     //track shipment service
     func getShipmentDetails(purchaseId:String) {
         let orderData = OrderDataModel()
-        orderData.orderId=orderId
+        orderData.orderId=purchaseOrderId
         OrderDataModel().trackShipmetDetail(orderData, success: { (response) in
             AppDelegate().stopIndicator()
             self.trackingDataArray=(orderData.trackShipmentArray as NSArray).mutableCopy() as! NSMutableArray
@@ -214,16 +214,16 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
                 if indexPath.row == 0 {
                     cell.orderIdLabel.text=purchaseOrderId
                     if (orderStatus?.contains(NSLocalizedText(key: "complete")))! {
-                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 163.0/255.0, green: 217.0/255.0, blue: 131.0/255.0, alpha: 1.0))
+                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status1"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 163.0/255.0, green: 217.0/255.0, blue: 131.0/255.0, alpha: 1.0))
                     }
                     else  if (orderStatus?.contains(NSLocalizedText(key: "canceled")))! {
-                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 227.0/255.0, green: 88.0/255.0, blue: 95.0/255.0, alpha: 1.0))
+                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status1"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 227.0/255.0, green: 88.0/255.0, blue: 95.0/255.0, alpha: 1.0))
                     }
                     else {
-                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 245.0/255.0, green: 218.0/255.0, blue: 63.0/255.0, alpha: 1.0))
+                        cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status1"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 245.0/255.0, green: 218.0/255.0, blue: 63.0/255.0, alpha: 1.0))
                     }
                 } else if indexPath.row ==  orderDetailArray.count + 1 {
-                    cell.totalHeadingLabel.text=NSLocalizedText(key: "totalHeading")
+                    cell.totalHeadingLabel.text = "$" + NSLocalizedText(key: "totalHeading")
                     cell.priceTotalLabel.text = totalPrice
                 } else {
                     data = self.orderDetailArray[orderDetailArray.count - 1] as! OrderDataModel
@@ -235,7 +235,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
                     cell.skuLabel.text = data.productSKU
                     cell.productNameLabel.text=data.productName
                     cell.quantityLabel.text = NSString(format:"%d", data.productQty as! Int) as String
-                    cell.priceLabel.text = NSString(format:"%.1f", data.productPrice as! NSNumber) as String
+                    cell.priceLabel.text = "$" + (NSString(format:"%.1f", data.productPrice as! Double) as String) as String
                 }
             }
         }
