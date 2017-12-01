@@ -421,4 +421,15 @@ class ConnectionManager: NSObject {
         },failure:failure)
     }
     // MARK: - end
+    
+    //MARK: - Get currency detail
+    func getCurrencyDetailService(_ productData: OrderDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        OrderService().getCurrencyDetailData(productData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("get shipment data %@", response as Any)
+        
+            success(productData)
+        },failure:failure)
+    }
+    // MARK: - end
 }

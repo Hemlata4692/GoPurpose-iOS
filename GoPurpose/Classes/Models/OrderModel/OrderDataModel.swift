@@ -61,4 +61,13 @@ class OrderDataModel: NSObject {
         }, failure: failure)
     }
     // MARK: - end
+    
+    // MARK: - Get currency details
+    func getCurrencyDetail(_ productData: OrderDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.getCurrencyDetailService(productData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    // MARK: - end
 }

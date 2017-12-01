@@ -11,6 +11,7 @@ import UIKit
 private var kOrderList = "gopurpose/marketplace/orders"
 private var kOrderDetails = "orders"
 private var kTrackShippment="shipments";
+private var kGetCurrency="directory/currency";
 
 class OrderService: BaseService {
 
@@ -71,6 +72,21 @@ class OrderService: BaseService {
         request.headers=headers
         print("track shipment request %@", request.parameters as Any)
         request.path = basePath + kTrackShippment
+        self.callPostService(request, success: success, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Get currency detail
+    func getCurrencyDetailData(_ productData: OrderDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
+        let headers = [
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!
+        ]
+        var request:alamofireRequestModal = alamofireRequestModal()
+        request.method = .get
+        request.parameters = nil
+        request.headers=headers
+        print("curreny request %@", request.parameters as Any)
+        request.path = basePath + kGetCurrency
         self.callPostService(request, success: success, failure: failure)
     }
     // MARK: - end
