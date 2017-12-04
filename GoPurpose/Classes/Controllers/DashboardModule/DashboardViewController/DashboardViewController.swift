@@ -39,8 +39,16 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isHidden=false;
         self.showSelectedTab(item: 1)
+        
+        if myDelegate?.notificationTapped! == "1" {
+            let secondViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetailsViewController") as! OrderDetailsViewController
+            secondViewController.orderId = myDelegate?.targetId!
+            self.navigationController?.pushViewController(secondViewController, animated: true)
+        }
+        else {
         AppDelegate().showIndicator()
         self.perform(#selector(getDashboardData), with: nil, afterDelay: 0.1)
+        }
     }
     // MARK: - end
     

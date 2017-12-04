@@ -64,6 +64,7 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
     
     func marknotificationRead(index:Int, notificationId:String) {
         let notificationList = ProfileDataModel()
+        notificationList.notificationId=notificationId
         ProfileDataModel().markNotificationAsRead(notificationList, success: { (response) in
             AppDelegate().stopIndicator()
             var notificationData = ProfileDataModel()

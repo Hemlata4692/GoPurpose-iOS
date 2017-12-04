@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
     
     // MARK: - Declarations
     var window: UIWindow?
@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var loaderView:UIView = UIView()
     var spinnerView:MMMaterialDesignSpinner=MMMaterialDesignSpinner()
     var notificationEnabled:String!
+    var targetId:String!
+    var notificationId:String!
+    var notificationTapped:String!
     // MARK: - end
     
     // MARK: - Show indicator
@@ -76,6 +79,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = nextViewController
         }
+        
+        //
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+        }
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         //register device for notification
         registerDeviceForNotification()
         
@@ -152,6 +162,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print notification payload data
         print("Push notification received: \(data)")
     }
+    
+  @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // Called to let your app know which action was selected by the user for a given notification.
+        let userInfo = response.notification.request.content.userInfo as NSDictionary
+        print("\(String(describing: userInfo))")
+//
+//        aps =     {
+//            alert = "Earned points for sharing Exciting Corn on Facebook";
+//            "customer_id" = 238;
+//            "notification_id" = 326;
+//            status = 0;
+//            "targat_id" = 0;
+//            type = 10;
+//        };
+//    }
+            let alertDict = userInfo["aps"] as! NSDictionary
+            targetId = alertDict["targat_id"] as! String
+            notificationId = alertDict["notification_id"] as! String
+            notificationTapped="1"
+            self.marknotificationRead(notificationId: notificationId)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            self.window?.rootViewController = nextViewController
+        completionHandler()
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+        
+    }
     // MARK: - end
+    
+    func marknotificationRead(notificationId:String) {
+        let notificationList = ProfileDataModel()
+        notificationList.notificationId=self.notificationId
+        ProfileDataModel().markNotificationAsRead(notificationList, success: { (response) in
+            AppDelegate().stopIndicator()
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
+    }
 }
 

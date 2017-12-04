@@ -80,6 +80,11 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+         super.viewWillDisappear()
+        myDelegate?.notificationTapped = "0"
+    }
     // MARK: - end
     
     //MARK: - Webservices
