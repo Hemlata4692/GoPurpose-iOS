@@ -195,19 +195,35 @@ class SearchViewController: GlobalBackViewController , UITableViewDelegate, UITa
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-            if self.productListingArray.count == totalRecords as! Int {
-                serachProductTableView.tableFooterView=nil
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.productListingArray.count == totalRecords as! Int {
+            serachProductTableView.tableFooterView=nil
+        }
+        else if(indexPath.row == self.productListingArray.count - 1) {
+            if(self.productListingArray.count < totalRecords as! Int) {
+                tableView.tableFooterView = footerView;
+                currentPageCount += 1
+                self.getProductList()
             }
             else {
-                serachProductTableView.tableFooterView=footerView
-                // call method to add data to tableView
-                currentPageCount = +1
-                self.getProductList()
+               serachProductTableView.tableFooterView=nil
             }
         }
     }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
+//            if self.productListingArray.count == totalRecords as! Int {
+//                serachProductTableView.tableFooterView=nil
+//            }
+//            else {
+//                serachProductTableView.tableFooterView=footerView
+//                // call method to add data to tableView
+//                currentPageCount = +1
+//                self.getProductList()
+//            }
+//        }
+//    }
     // MARK: - end
     
     // MARK: - IBActions

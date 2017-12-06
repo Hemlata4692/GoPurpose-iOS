@@ -169,22 +169,38 @@ class ProductListViewController: GlobalViewController,UITableViewDelegate, UITab
         }
         return cell
     }
-        
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-            if !(self.productListingArray.count==0) {
-            if self.productListingArray.count == totalRecords as! Int {
-                 productTableView.tableFooterView=nil
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.productListingArray.count == totalRecords as! Int {
+             productTableView.tableFooterView=nil
+        }
+        else if(indexPath.row == self.productListingArray.count - 1) {
+            if(self.productListingArray.count < totalRecords as! Int) {
+                tableView.tableFooterView = footerView;
+                currentPageCount += 1
+                self.getProductList()
             }
             else {
-            productTableView.tableFooterView=footerView
-            // call method to add data to tableView
-            currentPageCount = +1
-            self.getProductList()
+                productTableView.tableFooterView=nil
             }
         }
-        }
     }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
+//            if !(self.productListingArray.count==0) {
+//            if self.productListingArray.count == totalRecords as! Int {
+//                 productTableView.tableFooterView=nil
+//            }
+//            else {
+//            productTableView.tableFooterView=footerView
+//            // call method to add data to tableView
+//            currentPageCount = +1
+//            self.getProductList()
+//            }
+//        }
+//        }
+//    }
     // MARK: - end
     
     // MARK: - IBActions

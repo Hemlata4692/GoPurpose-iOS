@@ -110,23 +110,37 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
         secondViewController.purchaseOrderId=NSLocalizedText(key: "purchaseOrder")+productData.orderId!
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
-    
     //pagination
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-            if !(self.orderListingArray.count==0) {
-            if self.orderListingArray.count == totalRecords as! Int {
-                orderListTableView.tableFooterView=nil
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.orderListingArray.count == totalRecords as! Int {
+            orderListTableView.tableFooterView=nil
+        }
+        else if(indexPath.row == self.orderListingArray.count - 1) {
+            if(self.orderListingArray.count < totalRecords as! Int) {
+                tableView.tableFooterView = footerView;
+                currentPageCount += 1
+                 self.getOrderListing()
             }
             else {
-                orderListTableView.tableFooterView=footerView
-                // call method to add data to tableView
-                currentPageCount = +1
-                self.getOrderListing()
+                orderListTableView.tableFooterView=nil
             }
         }
-        }
     }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
+//            if !(self.orderListingArray.count==0) {
+//            if self.orderListingArray.count == totalRecords as! Int {
+//                orderListTableView.tableFooterView=nil
+//            }
+//            else {
+//                orderListTableView.tableFooterView=footerView
+//                // call method to add data to tableView
+//                currentPageCount = +1
+//                self.getOrderListing()
+//            }
+//        }
+//        }
+//    }
     // MARK: - end
     
     
