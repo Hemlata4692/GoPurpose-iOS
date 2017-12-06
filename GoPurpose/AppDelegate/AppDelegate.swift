@@ -18,9 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     var loaderView:UIView = UIView()
     var spinnerView:MMMaterialDesignSpinner=MMMaterialDesignSpinner()
     var notificationEnabled:String!
-    var targetId:String!
-    var notificationId:String!
-    var notificationTapped:String!
+    var targetId:String?
+    var notificationId:String?
+    var notificationTapped:String?
+     var deviceNotificationToken:String?
     // MARK: - end
     
     // MARK: - Show indicator
@@ -120,13 +121,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     // MARK: - Push notification methods
     //register device for remote notifications
     func registerDeviceForNotification() {
-            // iOS 9 support
-       if #available(iOS 9, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
+      if #available(iOS 10, *) {
+    UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+    UIApplication.shared.registerForRemoteNotifications()
         }
        else {
-        UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
         UIApplication.shared.registerForRemoteNotifications()
         }
         notificationEnabled="1"
@@ -148,6 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         UserDefaults().set(deviceTokenString, forKey: "deviceToken")
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
+        self.deviceNotificationToken=deviceTokenString
+        SCLAlertView().showWarning("self.deviceToken", subTitle:self.deviceNotificationToken!, closeButtonTitle: NSLocalizedText(key: "alertOk"))
         // Persist it in your backend in case it's new
     }
     
@@ -178,11 +180,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 //            type = 10;
 //        };
 //    }
+    
+   // {"aps":{"alert":"A new order #000000443 has been received.","customer_id":"1","type":1,"targat_id":524,"status":0,"notification_id":"38"}}
+    
             let alertDict = userInfo["aps"] as! NSDictionary
-            targetId = alertDict["targat_id"] as! String
-            notificationId = alertDict["notification_id"] as! String
+            targetId = alertDict["targat_id"] as? String
+            notificationId = alertDict["notification_id"] as? String
             notificationTapped="1"
-            self.marknotificationRead(notificationId: notificationId)
+            self.marknotificationRead(notificationId: notificationId!)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = nextViewController
         completionHandler()
@@ -192,6 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        SCLAlertView().showWarning("will present", subTitle:"(String(describing: userInfo))", closeButtonTitle: NSLocalizedText(key: "alertOk"))
         completionHandler(.alert)
         
     }

@@ -82,7 +82,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-         super.viewWillDisappear()
+        super.viewWillDisappear(true)
         myDelegate?.notificationTapped = "0"
     }
     // MARK: - end

@@ -40,19 +40,40 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
         self.navigationController?.navigationBar.isHidden=false;
         self.showSelectedTab(item: 1)
         
-        if myDelegate?.notificationTapped! == "1" {
+        if myDelegate?.notificationTapped == "1" {
             let secondViewController = storyBoard.instantiateViewController(withIdentifier: "OrderDetailsViewController") as! OrderDetailsViewController
-            secondViewController.orderId = myDelegate?.targetId!
+            secondViewController.orderId = myDelegate?.targetId
             self.navigationController?.pushViewController(secondViewController, animated: true)
         }
         else {
-        AppDelegate().showIndicator()
-        self.perform(#selector(getDashboardData), with: nil, afterDelay: 0.1)
+            if (UserDefaults().string(forKey: "deviceToken") == nil) {//myDelegate?.deviceNotificationToken==nil
+                print(UserDefaults().string(forKey: "deviceToken") as Any)
+                print(myDelegate?.deviceNotificationToken as Any)
+                AppDelegate().showIndicator()
+                self.perform(#selector(getDashboardData), with: nil, afterDelay: 0.1)
+            }
+            else {
+                AppDelegate().showIndicator()
+                self.perform(#selector(saveDeviceToken), with: nil, afterDelay: 0.1)
+            }
         }
     }
     // MARK: - end
     
     //MARK: - Webservices
+    @objc func saveDeviceToken() {
+        let userData = LoginDataModel()
+        LoginDataModel().saveDeviceToken(userData, success: { (response) in
+            self.getDashboardData()
+            
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
+    }
     @objc func getDashboardData() {
         let productData = ProductDataModel()
         ProductDataModel().getDashboardListingData(productData, success: { (response) in

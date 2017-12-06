@@ -10,7 +10,7 @@ import UIKit
 
 private var kLogin = "ranosys/customer/customerLogin"
 private var kForgotPassword = "ranosys/customer/forgotPassword"
-private var kSaveDeviceToken = "ranosys/saveDeviceToken"
+private var kSaveDeviceToken = "gopurpose/saveDeviceToken"
 private var kResetPassword = "ranosys/customer/resetPassword"
 private var kCMSPage="ranosys/cmsBlock/search"
 
@@ -58,7 +58,7 @@ class LoginService: BaseService {
         ]
         request.method = .post
         request.headers=headers
-        request.parameters = ["customerId": UserDefaults().string(forKey: "userId") as AnyObject, "deviceType": "2", "deviceToken": UserDefaults().string(forKey: "deviceToken") as AnyObject] as [String : AnyObject]
+        request.parameters = ["customerId": UserDefaults().string(forKey: "userId") as AnyObject, "deviceType": "2" as AnyObject, "deviceToken": UserDefaults().string(forKey: "deviceToken") as AnyObject] as [String : AnyObject]
         print("save device token request %@", request.parameters as Any)
         request.path = basePath + kSaveDeviceToken
         self.callPostService(request, success: success, failure: failure)
