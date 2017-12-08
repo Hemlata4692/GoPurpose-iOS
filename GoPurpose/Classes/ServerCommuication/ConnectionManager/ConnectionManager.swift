@@ -139,64 +139,40 @@ class ConnectionManager: NSObject {
              let dictValues = array1[0] as! NSDictionary
                 profileData.businessName=dictValues["value"] as? String
             }
-            else {
-                profileData.businessName=NSLocalizedText(key: "dataNotAdded")
-            }
             let array2 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate2)
             if (array2.count>0) {
                 let dictValues = array2[0] as! NSDictionary
                 profileData.zipcode=dictValues["value"] as? String
-            }
-            else {
-                profileData.zipcode=NSLocalizedText(key: "dataNotAdded")
             }
             let array3 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate3)
             if (array3.count>0) {
                 let dictValues = array3[0] as! NSDictionary
                 profileData.businessNumber=dictValues["value"] as? String
             }
-            else {
-                profileData.businessNumber=NSLocalizedText(key: "dataNotAdded")
-            }
             let array4 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate4)
             if (array4.count>0) {
                 let dictValues = array4[0] as! NSDictionary
                 profileData.businessCountry=dictValues["value"] as? String
-            }
-            else {
-                profileData.businessCountry=NSLocalizedText(key: "dataNotAdded")
             }
             let array5 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate5)
             if (array5.count>0) {
                 let dictValues = array5[0] as! NSDictionary
                 profileData.businessAddressLine1=dictValues["value"] as? String
             }
-            else {
-                profileData.businessAddressLine1=NSLocalizedText(key: "dataNotAdded")
-            }
             let array6 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate6)
             if (array6.count>0) {
                 let dictValues = array6[0] as! NSDictionary
                 profileData.businessAddressLine2=dictValues["value"] as? String
-            }
-            else {
-                profileData.businessAddressLine2=NSLocalizedText(key: "dataNotAdded")
             }
             let array7 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate7)
             if (array7.count>0) {
                 let dictValues = array7[0] as! NSDictionary
                 profileData.businessDescription=dictValues["value"] as? String
             }
-            else {
-                profileData.businessDescription=NSLocalizedText(key: "dataNotAdded")
-            }
             let array8 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate8)
             if (array8.count>0) {
                 let dictValues = array8[0] as! NSDictionary
                 profileData.contactNumber=dictValues["value"] as? String
-            }
-            else {
-                profileData.contactNumber=NSLocalizedText(key: "dataNotAdded")
             }
             let array9 = (profileData.customerAttributeArray as NSMutableArray).filtered(using: searchPredicate9)
             if (array9.count>0) {
@@ -291,6 +267,7 @@ class ConnectionManager: NSObject {
                 tempData.productStatus=dataDict["status"] as? String
                 tempData.productType=dataDict["type_id"] as? String
                 tempData.productImage=dataDict["thumbnail"] as? String
+                tempData.productQuantity=dataDict["qty"] as? String
                 productData.productListDataArray.add(tempData)
             }
             success(productData)
@@ -309,8 +286,8 @@ class ConnectionManager: NSObject {
             productData.notificationCount = tempDict["notification_count"]
             productData.userProfileImage = tempDict["profile_pick"] as? String
             if ((productData.groupId as AnyObject).intValue == 2) {
-                productData.pendingApproval = tempDict["gp_vendor_apploval_pending"]! as? Int
-                productData.dashboardDataArray.setObject(productData.pendingApproval!, forKey: "pendingApproval" as NSCopying)
+                productData.totalApproved = tempDict["gp_vendor_apploval_pending"]! as? Int
+                productData.dashboardDataArray.setObject(productData.totalApproved!, forKey: "totalApproved" as NSCopying)
                 productData.totalProducts = tempDict["gp_vendor_total_products"]! as? Int
                 productData.dashboardDataArray.setObject(productData.totalProducts!, forKey: "totalProducts" as NSCopying)
             }
@@ -327,13 +304,13 @@ class ConnectionManager: NSObject {
                 if (productData.totalOrders != nil) {
                    productData.dashboardDataArray.setObject(productData.totalOrders!, forKey: "totalOrders" as NSCopying)
                 }
+                productData.pendingFullfilment = tempDict["gp_franchise_orders_pending_fullefilment"] as? Int
+                if productData.pendingFullfilment != nil {
+                    productData.dashboardDataArray.setObject(productData.pendingFullfilment!, forKey: "pendingApproval" as NSCopying)
+                }
                 productData.totalProducts = tempDict["gp_franchise_total_products"] as? Int
                 if productData.totalProducts != nil {
                    productData.dashboardDataArray.setObject(productData.totalProducts!, forKey: "totalProducts" as NSCopying)
-                }
-                productData.pendingFullfilment = tempDict["gp_franchise_orders_pending_fullefilment"] as? Int
-                if productData.pendingFullfilment != nil {
-                   productData.dashboardDataArray.setObject(productData.pendingFullfilment!, forKey: "pendingApproval" as NSCopying)
                 }
             }
             success(productData)
@@ -399,7 +376,9 @@ class ConnectionManager: NSObject {
             let tempDict = response as! NSDictionary
             let dataArray = (tempDict["items"] as! NSArray).mutableCopy() as! NSMutableArray
             let detailDict=dataArray[0] as! NSDictionary
+            productData.baseCurrency=detailDict["base_currency_code"] as? String
             productData.totalAmount=detailDict["grand_total"]
+            productData.orderCurrencyCode=detailDict["order_currency_code"]
             productData.purchaseOrderId=detailDict["increment_id"] as? String
             productData.orderStatus=detailDict["status"] as? String
             productData.billingAddress=detailDict["billing_address"] as! NSDictionary
@@ -412,7 +391,7 @@ class ConnectionManager: NSObject {
                             let orderDetailsDict = productsDetailsArray[i] as! NSDictionary
                             let tempData = OrderDataModel()
                             tempData.productName=orderDetailsDict["name"] as? String
-                            tempData.productPrice=orderDetailsDict["price"]
+                            tempData.productPrice=orderDetailsDict["row_total"]
                             tempData.productSKU=orderDetailsDict["sku"] as? String
                             tempData.productQty=orderDetailsDict["qty_ordered"]
                             tempData.productId=orderDetailsDict["quote_item_id"] as? String
@@ -440,6 +419,18 @@ class ConnectionManager: NSObject {
                 productData.trackShipmentArray.add(tempData)
             }
             }
+            success(productData)
+        },failure:failure)
+    }
+    // MARK: - end
+    
+    //MARK: - Get currency detail
+    func getCurrencyDetailService(_ productData: OrderDataModel, success:@escaping ((_ response: Any?) -> Void), failure:@escaping ((_ err : NSError?) -> Void)) {
+        OrderService().getCurrencyDetailData(productData, success: {(response) in
+            //Parse data from server response and store in data model
+            print("currency data %@", response as Any)
+            let tempDict = response as! NSDictionary
+             productData.availableCurrencyArray = (tempDict["exchange_rates"] as! NSArray).mutableCopy() as! NSMutableArray
             success(productData)
         },failure:failure)
     }

@@ -10,7 +10,7 @@ import UIKit
 
 private var kLogin = "ranosys/customer/customerLogin"
 private var kForgotPassword = "ranosys/customer/forgotPassword"
-private var kSaveDeviceToken = "ranosys/saveDeviceToken"
+private var kSaveDeviceToken = "gopurpose/saveDeviceToken"
 private var kResetPassword = "ranosys/customer/resetPassword"
 private var kCMSPage="ranosys/cmsBlock/search"
 
@@ -53,11 +53,13 @@ class LoginService: BaseService {
     // MARK: - Save device token service
     func saveDeviceTokenService(_ loginData: LoginDataModel, success: @escaping ((_ responseObject: Any?) -> Void), failure: @escaping ((_ error : NSError?) -> Void)) {
         var request:alamofireRequestModal = alamofireRequestModal()
+        let headers = [
+            "Authorization": "Bearer " + UserDefaults().string(forKey: "apiKey")!
+        ]
         request.method = .post
-        request.parameters = ["customerId": UserDefaults().string(forKey: "userId") as AnyObject, "deviceType": 2, "deviceToken": UserDefaults().string(forKey: "deviceToken") as AnyObject] as [String : AnyObject]
+        request.headers=headers
+        request.parameters = ["customerId": UserDefaults().string(forKey: "userId") as AnyObject, "deviceType": "2" as AnyObject, "deviceToken": UserDefaults().string(forKey: "deviceToken") as AnyObject] as [String : AnyObject]
         print("save device token request %@", request.parameters as Any)
-        SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:request.parameters as Any as! String, closeButtonTitle: NSLocalizedText(key: "alertOk"))
-
         request.path = basePath + kSaveDeviceToken
         self.callPostService(request, success: success, failure: failure)
     }

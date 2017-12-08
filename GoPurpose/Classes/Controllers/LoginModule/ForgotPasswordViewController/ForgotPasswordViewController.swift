@@ -154,14 +154,20 @@ class ForgotPasswordViewController: UIViewController,UITextFieldDelegate,BSKeybo
         userLogin.email = forgotPasswordEmailField.text
         LoginDataModel().forgotPasswordService(userLogin, success: { (response) in
             AppDelegate().stopIndicator()
-            self.resetPasswordEmailField.text = self.forgotPasswordEmailField.text
-            let moveForgotView: UIView? = self.resetPasswordView
-            self.addLeftAnimationPresent(moveForgotView!)
-            self.resetPasswordView.isHidden = false
-            self.forgotPasswordView.isHidden = true
-            self.keyBoardControl = BSKeyboardControls(fields: [self.resetPasswordEmailField,self.currentPasswordField,self.confirmPasswordFiled,self.otpNumberField] as! [UITextField])
-            self.keyBoardControl?.delegate=self
-            //currentView = resetPasswordView
+            
+            AppDelegate().stopIndicator()
+            let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+            let alert = SCLAlertView(appearance: appearance)
+            _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
+                self.resetPasswordEmailField.text = self.forgotPasswordEmailField.text
+                let moveForgotView: UIView? = self.resetPasswordView
+                self.addLeftAnimationPresent(moveForgotView!)
+                self.resetPasswordView.isHidden = false
+                self.forgotPasswordView.isHidden = true
+                self.keyBoardControl = BSKeyboardControls(fields: [self.resetPasswordEmailField,self.currentPasswordField,self.confirmPasswordFiled,self.otpNumberField] as! [UITextField])
+                self.keyBoardControl?.delegate=self
+            }
+            _ = alert.showSuccess(NSLocalizedText(key: "alertTitle"), subTitle: "You will receive an email shortly with an OTP to reset your password.", closeButtonTitle: nil)
         }) { (error) in
             if error != nil {
                 if error?.code == 200 {

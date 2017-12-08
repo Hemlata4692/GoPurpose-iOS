@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
     
     // MARK: - Declarations
     var window: UIWindow?
@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var loaderView:UIView = UIView()
     var spinnerView:MMMaterialDesignSpinner=MMMaterialDesignSpinner()
     var notificationEnabled:String!
+    var targetId:String?
+    var notificationId:String?
+    var notificationTapped:String?
+     var deviceNotificationToken:String?
     // MARK: - end
     
     // MARK: - Show indicator
@@ -76,6 +80,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = nextViewController
         }
+        
+        //
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+        }
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         //register device for notification
         registerDeviceForNotification()
         
@@ -110,13 +121,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Push notification methods
     //register device for remote notifications
     func registerDeviceForNotification() {
-            // iOS 9 support
-       if #available(iOS 9, *) {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
+      if #available(iOS 10, *) {
+    UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+    UIApplication.shared.registerForRemoteNotifications()
         }
        else {
-        UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
         UIApplication.shared.registerForRemoteNotifications()
         }
         notificationEnabled="1"
@@ -138,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults().set(deviceTokenString, forKey: "deviceToken")
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
-        // Persist it in your backend in case it's new
+        self.deviceNotificationToken=deviceTokenString
     }
     
     // Called when APNs failed to register the device for push notifications
@@ -152,6 +162,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print notification payload data
         print("Push notification received: \(data)")
     }
+    
+  @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // Called to let your app know which action was selected by the user for a given notification.
+        let userInfo = response.notification.request.content.userInfo as NSDictionary
+        print("\(String(describing: userInfo))")
+            let alertDict = userInfo["aps"] as! NSDictionary
+            targetId = alertDict["targat_id"] as? String
+            notificationId = alertDict["notification_id"] as? String
+            notificationTapped="1"
+            self.marknotificationRead(notificationId: notificationId!)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+            self.window?.rootViewController = nextViewController
+        completionHandler()
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+        
+    }
     // MARK: - end
+    
+    func marknotificationRead(notificationId:String) {
+        let notificationList = ProfileDataModel()
+        notificationList.notificationId=self.notificationId
+        ProfileDataModel().markNotificationAsRead(notificationList, success: { (response) in
+            AppDelegate().stopIndicator()
+        }) { (error) in
+            if error != nil {
+                if error?.code == 200 {
+                    _ = error?.userInfo["error"] as! String
+                }
+            }
+        }
+    }
 }
 
