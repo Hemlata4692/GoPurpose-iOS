@@ -39,7 +39,7 @@
 "norecord"="沒有找到記錄.";
 "submitButton"="提交";
 "loginButton"="登錄";
-"homeTab"="家";
+"homeTab"="仪表板";
 "messageTab"="消息";
 "productTab"="產品";
 "settingTab"="設置";
@@ -81,17 +81,18 @@
 "Approved"="批准";
 "Pending"="有待";
 "searchProducts"="搜索產品";
-"pendingApproval"="待批准";
+"pendingApproval"="總待處理訂單";
+"totalApproved"="已批准總數";
 "totalProducts"="產品總數";
 "totalOrders"="總訂單";
 "lifeTimeSale"="終身銷售";
-"completeOrder"="完成訂單";
-"pendingOrder"="掛單";
+"completeOrder"="訂單已送達";
+"pendingOrder"="訂單等待";
 "compareOrder"="比較訂單";
 "purchaseOrder"="採購訂單：";
 "orderDate"="日期：";
 "notAuthorisedUser"="您沒有授權訪問它.";
-"status"="狀態：";
+"status1"="狀態：";
 "billingShippingText"="運輸和計費信息";
 "complete"="完成";
 "canceled"="取消";
@@ -109,3 +110,4 @@
 "totalHeading"="總";
 "productName"="產品名稱";
 "contactPerson"="聯繫人";
+"selectPhoto"="選擇照片";

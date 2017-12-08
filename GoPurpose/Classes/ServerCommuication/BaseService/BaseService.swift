@@ -53,6 +53,10 @@ class BaseService: NSObject {
                     AppDelegate().stopIndicator()
                     print("error with JSON: \(String(describing: response))")
                     var errorMessage: String
+                    if response.response?.statusCode == 500 {
+                        errorMessage = "Internal server error"//NSLocalizedText(key: "internalServerError")
+                    }
+                    else {
                     if !(response.result.value==nil) {
                         let error = response.result.value as! NSDictionary
                         errorMessage = error.object(forKey: "message") as! String
@@ -63,7 +67,7 @@ class BaseService: NSObject {
                     else {
                         errorMessage=NSLocalizedText(key: "somethingWrongMessage")
                     }
-                    
+                    }
                     SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:errorMessage, closeButtonTitle: NSLocalizedText(key: "alertOk"))
                    //  failure(errorMessage as NSError?)
                 }

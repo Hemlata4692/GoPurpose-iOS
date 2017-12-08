@@ -27,6 +27,8 @@ class OrderDataModel: NSObject {
     var fullShippingAddress: String?
     var incrementId: String?
     var productId: String?
+    var orderCurrencyCode: Any?
+    var baseCurrency: String?
     var productName: String?
     var productPrice: Any?
     var productSKU: String?
@@ -35,7 +37,9 @@ class OrderDataModel: NSObject {
     var productDataArray:NSMutableArray = NSMutableArray()
     var trackingNumber: String?
     var trackShipmentArray:NSMutableArray = NSMutableArray()
-    
+    var availableCurrencyArray:NSMutableArray = NSMutableArray()
+  
+
     // MARK: - Get order list
     func getOrderListingData(_ productData: OrderDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.getOrderListing(productData, success: {(responseObj) in
@@ -56,6 +60,15 @@ class OrderDataModel: NSObject {
     // MARK: - Shipment details
     func trackShipmetDetail(_ productData: OrderDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
         ConnectionManager.sharedInstance.getShipmentDataService(productData, success: {(responseObj) in
+            
+            success(responseObj)
+        }, failure: failure)
+    }
+    // MARK: - end
+    
+    // MARK: - Get currency details
+    func getCurrencyDetail(_ productData: OrderDataModel, success: @escaping ((_ response: Any?) -> Void), failure: @escaping ((_ err : NSError?) -> Void)) {
+        ConnectionManager.sharedInstance.getCurrencyDetailService(productData, success: {(responseObj) in
             
             success(responseObj)
         }, failure: failure)

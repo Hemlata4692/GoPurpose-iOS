@@ -2148,6 +2148,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="arrowImage" destination="4Oa-6T-WrO" id="KJb-VG-McQ"/>
+                                            <outlet property="logoImage" destination="vlL-Bm-AZh" id="LoX-nY-REu"/>
                                             <outlet property="notificationLabel" destination="BVb-lB-jEz" id="MQF-kr-sWR"/>
                                         </connections>
                                     </tableViewCell>

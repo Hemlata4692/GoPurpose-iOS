@@ -39,7 +39,7 @@
 "norecord"="没有找到记录.";
 "submitButton"="提交";
 "loginButton"="登录";
-"homeTab"="家";
+"homeTab"="仪表板";
 "messageTab"="消息";
 "productTab"="产品";
 "settingTab"="设置";
@@ -81,17 +81,18 @@
 "Approved"="批准";
 "Pending"="有待";
 "searchProducts"="搜索产品";
-"pendingApproval"="待批准";
+"pendingApproval"="总待处理订单";
+"totalApproved"="已批准总数";
 "totalProducts"="产品总数";
 "totalOrders"="总订单";
 "lifeTimeSale"="终身销售";
-"completeOrder"="完成订单";
-"pendingOrder"="挂单";
+"completeOrder"="订单已送达";
+"pendingOrder"="订单等待";
 "compareOrder"="比较订单";
 "purchaseOrder"="采购订单：";
 "orderDate"="日期：";
 "notAuthorisedUser"="您没有授权访问它.";
-"status"="状态: ";
+"status1"="状态: ";
 "billingShippingText"="运输和计费信息";
 "complete"="完成";
 "canceled"="取消";
@@ -109,3 +110,4 @@
 "totalHeading"="总";
 "productName"="产品名称";
 "contactPerson"="联系人";
+"selectPhoto"="选择照片";

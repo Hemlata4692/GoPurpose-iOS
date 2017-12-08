@@ -112,7 +112,6 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
         userData.isSocialLogin="0"
         LoginDataModel().requestForLogin(userData, success: { (response) in
             AppDelegate().stopIndicator()
-            
             if (UserDefaults().string(forKey: "groupId")as AnyObject).intValue == 1 {
                 let alert = SCLAlertView()
                 _ = alert.addButton(NSLocalizedText(key: "alertOk")) {
@@ -123,14 +122,13 @@ class LoginViewController: UIViewController,BSKeyboardControlsDelegate,UITextFie
             }
 
             else {
-            if !(UserDefaults().string(forKey: "deviceToken") == nil) {
-                SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:UserDefaults().string(forKey: "deviceToken")!, closeButtonTitle: NSLocalizedText(key: "alertOk"))
-                //self.saveDeviceToken()
-            }
-            print(userData as AnyObject)
+                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+                UIApplication.shared.keyWindow?.rootViewController = nextViewController
+//            if !(UserDefaults().string(forKey: "deviceToken") == nil) {
+//                SCLAlertView().showWarning(NSLocalizedText(key: "alertTitle"), subTitle:UserDefaults().string(forKey: "deviceToken")!, closeButtonTitle: NSLocalizedText(key: "alertOk"))
+//               //self.saveDeviceToken()
+//            }
             // Successfully logged in, move to next screen
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-            UIApplication.shared.keyWindow?.rootViewController = nextViewController
             }}) { (error) in
             if error != nil {
                 if error?.code == 200 {

@@ -63,7 +63,12 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
             return 160
         }
         else if indexPath.row==1 {
+            if(UserDefaults().string(forKey: "businessName")==nil){
+                return 0
+            }
+            else{
             return 25
+            }
         }
         else if indexPath.row==2 {
             return 45
@@ -116,7 +121,7 @@ class SettingsViewController: GlobalViewController, UITableViewDelegate, UITable
     @objc func switchIsChanged(mySwitch: UISwitch) {
         if mySwitch.isOn {
             AppDelegate().registerDeviceForNotification()
-            //self.saveDeviceToken()
+            self.saveDeviceToken()
         } else {
             AppDelegate().unRegisterDeviceForNotification()
         }

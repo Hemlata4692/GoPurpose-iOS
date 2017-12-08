@@ -14,7 +14,7 @@ private var kUserProfile = "customers/me"
 private var kUserImpactsPoints = "ranosys/myimpactpoints"
 private var kEditProfilePicture = "customerprofile/index"
 private var kNotificationList = "gopurpose/notifications/getList"
-
+private var kNotificationRead = "gopurpose/notifications/markAsReaded"
 class ProfileService: BaseService {
     
     // MARK: - Change password service
@@ -109,7 +109,7 @@ class ProfileService: BaseService {
         filter.add(["condition_type": "eq", "field": "customer_id", "value": UserDefaults().string(forKey: "userId") as AnyObject])
         filterGroup.add(["filters":filter])
        sortOrders.add(["direction": "DESC", "field": "created_at"])
-        let param2=["current_page": "1","filter_groups":filterGroup,"page_size": "12", "sort_orders": sortOrders] as [String : Any]
+        let param2=["current_page": profileData.currentPage as AnyObject,"filter_groups":filterGroup,"page_size": "12", "sort_orders": sortOrders] as [String : Any]
         request.parameters = ["criteria":param2] as [String : AnyObject]
         request.headers=headers
         print("notificationListService request %@", request.parameters as Any)
@@ -126,7 +126,7 @@ class ProfileService: BaseService {
         request.parameters = ["notificationId":profileData.notificationId, "status":"1"] as [String : AnyObject]
         request.headers=headers
         print("mark notificationread request %@", request.parameters as Any)
-        request.path = basePath + kNotificationList
+        request.path = basePath + kNotificationRead
         self.callPostService(request, success: success, failure: failure)
     }
     // MARK: - end

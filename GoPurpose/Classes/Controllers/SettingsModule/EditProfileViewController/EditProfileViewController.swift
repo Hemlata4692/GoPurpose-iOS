@@ -511,7 +511,7 @@ class EditProfileViewController: GlobalBackViewController,BSKeyboardControlsDele
     
     @IBAction func changeProfileImageAction(_ sender: Any) {
         self.view.endEditing(true)
-        self.loadImagePicker(cameraAccess: true, galleryAccess: true, selectMessage:"Select Photo")
+        self.loadImagePicker(cameraAccess: true, galleryAccess: true, selectMessage:NSLocalizedText(key: "selectPhoto"))
     }
     // MARK: - end
     

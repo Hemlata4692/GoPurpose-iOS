@@ -96,9 +96,7 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
         cell.contentView.layer.borderColor = UIColor(red: 232.0/255.0, green: 232.0/255.0, blue: 232.0/255.0, alpha: 1.0).cgColor
         var productData = OrderDataModel()
         productData = self.orderListingArray[indexPath.row] as! OrderDataModel
-        
         cell.orderIdLabel.attributedText=self.setAttributedString(dataString:productData.orderId!, headingData:NSLocalizedText(key: "purchaseOrder"), textFont:FontUtility.montserratMedium(size: 15), headingFont:FontUtility.montserratSemiBold(size: 16))
-       
         cell.dateLabel.attributedText = self.setAttributedString(dataString:convertDateFormater(date:productData.orderDate!), headingData:NSLocalizedText(key: "orderDate"),textFont:FontUtility.montserratMedium(size: 12), headingFont:FontUtility.montserratSemiBold(size: 14))
             return cell
     }
@@ -112,24 +110,24 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
         secondViewController.purchaseOrderId=NSLocalizedText(key: "purchaseOrder")+productData.orderId!
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
-    
     //pagination
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-            if !(self.orderListingArray.count==0) {
-            if self.orderListingArray.count == totalRecords as! Int {
-                orderListTableView.tableFooterView=nil
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.orderListingArray.count == totalRecords as! Int {
+            orderListTableView.tableFooterView=nil
+        }
+        else if(indexPath.row == self.orderListingArray.count - 1) {
+            if(self.orderListingArray.count < totalRecords as! Int) {
+                tableView.tableFooterView = footerView;
+                currentPageCount += 1
+                 self.getOrderListing()
             }
             else {
-                orderListTableView.tableFooterView=footerView
-                // call method to add data to tableView
-                currentPageCount = +1
-                self.getOrderListing()
+                orderListTableView.tableFooterView=nil
             }
-        }
         }
     }
     // MARK: - end
+    
     
     func setAttributedString(dataString: String, headingData: String, textFont:UIFont, headingFont:UIFont) -> NSMutableAttributedString {
         let headingString = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: headingFont]

@@ -22,13 +22,13 @@ class ReportsWebViewController: GlobalBackViewController, UIWebViewDelegate {
         self.title=NSLocalizedText(key: "salesReport")
 
         if reportsURL == NSLocalizedText(key: "completeOrder") {
-            urlString = "/marketplace_report/graph/fulfilled/?token="
+            urlString = completeOrderURL
         }
         else  if reportsURL == NSLocalizedText(key: "pendingOrder") {
-            urlString = "/marketplace_report/graph/unfulfilled/?token="
+            urlString = pendingOrder
         }
         else  if reportsURL == NSLocalizedText(key: "compareOrder") {
-            urlString = "/marketplace_report/graph/compairefulfil/?token="
+            urlString = compareOrder
         }
         AppDelegate().showIndicator()
         let reportURL = BASE_URL + UserDefaults().string(forKey: "Language")! + urlString! + UserDefaults().string(forKey: "apiKey")!

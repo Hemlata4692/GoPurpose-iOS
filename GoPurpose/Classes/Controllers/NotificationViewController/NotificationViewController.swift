@@ -10,6 +10,8 @@ import UIKit
 
 class NotificationCell: UITableViewCell {
     @IBOutlet weak var notificationLabel: UILabel!
+    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var arrowImage: UIImageView!
 }
 
 class NotificationViewController: GlobalViewController, UITableViewDelegate, UITableViewDataSource {
@@ -30,6 +32,7 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
         noRecordeLabel.isHidden=true;
         noRecordeLabel.text=NSLocalizedText(key: "norecord")
         // Do any additional setup after loading the view.
+        self.addFooterView()
         notificationListArray = NSMutableArray()
         AppDelegate().showIndicator()
         self.perform(#selector(getNotificationList), with: nil, afterDelay: 0.1)
@@ -38,6 +41,16 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func addFooterView() {
+        footerView.backgroundColor = UIColor.white
+        footerView.frame=CGRect(x:0, y:0, width:notificationTableView.frame.size.width, height:30)
+        let pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        pagingSpinner.startAnimating()
+        pagingSpinner.color = UIColor(red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
+        pagingSpinner.hidesWhenStopped = true
+        footerView.addSubview(pagingSpinner)
     }
     // MARK: - end
     
@@ -64,6 +77,7 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
     
     func marknotificationRead(index:Int, notificationId:String) {
         let notificationList = ProfileDataModel()
+        notificationList.notificationId=notificationId
         ProfileDataModel().markNotificationAsRead(notificationList, success: { (response) in
             AppDelegate().stopIndicator()
             var notificationData = ProfileDataModel()
@@ -91,18 +105,17 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
          var notificationData = ProfileDataModel()
         notificationData=notificationListArray[indexPath.row] as! ProfileDataModel
         if notificationData.notificationStatus == "1" {
-           // cell.notificationLabel.textColor = UIColor (red: 60.0/255.0, green: 60.0/255.0, blue: 60.0/255.0, alpha: 1.0)
-            cell.contentView.alpha=1.0
+            cell.notificationLabel.alpha=0.3
         }
         else {
-            cell.contentView.alpha=0.95
+            cell.notificationLabel.alpha=1.0
         }
         cell.notificationLabel.text=notificationData.notificationMessage as String?
         cell.contentView.layer.borderWidth = 1;
         cell.contentView.layer.borderColor = tableViewContentBorderColor.cgColor
         cell.notificationLabel.translatesAutoresizingMaskIntoConstraints=true
         let textHeight = cell.notificationLabel.text?.dynamicHeightWidthForString(width: notificationTableView.frame.size.width-75, font: FontUtility.montserratRegular(size: 15), isWidth: false)
-        cell.notificationLabel.frame=CGRect(x:42,y:8,width:notificationTableView.frame.size.width-75,height:textHeight!)
+        cell.notificationLabel.frame=CGRect(x:42,y:(cell.contentView.frame.size.height/2-textHeight!/2),width:notificationTableView.frame.size.width-75,height:textHeight!)
         return cell
     }
     
@@ -128,18 +141,18 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-            if !(self.notificationListArray.count==0) {
-            if self.notificationListArray.count == totalRecords as! Int {
-                notificationTableView.tableFooterView=nil
-            }
-            else {
-                notificationTableView.tableFooterView=footerView
-                // call method to add data to tableView
-                currentPageCount = +1
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.notificationListArray.count == totalRecords as! Int {
+           notificationTableView.tableFooterView=nil
+        }
+        else if(indexPath.row == self.notificationListArray.count - 1) {
+            if(self.notificationListArray.count < totalRecords as! Int) {
+                tableView.tableFooterView = footerView;
+                currentPageCount += 1
                 self.getNotificationList()
             }
+            else {
+                notificationTableView.tableFooterView = nil;
             }
         }
     }
