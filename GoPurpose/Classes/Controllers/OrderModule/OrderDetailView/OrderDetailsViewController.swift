@@ -117,6 +117,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
             }
             else {
                 self.getShipmentDetails(purchaseId: orderData.purchaseOrderId!)
+                self.purchaseOrderId=orderData.purchaseOrderId!
                 self.noRecordLabel.isHidden=true
                 self.orderTableView.isHidden=false
                 self.orderStatus=orderData.orderStatus
@@ -247,7 +248,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
             if !(self.orderDetailArray.count==0) {
                 var data = OrderDataModel()
                 if indexPath.row == 0 {
-                    cell.orderIdLabel.text=purchaseOrderId
+                    cell.orderIdLabel.text=(NSLocalizedText(key: "purchaseOrder")) + purchaseOrderId!
                     if (orderStatus?.contains(NSLocalizedText(key: "complete")))! {
                         cell.orderStatusLabel.attributedText = self.setAttributedString(dataString:String(orderStatus!).uppercased(), headingData:NSLocalizedText(key: "status1"),textFont:FontUtility.montserratRegular(size: 13), headingFont:FontUtility.montserratRegular(size: 15),color:UIColor(red: 163.0/255.0, green: 217.0/255.0, blue: 131.0/255.0, alpha: 1.0))
                     }
@@ -270,8 +271,6 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
                     cell.skuLabel.text = data.productSKU
                     cell.productNameLabel.text=data.productName
                     cell.quantityLabel.text = NSString(format:"%d", data.productQty as! Int) as String
-//                    let totalMultipliedPrice = Double(data.productPrice as! Double) * (data.productQty as! Double)
-//                    let convertedPrice = Double(totalMultipliedPrice) * (conversionPrice)
                     cell.priceLabel.text = currencySymbol! + (NSString(format:"%.1f", data.productPrice as! Double) as String) as String
                 }
             }
@@ -333,7 +332,7 @@ class OrderDetailsViewController: GlobalBackViewController, UITableViewDelegate,
     @IBAction func trackOrderButtonAction(_ sender: Any) {
         var orderData = OrderDataModel()
         orderData=self.trackingDataArray[0] as! OrderDataModel
-        let trackingURL="http://gonatuur.aftership.com/" + orderData.trackingNumber!
+        let trackingURL=afterShipURL + orderData.trackingNumber!
         UIApplication.shared.openURL(NSURL.init(string: trackingURL)! as URL)
     }
     // MARK: - end

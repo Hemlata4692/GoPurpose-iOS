@@ -10,6 +10,8 @@ import UIKit
 
 class NotificationCell: UITableViewCell {
     @IBOutlet weak var notificationLabel: UILabel!
+    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var arrowImage: UIImageView!
 }
 
 class NotificationViewController: GlobalViewController, UITableViewDelegate, UITableViewDataSource {
@@ -103,18 +105,17 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
          var notificationData = ProfileDataModel()
         notificationData=notificationListArray[indexPath.row] as! ProfileDataModel
         if notificationData.notificationStatus == "1" {
-           // cell.notificationLabel.textColor = UIColor (red: 60.0/255.0, green: 60.0/255.0, blue: 60.0/255.0, alpha: 1.0)
-            cell.contentView.alpha=1.0
+            cell.notificationLabel.alpha=0.3
         }
         else {
-            cell.contentView.alpha=0.95
+            cell.notificationLabel.alpha=1.0
         }
         cell.notificationLabel.text=notificationData.notificationMessage as String?
         cell.contentView.layer.borderWidth = 1;
         cell.contentView.layer.borderColor = tableViewContentBorderColor.cgColor
         cell.notificationLabel.translatesAutoresizingMaskIntoConstraints=true
         let textHeight = cell.notificationLabel.text?.dynamicHeightWidthForString(width: notificationTableView.frame.size.width-75, font: FontUtility.montserratRegular(size: 15), isWidth: false)
-        cell.notificationLabel.frame=CGRect(x:42,y:8,width:notificationTableView.frame.size.width-75,height:textHeight!)
+        cell.notificationLabel.frame=CGRect(x:42,y:(cell.contentView.frame.size.height/2-textHeight!/2),width:notificationTableView.frame.size.width-75,height:textHeight!)
         return cell
     }
     
@@ -155,21 +156,5 @@ class NotificationViewController: GlobalViewController, UITableViewDelegate, UIT
             }
         }
     }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-//            if !(self.notificationListArray.count==0) {
-//            if self.notificationListArray.count == totalRecords as! Int {
-//                notificationTableView.tableFooterView=nil
-//            }
-//            else {
-//                notificationTableView.tableFooterView=footerView
-//                // call method to add data to tableView
-//                currentPageCount += 1
-//                self.getNotificationList()
-//            }
-//            }
-//        }
-//    }
     // MARK: - end
 }

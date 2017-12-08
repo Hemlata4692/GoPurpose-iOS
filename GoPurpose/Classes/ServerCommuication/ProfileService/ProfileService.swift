@@ -14,7 +14,7 @@ private var kUserProfile = "customers/me"
 private var kUserImpactsPoints = "ranosys/myimpactpoints"
 private var kEditProfilePicture = "customerprofile/index"
 private var kNotificationList = "gopurpose/notifications/getList"
-
+private var kNotificationRead = "gopurpose/notifications/markAsReaded"
 class ProfileService: BaseService {
     
     // MARK: - Change password service
@@ -126,7 +126,7 @@ class ProfileService: BaseService {
         request.parameters = ["notificationId":profileData.notificationId, "status":"1"] as [String : AnyObject]
         request.headers=headers
         print("mark notificationread request %@", request.parameters as Any)
-        request.path = basePath + kNotificationList
+        request.path = basePath + kNotificationRead
         self.callPostService(request, success: success, failure: failure)
     }
     // MARK: - end

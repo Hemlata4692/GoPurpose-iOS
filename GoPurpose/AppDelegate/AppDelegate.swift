@@ -149,8 +149,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
         self.deviceNotificationToken=deviceTokenString
-        SCLAlertView().showWarning("self.deviceToken", subTitle:self.deviceNotificationToken!, closeButtonTitle: NSLocalizedText(key: "alertOk"))
-        // Persist it in your backend in case it's new
     }
     
     // Called when APNs failed to register the device for push notifications
@@ -170,19 +168,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // Called to let your app know which action was selected by the user for a given notification.
         let userInfo = response.notification.request.content.userInfo as NSDictionary
         print("\(String(describing: userInfo))")
-//
-//        aps =     {
-//            alert = "Earned points for sharing Exciting Corn on Facebook";
-//            "customer_id" = 238;
-//            "notification_id" = 326;
-//            status = 0;
-//            "targat_id" = 0;
-//            type = 10;
-//        };
-//    }
-    
-   // {"aps":{"alert":"A new order #000000443 has been received.","customer_id":"1","type":1,"targat_id":524,"status":0,"notification_id":"38"}}
-    
             let alertDict = userInfo["aps"] as! NSDictionary
             targetId = alertDict["targat_id"] as? String
             notificationId = alertDict["notification_id"] as? String
@@ -197,7 +182,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        SCLAlertView().showWarning("will present", subTitle:"(String(describing: userInfo))", closeButtonTitle: NSLocalizedText(key: "alertOk"))
         completionHandler(.alert)
         
     }

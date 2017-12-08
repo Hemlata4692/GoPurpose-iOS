@@ -16,6 +16,12 @@ let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 let BASE_URL: String = "https://dev.gopurpose.com/"
 //let BASE_URL: String = "http://192.168.18.141/gopurpose/"
 let basePath = BASE_URL + UserDefaults().string(forKey: "Language")! + "/rest/" + UserDefaults().string(forKey: "Language")!+"/V1/"
+//after ship url
+let afterShipURL: String = "http://gonatuur.aftership.com/"
+//reports url
+let completeOrderURL: String = "/marketplace_report/graph/fulfilled/?token="
+let pendingOrder: String = "/marketplace_report/graph/unfulfilled/?token="
+let compareOrder: String = "/marketplace_report/graph/compairefulfil/?token="
 
 // Constants for screen sizes
 let kScreenSize = UIScreen.main.bounds.size

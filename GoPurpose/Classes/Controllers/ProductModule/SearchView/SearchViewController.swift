@@ -210,20 +210,7 @@ class SearchViewController: GlobalBackViewController , UITableViewDelegate, UITa
             }
         }
     }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-//            if self.productListingArray.count == totalRecords as! Int {
-//                serachProductTableView.tableFooterView=nil
-//            }
-//            else {
-//                serachProductTableView.tableFooterView=footerView
-//                // call method to add data to tableView
-//                currentPageCount = +1
-//                self.getProductList()
-//            }
-//        }
-//    }
+
     // MARK: - end
     
     // MARK: - IBActions

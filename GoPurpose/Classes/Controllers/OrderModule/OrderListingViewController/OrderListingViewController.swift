@@ -126,21 +126,6 @@ class OrderListingViewController: GlobalViewController,UITableViewDelegate, UITa
             }
         }
     }
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height {
-//            if !(self.orderListingArray.count==0) {
-//            if self.orderListingArray.count == totalRecords as! Int {
-//                orderListTableView.tableFooterView=nil
-//            }
-//            else {
-//                orderListTableView.tableFooterView=footerView
-//                // call method to add data to tableView
-//                currentPageCount = +1
-//                self.getOrderListing()
-//            }
-//        }
-//        }
-//    }
     // MARK: - end
     
     
