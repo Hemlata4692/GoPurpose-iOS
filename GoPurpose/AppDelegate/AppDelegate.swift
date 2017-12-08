@@ -149,6 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // Print it to console
         print("APNs device token: \(deviceTokenString)")
         self.deviceNotificationToken=deviceTokenString
+       
     }
     
     // Called when APNs failed to register the device for push notifications

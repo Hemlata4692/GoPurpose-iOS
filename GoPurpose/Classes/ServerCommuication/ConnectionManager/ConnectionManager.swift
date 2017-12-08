@@ -89,6 +89,7 @@ class ConnectionManager: NSObject {
         LoginService().saveDeviceTokenService(userData, success: {(response) in
             print("save device token response %@", response as AnyObject)
             //Parse data from server response and store in data model
+            
             success(userData)
         },failure:failure)
     }
