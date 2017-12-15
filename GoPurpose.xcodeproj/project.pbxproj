@@ -13,6 +13,8 @@
 		1828C0FA1FC7F941008398BA /* OrderDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C0F91FC7F941008398BA /* OrderDataModel.swift */; };
 		1828C0FC1FC7F969008398BA /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C0FB1FC7F969008398BA /* OrderService.swift */; };
 		1842AE951FA97F6E0075BEF2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */; };
+		184E5AF31FE3886900EF31C9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184E5AF21FE3884600EF31C9 /* Crashlytics.framework */; };
+		184E5AF41FE3886B00EF31C9 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184E5AF11FE3884500EF31C9 /* Fabric.framework */; };
 		185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185773911FB4370B00CE693E /* UserNotifications.framework */; };
 		185FCBC21FA9D78200D11A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185FCBC11FA9D75400D11A4D /* Main.storyboard */; };
 		185FCBC41FA9D8A500D11A4D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B2F1FA9CE080095F260 /* Roboto-Bold.ttf */; };
@@ -85,6 +87,8 @@
 		1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoPurpose-Bridging-Header.h"; sourceTree = "<group>"; };
 		1842AE931FA97F6E0075BEF2 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1842AE941FA97F6E0075BEF2 /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		184E5AF11FE3884500EF31C9 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		184E5AF21FE3884600EF31C9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		185773911FB4370B00CE693E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		185773931FB44CB000CE693E /* GoPurpose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoPurpose.entitlements; sourceTree = "<group>"; };
 		185FCBC11FA9D75400D11A4D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				18B5F8F21FB5BE53004A341E /* ZendeskSDK.framework in Frameworks */,
 				185773921FB4370B00CE693E /* UserNotifications.framework in Frameworks */,
 				18B5F8F11FB5BE51004A341E /* ZendeskProviderSDK.framework in Frameworks */,
+				184E5AF31FE3886900EF31C9 /* Crashlytics.framework in Frameworks */,
+				184E5AF41FE3886B00EF31C9 /* Fabric.framework in Frameworks */,
 				18DA61701FAB4DC800330B96 /* MobileCoreServices.framework in Frameworks */,
 				A4B21DFC8726D53D04E60333 /* Pods_GoPurpose.framework in Frameworks */,
 			);
@@ -189,12 +195,22 @@
 		1842AE961FA97F7F0075BEF2 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				184E5AF01FE3883800EF31C9 /* Fabric */,
 				18B5F8EA1FB5BE13004A341E /* Zopim */,
 				182265E61FB3327D00C27783 /* LocalisedFiles */,
 				18C24B2E1FA9CDF70095F260 /* Fonts */,
 				1842AE921FA97F6D0075BEF2 /* GoPurpose-Bridging-Header.h */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		184E5AF01FE3883800EF31C9 /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				184E5AF21FE3884600EF31C9 /* Crashlytics.framework */,
+				184E5AF11FE3884500EF31C9 /* Fabric.framework */,
+			);
+			path = Fabric;
 			sourceTree = "<group>";
 		};
 		186E90A61FB5586C00EF863A /* SettingsModule */ = {
@@ -749,6 +765,7 @@
 				18956FF01FA8A736009DC63A /* Resources */,
 				9A1A5C383E08A6371565FF20 /* [CP] Embed Pods Frameworks */,
 				D86A90EAE896774C7EA75C1F /* [CP] Copy Pods Resources */,
+				184E5AEF1FE387D300EF31C9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -829,6 +846,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		184E5AEF1FE387D300EF31C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 78c357deb9899f686b487d5ada04ba32d21ac94f e1f488a4a81b33623d51358229e80a97b40d0f6a3c0a4560c73a755961a6822a";
+		};
 		63B55C096D383CF8DFD7153A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -980,7 +1010,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1040,6 +1071,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1070,10 +1102,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = M8A7BYS443;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Frameworks",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Zopim/Framework",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = GoPurpose/Info.plist;
@@ -1100,10 +1134,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = M8A7BYS443;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Frameworks",
 					"$(PROJECT_DIR)/GoPurpose/SupportingFiles/Zopim/Framework",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = GoPurpose/Info.plist;
