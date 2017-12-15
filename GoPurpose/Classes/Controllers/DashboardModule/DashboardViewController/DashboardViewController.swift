@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Crashlytics
+
 
 class CardsCell: UICollectionViewCell {
     @IBOutlet weak var headingLabel: UILabel!
@@ -26,10 +28,9 @@ class DashboardViewController: GlobalViewController,UICollectionViewDelegate,UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title=NSLocalizedText(key: "goPurpose")
-        
-        // Do any additional setup after loading the view.
+   // Do any additional setup after loading the view.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
